@@ -1,13 +1,15 @@
 ShoeShop::Application.routes.draw do
   root to: 'posts#index'
   
-  resources :posts do 
+  resources :posts, path: "pairs" do
     resources :images, shallow: true
     member do 
       get 'upvote'
       get 'downvote'
     end
   end
+
+
   
   resources :users
   get 'profile' => 'users#profile'

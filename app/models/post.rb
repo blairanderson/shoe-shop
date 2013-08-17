@@ -38,5 +38,9 @@ class Post < ActiveRecord::Base
       "Post is Not Visible"
     end
   end
+
+  def to_param
+    "#{id} #{brand} #{title}".parameterize
+  end
   
 end
