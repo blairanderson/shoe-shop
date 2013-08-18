@@ -31,9 +31,9 @@ end
 group :test, :development do 
   gem 'sqlite3'
   gem 'faker'
+  gem 'factory_girl_rails', '~> 4.0'
   gem 'minitest'
   gem 'pry'
-  gem 'factory_girl_rails', '~> 4.0'
 end
 
 group :development do 
@@ -49,5 +49,4 @@ group :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'rb-fsevent'  # guard dependency
-  gem 'pry'
 end
