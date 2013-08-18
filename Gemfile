@@ -33,7 +33,7 @@ group :test, :development do
   gem 'faker'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'minitest'
-  gem 'pry'
+  gem 'pry-rails'
 end
 
 group :development do 

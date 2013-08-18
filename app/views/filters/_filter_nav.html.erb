@@ -1,0 +1,8 @@
+<div class="pagination">
+  <ul>
+    <% @valid_filters.each do |filter, title| %>
+      <li><%= link_to title, send(params[:action] + '_posts_path', filter) %></li>
+    <% end %>
+  </ul>
+</div>
+<%= header "#{@valid_filters[@filter.to_s]} | #{params[:action]}", :h1  %>

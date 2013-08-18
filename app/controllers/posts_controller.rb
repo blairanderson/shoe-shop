@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, except: [:index, :new, :create]
+  before_action :set_post, except: [:new, :create, :index]
   before_action :require_login, except: [:show, :index]
   before_action :require_post_ownership, only: [:edit, :update, :destroy]
 
@@ -14,6 +14,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
   end
+
 
   def upvote
     @post.liked_by current_user
