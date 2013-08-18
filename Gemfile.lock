@@ -50,6 +50,7 @@ GEM
       activemodel (>= 3.0)
     acts_as_votable (0.6.0)
       rails (>= 3.2.11)
+    addressable (2.3.5)
     arel (4.0.0)
     atomic (1.1.12)
     bcrypt-ruby (3.0.1)
@@ -113,6 +114,8 @@ GEM
     jwt (0.1.8)
       multi_json (>= 1.5)
     kgio (2.8.0)
+    launchy (2.3.0)
+      addressable (~> 2.3)
     listen (1.2.3)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -244,6 +247,7 @@ DEPENDENCIES
   guard-rspec
   impressionist
   jquery-rails
+  launchy
   minitest
   newrelic_rpm
   omniauth

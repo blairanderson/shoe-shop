@@ -6,6 +6,9 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+  end
+
   def profile
     @user = current_user
     render :show

@@ -2,20 +2,14 @@
   <%= @user.username %>
 </h1>
 
-<% @user.posts.each do |post| %>
-  <div class="media">
-    <%= link_to post, class: "pull-left" do %>
-      <img class="media-object" src="http://placehold.it/64x64">
-    <% end %>
-    <div class="media-body">
-      
-      <%= link_to post do %>
-        <h4 class="media-heading"><%= "#{post.brand} #{post.title} #{post.price} [#{post.size}]" %></h4>
-        <h5><%= post.status %></h5>
-      <% end %>
-      
-      <%= link_to post.body, post %>
-    </div>
+<div class="span6">
+  <h2>Recent Pairs</h2>
+  <%= render partial: 'posts/post', collection: @user.posts.active %>
+</div>
+<% if current_user && current_user == @user %>
+
+  <div class="span6">
+    <h2>Pending Posts</h2>
+    <%= render partial: 'posts/post', collection: @user.posts.inactive %>
   </div>
 <% end %>
-

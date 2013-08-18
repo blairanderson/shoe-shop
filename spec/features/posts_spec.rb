@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe 'posting' do 
+  before do 
+    Size.create(name: "20")
+  end
+
   let!(:valid_user) {FactoryGirl.create(:user)}
   let!(:next_valid_user) {FactoryGirl.create(:user)}
 
@@ -16,16 +20,27 @@ describe 'posting' do
 
   def create_valid_post
     visit new_post_path
+    expect(current_path).to eq new_post_path
+
+    expect(page).to have_field 'post_brand'
     fill_in 'post_brand', with: "NIKE"
+
+    expect(page).to have_field 'post_title'
     fill_in 'post_title', with: "Jordans and shit"
-    select('1', :from => 'Size')
+
+    expect(page).to have_field 'post_size_id'
+    select(Size.last.name, :from => 'Size')
+
+    expect(page).to have_field 'post_price'
     fill_in 'post_price', with: "150"
+
+    expect(page).to have_field 'post_body'
     fill_in 'post_body', with: "These are the slickest jordans around"
 
     click_on "Submit"
   end
   
-  describe 'valid user' do 
+  describe 'valid logged in user' do 
     before :each do 
       visit root_path
       login(valid_user)
@@ -37,7 +52,8 @@ describe 'posting' do
       
       create_valid_post
 
-      target_post = Post.first
+      target_post = Post.last
+      expect(Post.count).to eq 1
       expect(current_path).to eq post_path(target_post)
       expect(target_post.user.id).to eq valid_user.id
     end

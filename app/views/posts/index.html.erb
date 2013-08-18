@@ -1,37 +1,6 @@
 <% content_for :title, "Buy and Sell"  %>
 <div class="container-fluid">
-  <% @posts.each do |post| %>
-    <hr>
-    <div class="row-fluid">
-      <div class="media">
-        <%= content_tag :div, class: "pull-left text-center" do  %>
-          <% if current_user %>
-            <%= link_to 'upvote', upvote_post_path(post), class: "label label-inverse" %>
-            <h4>[<%= post.score %>]</h4>
-            <%= link_to 'downvote', downvote_post_path(post), class: "label" %>
-          <% else %>
-            <h4>[<%= post.score %>]</h4>
-          <% end %>
-        <% end %>
-        <%= link_to post, class: "pull-left" do %>
-          <div class="text-center">
-            <% if post.images.count > 0 %>
-              <%= image_tag post.images.first.url_size(120) , class: 'media-object img-rounded' %>
-            <% else %>
-              <%= image_tag "http://placehold.it/50x50", class: 'media-object img-rounded' %>
-            <% end %>
-          </div>
-        <% end %>
-        <div class="media-body">
-          <h4 class="media-heading"><%= link_to post.post_title, post %></h4>
-          <p>
-            Sold by: <%= link_to "#{post.user.username} (#{0})", user_path(post.user) %>
-            | <span class="label label-inverse">views: <%= post.view_count %></span>
-          </p>
-        </div>
-      </div>
-    </div>
-  <% end %>
+  <%= render @posts %>
 </div>
 
 <% if current_admin %>
