@@ -13,10 +13,18 @@
       <div class="nav-collapse col1">
         <ul class="nav">
           <li class="divider-vertical"></li>
-          <li><%= link_to "Top", top_posts_path(:all)%></li>
-          <li><%= link_to "Bottom", bottom_posts_path(:all) %></li>
-          <li><%= link_to "Old", oldest_posts_path(:all) %></li>
-          <li><%= link_to "New", newest_posts_path(:all) %></li>
+          <li>
+            <%= link_to "Top", filters_posts_path(:top, :all)  %>
+          </li>
+          <li>
+            <%= link_to "Bottom", filters_posts_path(:bottom, :all) %>
+          </li>
+          <li>
+            <%= link_to "Old", filters_posts_path(:oldest, :all) %>
+          </li>
+          <li>
+            <%= link_to "New", filters_posts_path(:newest, :all) %>
+          </li>
         </ul>
       </div>
       <div class="nav-collapse col2">

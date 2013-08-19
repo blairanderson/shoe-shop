@@ -3,12 +3,8 @@ ShoeShop::Application.routes.draw do
   
   resources :posts, path: "pairs" do
     collection do
-      get 'top/:filter',    to: 'filters#top',    as: 'top'
-      get 'bottom/:filter', to: 'filters#bottom', as: 'bottom'
-      get 'new/:filter',    to: 'filters#newest', as: 'newest'
-      get 'old/:filter',    to: 'filters#oldest', as: 'oldest'
+      get ':sort/:filter', to: 'filters#index', as: 'filters'
     end
-
 
     resources :images, shallow: true
     member do 

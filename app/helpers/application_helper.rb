@@ -5,6 +5,5 @@ module ApplicationHelper
 
   def header(content, tag)
     content_for :title, content
-    content_tag tag, content
   end
 end

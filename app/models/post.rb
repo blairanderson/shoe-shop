@@ -33,7 +33,7 @@ class Post < ActiveRecord::Base
   # 'ten5-to-eleven'
   scope :lrg, ->  { where(size_id: [10,11]) }
   # 'eleven5_plus'
-  scope :xl, ->  { where(size_id: [11,12,13,14,15,16,17,18,19]) }
+  scope :xl, ->  { where(size_id: [12,13,14,15,16,17,18,19]) }
 
   def self.filter(filter)
     self.send(filter)

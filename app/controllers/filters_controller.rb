@@ -1,34 +1,47 @@
 class FiltersController < ApplicationController
-  before_action :filter_params
+  before_action :validate_filter, :validate_sort
   
-  def top
-    @posts = Post.filter(@filter).top
-  end
-
-  def bottom
-    @posts = Post.filter(@filter).bottom
-  end
-
-  def newest
-    @posts = Post.filter(@filter).newest
-  end
-
-  def oldest
-    @posts = Post.filter(@filter).oldest
+  def index
+    @posts = Post.filter(@filter).send(@sort)
   end
 
 private
   def filter_params
-    filter = params.permit(:filter)[:filter]
-    if valid_values.keys.include?(filter)
-      @filter = filter.to_sym
-      @valid_filters = valid_values
+    params.permit(:filter, :sort)[:filter]
+  end
+
+  def sort_params
+    params.permit(:filter, :sort)[:sort]
+  end
+
+  def validate_sort
+    if valid_sorts.keys.include?(sort_params)
+      @sort = sort_params.to_sym
+      @valid_sorts = valid_sorts
+    else
+      redirect_to root_path, notice: "that sort does not exist"
+    end
+  end
+
+  def valid_sorts
+    {
+      'top' => 'top',
+      'bottom' => 'bottom',
+      'newest' => 'newest',
+      'oldest' => 'oldest'
+    }
+  end
+
+  def validate_filter
+    if valid_filters.keys.include?(filter_params)
+      @filter = filter_params.to_sym
+      @valid_filters = valid_filters
     else
       redirect_to root_path, notice: "that filter does not exist"
     end
   end
 
-  def valid_values
+  def valid_filters
     {
       'all' => 'all',
       'sml' => '9-',

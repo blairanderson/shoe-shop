@@ -1,8 +1,10 @@
-<div class="pagination">
-  <ul>
-    <% @valid_filters.each do |filter, title| %>
-      <li><%= link_to title, send(params[:action] + '_posts_path', filter) %></li>
-    <% end %>
-  </ul>
+<div class="container-fluid">
+  <%= header "#{@valid_filters[@filter.to_s]} | #{@sort}", :a  %>
+  <div class="navbar">
+    <ul class="nav nav-tabs">
+      <% @valid_filters.each do |filter, title| %>
+        <li><%= link_to title, filters_posts_path(@sort, filter) %></li>
+      <% end %>
+    </ul>
+  </div>
 </div>
-<%= header "#{@valid_filters[@filter.to_s]} | #{params[:action]}", :h1  %>
