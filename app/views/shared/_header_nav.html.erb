@@ -14,16 +14,16 @@
         <ul class="nav">
           <li class="divider-vertical"></li>
           <li>
-            <%= link_to "Top", filters_posts_path(:top, :all)  %>
+            <%= link_to "Top", filters_path(:top, :all)  %>
           </li>
           <li>
-            <%= link_to "Bottom", filters_posts_path(:bottom, :all) %>
+            <%= link_to "Bottom", filters_path(:bottom, :all) %>
           </li>
           <li>
-            <%= link_to "Old", filters_posts_path(:oldest, :all) %>
+            <%= link_to "Old", filters_path(:oldest, :all) %>
           </li>
           <li>
-            <%= link_to "New", filters_posts_path(:newest, :all) %>
+            <%= link_to "New", filters_path(:newest, :all) %>
           </li>
         </ul>
       </div>

@@ -2,17 +2,13 @@ ShoeShop::Application.routes.draw do
   root to: 'posts#index'
   
   resources :posts, path: "pairs" do
-
     resources :images, shallow: true
     member do 
       get 'upvote'
       get 'downvote'
     end
-    
-    collection do
-      get ':sort/:filter', to: 'filters#index', as: 'filters'
-    end
   end
+  get 'pairs/:sort/:filter', to: 'filters#index', as: 'filters'
   
   resources :users
   get 'profile' => 'users#profile'
