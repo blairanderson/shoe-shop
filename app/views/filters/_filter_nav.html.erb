@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <%= header "#{@valid_filters[@filter.to_s]} | #{@sort}", :a  %>
   <div class="navbar">
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-pills">
       <% @valid_filters.each do |filter, title| %>
-        <li><%= link_to title, filters_posts_path(@sort, filter) %></li>
+        <li class="sort-pill"><%= link_to title, filters_posts_path(@sort, filter) %></li>
       <% end %>
     </ul>
   </div>
