@@ -24,8 +24,8 @@ class Post < ActiveRecord::Base
 
   scope :top,  ->  { order("cached_votes_score DESC") }
   scope :bottom, ->  { order("cached_votes_score ASC") }
-  scope :newest, ->  { order("created_at ASC") }
-  scope :oldest, ->  { order("created_at DESC") }
+  scope :oldest, ->  { order("created_at ASC") }
+  scope :newest, ->  { order("created_at DESC") }
   # 'nine-and-under'
   scope :sml, ->  { where(:size_id => [1,2,3,4,5,6,7]) }
   # 'nine5-to-10'
