@@ -21,7 +21,7 @@
     <div class="media-body">
       <h4 class="media-heading"><%= link_to post.post_title, post %></h4>
       <p>
-        Sold by: <%= link_to "#{post.user.username} (#{0})", user_path(post.user) %>
+        Sold by: <%= link_to "#{post.user.username} (#{post.user.score})", user_path(post.user) %>
         | <span class="label label-inverse">views: <%= post.view_count %></span>
       </p>
     </div>

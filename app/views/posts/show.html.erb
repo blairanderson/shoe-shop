@@ -2,7 +2,10 @@
 <%= render partial: 'shared/filepicker' %>
 <div class="row-fluid">
   <div class="span3">
+    
     <p><strong>Score: </strong><%= @post.score %></p>
+    <p><strong>User Score: </strong><%= @profile.score %></p>
+    <p><strong>User Influence: </strong><%= @profile.influence %></p>
     <p><strong>Views: </strong><%= @post.view_count %></p>
     <p><strong>Brand: </strong><%= @post.brand %></p>
 

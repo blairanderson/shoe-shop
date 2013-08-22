@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
   
   def create
-    if @user = login(params[:username],params[:password])
+    if @user = login(params[:username].downcase ,params[:password])
       redirect_back_or_to(root_path, :notice => 'Login successful.')
     else
       flash[:alert] = "Login Failed."

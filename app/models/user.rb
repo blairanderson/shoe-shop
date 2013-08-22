@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
       return true
     end
   end
+
+  def score
+    ProfilePresenter.new(self).score
+  end
 end

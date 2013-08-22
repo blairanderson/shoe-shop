@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   def show
     @images = @post.images
+    @profile = ProfilePresenter.new(@post.user)
   end
 
   def index
