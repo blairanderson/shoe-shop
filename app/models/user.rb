@@ -13,4 +13,13 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email , :case_sensitive => false
 
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
+  def can_comment_on_post?(post)
+    if Comment.where(post_id: post.id, user_id: id).first
+      return false
+    else
+      return true
+    end
+  end
 end

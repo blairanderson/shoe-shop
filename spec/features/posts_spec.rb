@@ -1,14 +1,84 @@
 require 'spec_helper'
 
 describe 'posting' do 
-  before do 
-    Size.create(name: "20")
+  let!(:post) { FactoryGirl.create(:post) }
+  let!(:valid_user) { post.user }
+
+  describe 'un-authenticated user' do 
+    it 'should not be able to create a post' do 
+      visit new_post_path
+      expect( page ).to have_content "Login or Create Account"
+    end
+
+    it 'should not be able to edit another users posting' do 
+      expect( post.user.id ).to eq valid_user.id
+      
+      next_valid_user = FactoryGirl.create(:user)
+      login(next_valid_user)
+      expect(page).to have_content "Logout"
+
+      visit edit_post_path(post)
+      expect( current_path ).to eq new_sessions_path
+      expect( page ).to have_content "You are not authorized"
+    end
   end
 
-  let!(:valid_user) {FactoryGirl.create(:user)}
-  let!(:next_valid_user) {FactoryGirl.create(:user)}
 
+  context 'a visitor that is un-authenticated' do
+    describe 'should be able to visit' do 
+      it 'a single post' do
+        visit post_path(post)
+        expect(current_path).to eq post_path(post)
+      end
 
+      it 'the login page' do 
+        visit login_path
+        expect( current_path ).to eq login_path
+      end
+
+      it 'the registration page' do 
+        visit new_user_path
+        expect(current_path).to eq new_user_path
+      end
+
+      it 'the about page' do 
+        visit about_path
+        expect(current_path).to eq about_path
+      end
+
+      it 'the TOS' do 
+        visit tos_path
+        expect(current_path).to eq tos_path
+      end
+
+      it 'the Privacy Policy' do 
+        visit privacy_policy_path
+        expect(current_path).to eq privacy_policy_path
+      end
+    end
+
+    describe 'should be returned to the home page' do 
+      let(:post) { Post.first }
+      it 'after trying to create a post' do 
+        visit new_post_path
+        expect(current_path).to eq login_path
+      end
+      it 'after trying to visit the edit page' do
+        visit edit_post_path(post)
+        expect(current_path).to eq login_path
+      end
+
+      it 'after trying to upvote a post' do
+        visit upvote_post_path(post)
+        expect(current_path).to eq login_path
+      end
+
+      it 'after trying to downvote a post' do 
+        visit downvote_post_path(post)
+        expect(current_path).to eq login_path
+      end
+    end
+  end
   def login(user, password = "password")
     visit root_path
     expect(page).to have_field "username"
@@ -38,62 +108,5 @@ describe 'posting' do
     fill_in 'post_body', with: "These are the slickest jordans around"
 
     click_on "Submit"
-  end
-  
-  describe 'valid logged in user' do 
-    before :each do 
-      visit root_path
-      login(valid_user)
-      expect(page).to have_content "Logout"
-    end
-
-    it 'should be able to create a post' do 
-      visit new_post_path
-      
-      create_valid_post
-
-      target_post = Post.last
-      expect(Post.count).to eq 1
-      expect(current_path).to eq post_path(target_post)
-      expect(target_post.user.id).to eq valid_user.id
-    end
-
-    it 'should be able to edit their own posts' do 
-      visit new_post_path
-
-      create_valid_post
-
-      target_post = Post.first
-      expect( target_post.user.id ).to eq valid_user.id
-
-      visit edit_post_path(target_post)
-      fill_in 'post_price', with: "250"
-      click_on 'Submit'
-
-      expect( current_path ).to eq post_path(target_post)
-      expect( page ).to have_content  "250"
-    end
-  end
-
-  describe 'un-authenticated user' do 
-    let(:post) {FactoryGirl.create(:post)}
-    let(:valid_user) { post.user }
-    
-    it 'should not be able to create a post' do 
-      visit new_post_path
-      expect( page ).to have_content "Login or Create Account"
-    end
-
-    it 'should not be able to edit another users posting' do 
-      target_post = Post.first
-      expect( target_post.user.id ).to eq valid_user.id
-      
-      login(next_valid_user)
-      expect(page).to have_content "Logout"
-
-      visit edit_post_path(target_post)
-      expect( current_path ).to eq new_sessions_path
-      expect( page ).to have_content "You are not authorized"
-    end
   end
 end

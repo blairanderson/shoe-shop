@@ -1,0 +1,12 @@
+<li>
+  <div class="media">
+    <div class="media-object pull-left">
+      <% if current_user && comment.user == current_user %>
+        <%= link_to "edit", edit_comment_path(comment), class: 'btn btn-mini btn-inverse' %>
+      <% end %>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading"><%= comment.body %></h4>
+    </div>
+  </div>
+</li>

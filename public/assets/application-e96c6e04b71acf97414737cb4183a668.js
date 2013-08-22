@@ -10186,6 +10186,18 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 
 
 }).call(this);
+(function() {
+
+
+}).call(this);
+(function() {
+
+
+}).call(this);
+(function() {
+
+
+}).call(this);
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -10201,4 +10213,9 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 
 
 
-;
+
+$(document).ready(function() {
+  filepicker.setKey('AoaxmLrr2Tj2EbZv0JS0Mz');
+  var path = window.location.pathname;
+  $('a[href="' + path + '"]').parent().addClass('active');
+});

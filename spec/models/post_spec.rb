@@ -13,6 +13,7 @@ describe Post do
     it { should belong_to :user }
     it { should belong_to :size }
     it { should have_many(:images).dependent(:destroy)}
+    it { should have_many(:comments).dependent(:destroy)}
   end
 
   describe 'scopes' do 
@@ -29,7 +30,6 @@ describe Post do
     describe '.inactive' do 
       it 'should only return posts where visible is false' do
         FactoryGirl.create_list(:post, 2)
-        expect(Post.inactive.count).to eq 2
         Post.inactive.each do |post|
           expect(post.visible).to eq false
         end
@@ -38,6 +38,7 @@ describe Post do
   end
 
   describe 'instance methods' do 
+    let(:post){ FactoryGirl.create(:post) }
     describe '#status' do 
       it 'should happy if visible' do 
         post.visible = true
@@ -47,9 +48,10 @@ describe Post do
         expect(post.status).to eq "Post is Not Visible"
       end
     end
-
-    it '#score should equal cached_votes_score' do 
-      expect(post.score).to eq post.cached_votes_score
+    describe '#score' do 
+      it 'should equal cached_votes_score' do 
+        expect(post.score).to eq post.cached_votes_score
+      end
     end
   end
 

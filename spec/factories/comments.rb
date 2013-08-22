@@ -1,8 +1,9 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :image do
-    url { Faker::Internet.url + ".jpg" }
-    post { Post.first || create(:post) }
+  factory :comment do
+    body { Faker::Lorem.sentences(5).join }
+    post
+    user
   end
 end

@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_admin
 
+  def redirect_path
+    session[:return_to_url] || login_path
+  end
+
   def require_login
     if !logged_in?
       session[:return_to_url] = request.url if request.get?
@@ -15,6 +19,12 @@ class ApplicationController < ActionController::Base
 
   def require_post_ownership
     unless current_user && current_user.id == @post.user_id
+      redirect_to new_sessions_path, notice: "You are not authorized"
+    end
+  end
+
+  def require_comment_ownership
+    unless current_user && current_user.id == @comment.user_id
       redirect_to new_sessions_path, notice: "You are not authorized"
     end
   end

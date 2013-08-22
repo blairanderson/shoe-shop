@@ -2,11 +2,11 @@
 
 FactoryGirl.define do
   factory :post do
-    brand { "NIKE" }
-    title { "Jordans and shit" }
-    body  {  Faker::Lorem.sentences(3).join }
-    price { "$100" }
-    size
+    brand "NIKE"
+    title "Jordans and shit"
+    body Faker::Lorem.sentences(3).join
+    price "$100"
+    size {Size.first || create(:size) }
     user
   end
 end

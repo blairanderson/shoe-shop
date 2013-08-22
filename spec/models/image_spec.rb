@@ -8,11 +8,9 @@ describe Image do
 
   describe '#url_size' do 
     let(:image) {FactoryGirl.create(:image)}
-    %w(100 200 300 400 500 600 700 800 900).each do |size|
-      it "should allow for variable sizes, including #{size}" do
-        target_url = image.url + "/convert?rotate=0&w=#{size}&h=#{size}&fit=max" 
-        expect(image.url_size(size)).to eq target_url
-      end
+    it "should allow for variable sizes, including 900" do
+      target_url = image.url + "/convert?rotate=0&w=900&h=900&fit=max" 
+      expect(image.url_size(900)).to eq target_url
     end
   end
 end

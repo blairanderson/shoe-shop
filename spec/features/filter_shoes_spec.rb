@@ -5,7 +5,6 @@ describe 'Filtered Pairs' do
     %w(all sml med lrg xl).each do |filter|
       it "should be visible sorting: #{sort}, and filtering: #{filter}" do 
         target_path = "/pairs/" + sort + "/" + filter
-        puts target_path
         visit target_path
         expect(current_path).to eq target_path 
       end

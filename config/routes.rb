@@ -1,7 +1,9 @@
 ShoeShop::Application.routes.draw do
+
   root to: 'posts#index'
   
   resources :posts, path: "pairs" do
+    resources :comments, shallow: true
     resources :images, shallow: true
     member do 
       get 'upvote'
@@ -19,6 +21,9 @@ ShoeShop::Application.routes.draw do
     resources :sizes
   end
 
-  get 'login' => 'sessions#new'
-  get 'logout' => 'sessions#destroy'
+  get 'login', to: 'sessions#new'
+  get 'logout', to: 'sessions#destroy'
+  get 'about', to: 'pages#about'
+  get 'tos', to: 'pages#tos'
+  get 'privacy_policy', to: 'pages#privacy_policy'
 end

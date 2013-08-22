@@ -2,9 +2,8 @@ ruby '2.0.0'
 source 'https://rubygems.org'
 
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-# gem 'rails', '4.0.0'
-gem 'rails', github: 'rails/rails'
+# gem 'rails', github: 'rails/rails'
+gem 'rails', '4.0.0'
 gem 'acts_as_votable', '~> 0.6.0' #https://github.com/ryanto/acts_as_votable
 gem 'impressionist'
 
@@ -18,6 +17,9 @@ gem 'omniauth-twitter'
 gem 'twitter'
 
 gem 'sass-rails', '~> 4.0.0'
+
+# bootstrap-sass :) 
+# gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
@@ -32,7 +34,6 @@ group :test, :development do
   gem 'sqlite3'
   gem 'faker'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'minitest'
   gem 'pry-rails'
 end
 

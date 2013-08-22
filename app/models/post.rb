@@ -15,6 +15,7 @@ class Post < ActiveRecord::Base
   validates_associated :size, :if => :size_id
 
   has_many :images, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   alias_attribute :score, :cached_votes_score 
   alias_attribute :view_count, :impressions_count 
