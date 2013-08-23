@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130821020517) do
+ActiveRecord::Schema.define(version: 20130823174141) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id",    null: false
@@ -124,5 +124,15 @@ ActiveRecord::Schema.define(version: 20130821020517) do
 
   add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
   add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
+
+  create_table "watched_items", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "watched_items", ["post_id"], name: "index_watched_items_on_post_id"
+  add_index "watched_items", ["user_id"], name: "index_watched_items_on_user_id"
 
 end

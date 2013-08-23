@@ -12,6 +12,8 @@ describe User do
   describe 'associations' do 
     it { should have_many(:posts).dependent(:destroy) }
     it { should have_many(:comments).dependent(:destroy) }
+    it { should have_many(:watched_items).dependent(:destroy) }
+    it { should have_many(:watched_posts).through(:watched_items)}
   end
 
   describe '#can_comment_on_post?' do
@@ -24,5 +26,9 @@ describe User do
       comment = FactoryGirl.create(:comment, user: user, post: post)
       expect( user.can_comment_on_post?(post) ).to eq false
     end
+  end
+
+  describe '#watching?' do 
+    
   end
 end

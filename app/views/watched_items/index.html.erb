@@ -1,0 +1,13 @@
+<ol>
+  <% @posts.each do |watched_item| %>
+  <li>
+    <%= link_to "id: #{watched_item.post.id} | #{watched_item.post.title}", watched_item.post  %>
+  </li>
+  <ul class="unstyled">
+    <li>
+      <%= "started watching #{time_ago_in_words watched_item.created_at} ago" %>
+      <%= link_to "Stop Watching", post_watched_item_path(watched_item.post ,watched_item), method: :delete, class: "btn btn-mini btn-danger", confirm: "are you sure?", disable_with: "removing..." %>
+    </li>
+  </ul>
+  <% end %>
+</ol>

@@ -16,6 +16,8 @@ class Post < ActiveRecord::Base
 
   has_many :images, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :watched_items, dependent: :destroy
+  has_many :watchers, through: :watched_items, source: :user
 
   alias_attribute :score, :cached_votes_score 
   alias_attribute :view_count, :impressions_count 

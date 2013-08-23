@@ -24,6 +24,7 @@
         Sold by: <%= link_to "#{post.user.username} (#{post.user.score})", user_path(post.user) %>
         | <span class="label label-inverse">views: <%= post.view_count %></span>
       </p>
+        <%= render partial: "watched_items/watched_item", locals: {post: post} %>
     </div>
   </div>
 </div>

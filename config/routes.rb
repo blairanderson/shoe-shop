@@ -1,8 +1,8 @@
 ShoeShop::Application.routes.draw do
-
   root to: 'posts#index'
-  
+
   resources :posts, path: "pairs" do
+    resources :watched_items, path: "watch", only: [:create, :destroy] 
     resources :comments, shallow: true
     resources :images, shallow: true
     member do 
@@ -12,8 +12,11 @@ ShoeShop::Application.routes.draw do
   end
   get 'pairs/:sort/:filter', to: 'filters#index', as: 'filters'
   
-  resources :users
+  resources :users do
+    resources :watched_items, path: "watching", only: [:index] 
+  end
   get 'profile' => 'users#profile'
+  get 'profile/watching' => 'watched_items#index'
     
   resource :sessions, only: [:new, :create, :destroy]
 
