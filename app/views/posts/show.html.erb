@@ -25,7 +25,7 @@
 
 <ul class="comments">
   <%= render partial: "comments/comment", collection: @post.comments %>
-  <% if current_user && current_user.can_comment_on_post?(@post) %>
+  <% if current_user %>
     <%= simple_form_for [@post, @post.comments.build(post_id: @post.id)] do |f| %>
       <%= f.input :body, input_html: {rows: 6} %>
       <%= f.submit :submit, class: 'btn btn-mini btn-inverse' %>

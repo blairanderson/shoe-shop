@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to post_path(@post), notice: "Comment Added"
     else
-      redirect_to post_path(@post), notice: "Sorry, You Can Only Comment Once on This Post."
+      redirect_to :back, notice: "Sorry, There was an Error."
     end
   end
 

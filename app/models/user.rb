@@ -17,16 +17,8 @@ class User < ActiveRecord::Base
   has_many :watched_items, dependent: :destroy
   has_many :watched_posts, through: :watched_items, source: :post
 
-  def can_comment_on_post?(post)
-    if Comment.where(post_id: post.id, user_id: id).first
-      return false
-    else
-      return true
-    end
-  end
-
   def watching?(post)
-    if WatchedItem.where(post_id: post.id, user_id: id).first
+    if watching(post)
       true
     else
       false

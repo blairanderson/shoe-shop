@@ -16,19 +16,6 @@ describe User do
     it { should have_many(:watched_posts).through(:watched_items)}
   end
 
-  describe '#can_comment_on_post?' do
-    let!(:post) { FactoryGirl.create(:post) }
-    let!(:user) { post.user }
-    it 'should return true if user has not already commented' do 
-      expect( user.can_comment_on_post?(post) ).to eq true
-    end
-    it 'should return false if user has already commented' do
-      comment = FactoryGirl.create(:comment, user: user, post: post)
-      expect( user.can_comment_on_post?(post) ).to eq false
-    end
-  end
-
   describe '#watching?' do 
-    
   end
 end
