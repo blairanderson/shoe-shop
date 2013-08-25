@@ -16,7 +16,7 @@
 
     <p><strong>Size: </strong><%= @post.size.name %></p>
 
-    <p><strong>Price: </strong><%= @post.price %></p>
+    <p><strong>Price: </strong><%= number_to_currency(@post.price, precision: 0) %></p>
 
     <p><strong>Description:</strong><%= @post.body %></p>
   </div>

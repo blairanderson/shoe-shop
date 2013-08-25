@@ -29,14 +29,11 @@ class Post < ActiveRecord::Base
   scope :bottom, ->  { order("cached_votes_score ASC") }
   scope :oldest, ->  { order("created_at ASC") }
   scope :newest, ->  { order("created_at DESC") }
-  # 'nine-and-under'
-  scope :sml, ->  { where(:size_id => [1,2,3,4,5,6,7]) }
-  # 'nine5-to-10'
-  scope :med, ->  { where(size_id: [8,9]) }
-  # 'ten5-to-eleven'
-  scope :lrg, ->  { where(size_id: [10,11]) }
-  # 'eleven5_plus'
-  scope :xl, ->  { where(size_id: [12,13,14,15,16,17,18,19]) }
+  
+  scope :sml, ->  { where(:size_id => [1,2,3,4,5,6,7]) } # 'nine-and-under'
+  scope :med, ->  { where(size_id: [8,9]) }# 'nine5-to-10'
+  scope :lrg, ->  { where(size_id: [10,11]) }# 'ten5-to-eleven'
+  scope :xl, ->  { where(size_id: [12,13,14,15,16,17,18,19]) } # 'eleven5_plus' 
 
   def self.filter(filter)
     self.send(filter)
@@ -44,11 +41,11 @@ class Post < ActiveRecord::Base
 
   def post_title
     begin
-      "#{title}, size: #{size.name} (#{price})"
+      "#{title}, size: #{size.name} $#{price}"
     rescue Exception => e
       self.size = Size.first
       self.save
-      "#{title}, size: #{size.name} #{price}"
+      "#{title}, size: #{size.name} $#{price}"
     end
   end
 
