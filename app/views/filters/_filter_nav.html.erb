@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <%= header "#{@valid_filters[@filter.to_s]} | #{@sort}", :a  %>
+  <%= header "#{@valid_filters[@filter.to_s].upcase} | #{@sort.upcase}" %>
   <div class="navbar">
     <ul class="nav nav-pills">
       <% @valid_filters.each do |filter, title| %>

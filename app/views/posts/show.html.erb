@@ -32,10 +32,10 @@
   </ul>
 </div>
 <% if current_user %>
-<div class="well">
-  <%= simple_form_for [@post, @post.comments.build(post_id: @post.id)] do |f| %>
-    <%= f.input :body, input_html: {rows: 6} %>
-    <%= f.submit :submit, class: 'btn btn-mini btn-inverse' %>
-  <% end %>
-</div>
+  <div class="well">
+    <%= simple_form_for [@post, @post.comments.build(post_id: @post.id)] do |f| %>
+      <%= f.input :body, input_html: {rows: 6} %>
+      <%= f.submit :submit, class: 'btn btn-mini btn-inverse' %>
+    <% end %>
+  </div>
 <% end %>

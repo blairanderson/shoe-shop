@@ -27,6 +27,7 @@ ShoeShop::Application.routes.draw do
   get 'login', to: 'sessions#new'
   get 'logout', to: 'sessions#destroy'
   get 'about', to: 'pages#about'
+  get 'contact', to: 'pages#contact'
   get 'tos', to: 'pages#tos'
   get 'privacy_policy', to: 'pages#privacy_policy'
 end

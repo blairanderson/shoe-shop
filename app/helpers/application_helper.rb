@@ -3,7 +3,7 @@ module ApplicationHelper
     "SolesOut"
   end
 
-  def header(content, tag)
+  def header(content)
     content_for :title, content
   end
 end
