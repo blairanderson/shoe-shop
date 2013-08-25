@@ -32,24 +32,16 @@
   </div>
   <!-- footer starts here -->
   <footer class="footer">
-
-  <div class="navbar navbar-fixed-bottom inverse">
-    <div class="navbar-inner">
-      <div class="container">
-        <ul class="nav">
-          <li><%= link_to "About", about_path %></li>
-          <% if current_admin %>
-            <li>
-              <%= link_to "ADMIN: SIZES", sizes_path %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-
-    
+    <hr>
+    <ul class="inline">
+      <li><%= link_to "About", about_path %></li>
+      <li><%= link_to "Contact", contact_path %></li>
+      <% if current_admin %>
+        <li>
+          <%= link_to "ADMIN: SIZES", sizes_path %>
+        </li>
+      <% end %>
+    </ul>
   </footer>
   <!-- footer end here -->
 </div>

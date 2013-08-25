@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   acts_as_votable
 
   validates :title,   presence: true, length: { maximum: 50 }
-  validates :price,   presence: true
+  validates :price,   presence: true, numericality: true
   validates :body,    presence: true
   validates :brand,   presence: true
 

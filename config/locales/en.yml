@@ -25,7 +25,8 @@ en:
   simple_form:
     labels:
       post:
-        body: "Description"
+        price: Price, Must Include Shipping to US Only
+        body: Description
       # user:
         # username: 'User name'
         # password: 'Password'

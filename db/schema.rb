@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130823174141) do
+ActiveRecord::Schema.define(version: 20130825184615) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id",    null: false
@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 20130823174141) do
     t.datetime "updated_at"
     t.text     "body"
     t.boolean  "visible",            default: false
-    t.string   "price"
     t.integer  "size_id"
     t.integer  "cached_votes_total", default: 0
     t.integer  "cached_votes_score", default: 0
@@ -76,12 +75,14 @@ ActiveRecord::Schema.define(version: 20130823174141) do
     t.integer  "cached_votes_down",  default: 0
     t.integer  "images_count",       default: 0
     t.integer  "impressions_count",  default: 0
+    t.integer  "price"
   end
 
   add_index "posts", ["cached_votes_down"], name: "index_posts_on_cached_votes_down"
   add_index "posts", ["cached_votes_score"], name: "index_posts_on_cached_votes_score"
   add_index "posts", ["cached_votes_total"], name: "index_posts_on_cached_votes_total"
   add_index "posts", ["cached_votes_up"], name: "index_posts_on_cached_votes_up"
+  add_index "posts", ["price"], name: "index_posts_on_price"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "sizes", force: true do |t|
