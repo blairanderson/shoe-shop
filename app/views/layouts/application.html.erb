@@ -2,7 +2,7 @@
 <html>
 <head>
   <title><%= yield(:title) || "Buy and Sell" %> | <%= site_title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"%>
   <%= stylesheet_link_tag "application", media: "all" %>
   <%= javascript_include_tag "application" %>
@@ -23,22 +23,35 @@
     <%= alert %>
   </p>
 <% end %>
-<div class='container'>
+<div class='container-fluid'>
   <div class="row-fluid">
-    <div class="span6">
+    <div class="span9">
       <%= yield %>
     </div>
-<!-- SEARCH FORM HERE -->
-    <div class="span6">
-      <div class="navbar">
-        <%= form_tag('/search', class: "navbar-form form-search, pull-right") do %> 
-          <%= search_field_tag :search, nil, class: 'span12 search-query' %>
-          <%= submit_tag "Search", class: "btn btn-inverse btn-mini btn-block" %>
-        <% end  %> 
+    <%= yield :sidebar %>
+  </div>
+  <!-- footer starts here -->
+  <footer class="footer">
+
+  <div class="navbar navbar-fixed-bottom inverse">
+    <div class="navbar-inner">
+      <div class="container">
+        <ul class="nav">
+          <li><%= link_to "About", about_path %></li>
+          <% if current_admin %>
+            <li>
+              <%= link_to "ADMIN: SIZES", sizes_path %>
+            </li>
+          <% end %>
+        </ul>
       </div>
     </div>
-<!-- SEARCH FORM HERE -->
   </div>
+
+
+    
+  </footer>
+  <!-- footer end here -->
 </div>
 
 <%= render partial: 'layouts/analytics' %>

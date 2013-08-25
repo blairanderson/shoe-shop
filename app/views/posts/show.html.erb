@@ -1,9 +1,12 @@
 <% content_for :title, @post.post_title.to_s  %>
 <%= render partial: 'shared/filepicker' %>
 <div class="row-fluid">
-  <div class="span3">
-    
-    <p><strong>Score: </strong><%= @post.score %></p>
+  <div class="span6">
+<p>
+  <%= link_to '<i class="icon-arrow-up icon-white"></i>UPVOTE'.html_safe, upvote_post_path(@post), class: "label label-inverse" %>
+  <strong>Score: </strong><%= @post.score %>
+  <%= link_to 'DOWNVOTE<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(@post), class: "label" %>
+</p>
     <p><strong>User Score: </strong><%= @profile.score %></p>
     <p><strong>User Influence: </strong><%= @profile.influence %></p>
     <p><strong>Views: </strong><%= @post.view_count %></p>
@@ -23,12 +26,16 @@
   <%= render partial: 'image', collection: @post.images, locals: {p_id: @post.user_id} %>
 </ul>
 
-<ul class="comments">
-  <%= render partial: "comments/comment", collection: @post.comments %>
-  <% if current_user %>
-    <%= simple_form_for [@post, @post.comments.build(post_id: @post.id)] do |f| %>
-      <%= f.input :body, input_html: {rows: 6} %>
-      <%= f.submit :submit, class: 'btn btn-mini btn-inverse' %>
-    <% end %>
+<div class='well'>
+  <ul class="comments">
+    <%= render partial: "comments/comment", collection: @post.comments %>
+  </ul>
+</div>
+<% if current_user %>
+<div class="well">
+  <%= simple_form_for [@post, @post.comments.build(post_id: @post.id)] do |f| %>
+    <%= f.input :body, input_html: {rows: 6} %>
+    <%= f.submit :submit, class: 'btn btn-mini btn-inverse' %>
   <% end %>
-</ul>
+</div>
+<% end %>

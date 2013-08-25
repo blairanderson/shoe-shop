@@ -1,0 +1,10 @@
+<!-- SEARCH FORM HERE -->
+    <div class="span3">
+      <div class="navbar">
+        <%= form_tag('/search', class: "navbar-form form-search, pull-right") do %> 
+          <%= search_field_tag :search, nil, class: 'span12 search-query' %>
+          <%= submit_tag "Search", class: "btn btn-inverse btn-mini btn-block" %>
+        <% end  %> 
+      </div>
+    </div>
+<!-- SEARCH FORM HERE -->

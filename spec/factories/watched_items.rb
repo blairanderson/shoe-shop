@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :watched_item do
-    user nil
-    post nil
+    user
+    post
   end
 end

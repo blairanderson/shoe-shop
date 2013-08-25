@@ -7,6 +7,7 @@
     </div>
     <div class="media-body">
       <h4 class="media-heading"><%= comment.body %></h4>
+      <p>by <%= comment.user.username %>, <%= time_ago_in_words(comment.created_at) %> ago</p>
     </div>
   </div>
 </li>
