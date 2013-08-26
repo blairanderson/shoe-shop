@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   before_action :require_post_ownership, only: [:edit, :update, :destroy]
 
   def show
+    impressionist(@post)
     @images = @post.images
     @profile = ProfilePresenter.new(@post.user)
   end
@@ -58,7 +59,6 @@ private
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
-    impressionist(@post)
   end
 
   # Only allow a trusted parameter "white list" through.

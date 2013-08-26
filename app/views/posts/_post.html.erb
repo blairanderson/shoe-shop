@@ -16,7 +16,7 @@
           [<%= post.score %>]
           <%= link_to '<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(post), class: "label" %>
         <% end %>
-        <%= link_to post.post_title, post %>
+        <%= link_to post_title(post), post %>
       </h4>
       <p class="small">
         Sold by: <%= link_to "#{post.user.username} (#{post.user.score})", user_path(post.user) %>

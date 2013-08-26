@@ -39,16 +39,6 @@ class Post < ActiveRecord::Base
     self.send(filter)
   end
 
-  def post_title
-    begin
-      "#{title}, size: #{size.name} $#{price}"
-    rescue Exception => e
-      self.size = Size.first
-      self.save
-      "#{title}, size: #{size.name} $#{price}"
-    end
-  end
-
   def status
     if visible
       "Post is Visible"
