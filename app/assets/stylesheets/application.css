@@ -12,6 +12,7 @@
  *= require_tree .
  */
 
+
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 980px){ 
   body {
@@ -27,17 +28,49 @@
  
 /* Landscape phones and down */
 @media (max-width: 480px) {
-
+    padding-bottom: 40px;
 }
 
 .btn-watch{
   color: gold;
 }
 
-.footer {
+
+/*.list-group {
+  max-width: 400px;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+div.list-group-item {
+  color: #555555;
   position: relative;
-  margin-top: -150px; /* negative value of footer height */
-  height: 150px;
-  clear:both;
-  padding-top:20px;
-} 
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}*/
+
+/*  <div class="list-group">
+    <div class="list-group-item">
+      <%= image_tag "http://placehold.it/65x65", class: 'img-rounded pull-left' %>
+      <h4 class="list-group-item-heading">List group item heading</h4>
+      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+    </div>
+    <div class="list-group-item">
+      <h4 class="list-group-item-heading">List group item heading</h4>
+      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+    </div>
+    <div class="list-group-item">
+      <h4 class="list-group-item-heading">List group item heading</h4>
+      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+    </div>
+  </div>
+*/

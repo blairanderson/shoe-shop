@@ -1,7 +1,7 @@
 <div class="row-fluid">
   <div class="media">
     <%= link_to post, class: "pull-left" do %>
-      <div class="text-center">
+      <div class="pull-left">
         <% if post.images.count > 0 %>
           <%= image_tag post.images.first.url_size(65) , class: 'media-object img-rounded' %>
         <% else %>
