@@ -11,6 +11,7 @@ gem 'simple_form'
 gem 'newrelic_rpm'
 gem 'active_model_serializers'
 gem 'sorcery'
+gem 'simple_enum'
 
 gem 'omniauth'
 gem 'omniauth-twitter'

@@ -2,10 +2,14 @@ class Post < ActiveRecord::Base
   is_impressionable counter_cache: true
   acts_as_votable
 
-  validates :title,   presence: true, length: { maximum: 50 }
-  validates :price,   presence: true, numericality: true
-  validates :body,    presence: true
-  validates :brand,   presence: true
+  as_enum :status, [:draft, :for_sale, :sold, :removed, :deleted], 
+  :whiny => false, :column => 'status_enum'
+
+  validates :title,       presence: true, length: { maximum: 50 }
+  validates :price,       presence: true, numericality: true
+  validates :body,        presence: true
+  validates :brand,       presence: true
+  validates :status_enum, presence: true
 
   belongs_to :user
   validates_associated :user, :if => :user_id
@@ -22,8 +26,19 @@ class Post < ActiveRecord::Base
   alias_attribute :score, :cached_votes_score 
   alias_attribute :view_count, :impressions_count 
 
-  scope :active, ->  { where(visible: true) }
-  scope :inactive, -> { where(visible: false) }
+  before_validation :set_default_enum
+
+  def set_default_enum
+    if status.nil?
+      self.status = :draft
+    end
+  end
+
+  scope :inactive,     -> { where(status_enum: Post.draft) }
+  scope :active,  -> { where(status_enum: Post.for_sale) }
+  scope :depleted,      -> { where(status_enum: Post.sold) }
+  scope :gone,   -> { where(status_enum: Post.removed) }
+  scope :hidden,   -> { where(status_enum: Post.deleted) }
 
   scope :top,  ->  { order("cached_votes_score DESC") }
   scope :bottom, ->  { order("cached_votes_score ASC") }
@@ -37,14 +52,6 @@ class Post < ActiveRecord::Base
 
   def self.filter(filter)
     self.send(filter)
-  end
-
-  def status
-    if visible
-      "Post is Visible"
-    else
-      "Post is Not Visible"
-    end
   end
 
   def to_param

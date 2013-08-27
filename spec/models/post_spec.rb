@@ -6,6 +6,7 @@ describe Post do
     it { should validate_presence_of :brand }
     it { should validate_presence_of :body }
     it { should validate_presence_of :price }
+    it { should validate_presence_of :status_enum }
     it { should validate_numericality_of :price}
     it { should ensure_length_of(:title).is_at_most(50) }
   end
@@ -22,19 +23,19 @@ describe Post do
   describe 'scopes' do 
     describe '.active' do
       it 'should only return posts where visible is true' do 
-        FactoryGirl.create_list(:post, 5, visible: true)
+        FactoryGirl.create_list(:post, 5, status: :for_sale)
         expect(Post.active.count).to eq 5
         Post.active.each do |post|
-          expect(post.visible).to eq true
+          expect(post.status).to eq :for_sale
         end
       end
     end
 
     describe '.inactive' do 
-      it 'should only return posts where visible is false' do
+      it 'should only return draft posts' do
         FactoryGirl.create_list(:post, 2)
         Post.inactive.each do |post|
-          expect(post.visible).to eq false
+          expect(post.status).to eq :draft
         end
       end
     end
@@ -42,20 +43,10 @@ describe Post do
 
   describe 'instance methods' do 
     let(:post){ FactoryGirl.create(:post) }
-    describe '#status' do 
-      it 'should happy if visible' do 
-        post.visible = true
-        expect(post.status).to eq "Post is Visible"
-      end
-      it 'should be unhappy if not visible' do 
-        expect(post.status).to eq "Post is Not Visible"
-      end
-    end
     describe '#score' do 
       it 'should equal cached_votes_score' do 
         expect(post.score).to eq post.cached_votes_score
       end
     end
   end
-
 end

@@ -7,6 +7,7 @@ FactoryGirl.define do
     body Faker::Lorem.sentences(3).join
     price 100
     size {Size.first || create(:size) }
+    status :draft
     user
   end
 end

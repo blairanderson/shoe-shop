@@ -185,6 +185,8 @@ GEM
       sprockets-rails (~> 2.0.0)
     shoulda-matchers (2.2.0)
       activesupport (>= 3.0.0)
+    simple_enum (1.6.5)
+      activesupport (>= 3.0.0)
     simple_form (1.4.1)
     simple_oauth (0.2.0)
     slop (3.4.6)
@@ -252,6 +254,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.0)
   shoulda-matchers (= 2.2.0)
+  simple_enum
   simple_form
   sorcery
   sqlite3

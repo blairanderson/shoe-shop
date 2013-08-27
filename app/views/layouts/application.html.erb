@@ -30,20 +30,7 @@
     </div>
     <%= yield :sidebar %>
   </div>
-  <!-- footer starts here -->
-  <footer class="footer">
-    <hr>
-    <ul class="inline">
-      <li><%= link_to "About", about_path %></li>
-      <li><%= link_to "Contact", contact_path %></li>
-      <% if current_admin %>
-        <li>
-          <%= link_to "ADMIN: SIZES", sizes_path %>
-        </li>
-      <% end %>
-    </ul>
-  </footer>
-  <!-- footer end here -->
+  <%= render partial: "shared/footer" %>
 </div>
 
 <%= render partial: 'layouts/analytics' %>

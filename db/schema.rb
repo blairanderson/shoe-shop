@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130825184615) do
+ActiveRecord::Schema.define(version: 20130827042953) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id",    null: false
@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 20130825184615) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "body"
-    t.boolean  "visible",            default: false
     t.integer  "size_id"
     t.integer  "cached_votes_total", default: 0
     t.integer  "cached_votes_score", default: 0
@@ -76,6 +75,7 @@ ActiveRecord::Schema.define(version: 20130825184615) do
     t.integer  "images_count",       default: 0
     t.integer  "impressions_count",  default: 0
     t.integer  "price"
+    t.integer  "status_enum",        default: 0
   end
 
   add_index "posts", ["cached_votes_down"], name: "index_posts_on_cached_votes_down"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20130825184615) do
   add_index "posts", ["cached_votes_total"], name: "index_posts_on_cached_votes_total"
   add_index "posts", ["cached_votes_up"], name: "index_posts_on_cached_votes_up"
   add_index "posts", ["price"], name: "index_posts_on_price"
+  add_index "posts", ["status_enum"], name: "index_posts_on_status_enum"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "sizes", force: true do |t|
