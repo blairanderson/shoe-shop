@@ -6,8 +6,8 @@ ShoeShop::Application.routes.draw do
     resources :comments, shallow: true
     resources :images, shallow: true
     member do 
-      get 'upvote'
-      get 'downvote'
+      get :upvote
+      get :downvote
     end
   end
   get 'pairs/:sort/:filter', to: 'filters#index', as: 'filters'

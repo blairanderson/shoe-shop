@@ -17,7 +17,6 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-
   def upvote
     @post.liked_by current_user
     redirect_to :back, notice: "upvote :)"
@@ -56,13 +55,11 @@ class PostsController < ApplicationController
   end
 
 private
-  # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def post_params
-    params.require(:post).permit(:brand, :title, :size_id, :price, :body)
+    params.require(:post).permit(:brand, :title, :size_id, :price, :body, :status_enum)
   end
 end

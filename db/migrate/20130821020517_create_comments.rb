@@ -10,6 +10,5 @@ class CreateComments < ActiveRecord::Migration
 
     add_index :comments, :user_id
     add_index :comments, :post_id
-    add_index :comments, [:user_id, :post_id], unique: true
   end
 end

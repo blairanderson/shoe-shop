@@ -4,6 +4,37 @@ describe 'posting' do
   let!(:post) { FactoryGirl.create(:post) }
   let!(:valid_user) { post.user }
 
+  def login(user, password = "password")
+    visit root_path
+    expect(page).to have_field "username"
+    fill_in "username", with: user.username
+    expect(page).to have_field "password"
+    fill_in "password", with: password
+    click_on "Login"
+  end
+
+  def create_valid_post
+    visit new_post_path
+    expect(current_path).to eq new_post_path
+
+    expect(page).to have_field 'post_brand'
+    fill_in 'post_brand', with: "NIKE"
+
+    expect(page).to have_field 'post_title'
+    fill_in 'post_title', with: "Jordans and shit"
+
+    expect(page).to have_field 'post_size_id'
+    select(Size.last.name, :from => 'Size')
+
+    expect(page).to have_field 'post_price'
+    fill_in 'post_price', with: "150"
+
+    expect(page).to have_field 'post_body'
+    fill_in 'post_body', with: "These are the slickest jordans around"
+
+    click_on "Submit"
+  end
+
   describe 'un-authenticated user' do 
     it 'should not be able to create a post' do 
       visit new_post_path
@@ -23,6 +54,12 @@ describe 'posting' do
     end
   end
 
+
+  context 'an authenticated user' do
+    describe 'should be able to edit their posts' do 
+
+    end
+  end
 
   context 'a visitor that is un-authenticated' do
     describe 'should be able to visit' do 
@@ -78,35 +115,5 @@ describe 'posting' do
         expect(current_path).to eq login_path
       end
     end
-  end
-  def login(user, password = "password")
-    visit root_path
-    expect(page).to have_field "username"
-    fill_in "username", with: user.username
-    expect(page).to have_field "password"
-    fill_in "password", with: password
-    click_on "Login"
-  end
-
-  def create_valid_post
-    visit new_post_path
-    expect(current_path).to eq new_post_path
-
-    expect(page).to have_field 'post_brand'
-    fill_in 'post_brand', with: "NIKE"
-
-    expect(page).to have_field 'post_title'
-    fill_in 'post_title', with: "Jordans and shit"
-
-    expect(page).to have_field 'post_size_id'
-    select(Size.last.name, :from => 'Size')
-
-    expect(page).to have_field 'post_price'
-    fill_in 'post_price', with: "150"
-
-    expect(page).to have_field 'post_body'
-    fill_in 'post_body', with: "These are the slickest jordans around"
-
-    click_on "Submit"
   end
 end

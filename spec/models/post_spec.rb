@@ -6,7 +6,6 @@ describe Post do
     it { should validate_presence_of :brand }
     it { should validate_presence_of :body }
     it { should validate_presence_of :price }
-    it { should validate_presence_of :status_enum }
     it { should validate_numericality_of :price}
     it { should ensure_length_of(:title).is_at_most(50) }
   end
@@ -46,6 +45,27 @@ describe Post do
     describe '#score' do 
       it 'should equal cached_votes_score' do 
         expect(post.score).to eq post.cached_votes_score
+      end
+    end
+
+    describe '#valid_statuses' do
+      it 'when "draft" it should return for_sale and deleted' do
+        post.status = :draft
+        expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:for_sale, :deleted)
+      end
+
+      it 'when "for_sale" it should return draft and sold' do 
+        post.status = :for_sale
+        expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:draft, :sold)
+      end
+      it 'when "sold" it should return for_sale and draft' do
+        post.status = :sold
+        expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:for_sale, :draft)
+      end
+
+      it 'when "deleted" it should return draft' do
+        post.status = :deleted
+        expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:draft)
       end
     end
   end

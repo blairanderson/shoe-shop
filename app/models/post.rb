@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   is_impressionable counter_cache: true
   acts_as_votable
 
-  as_enum :status, [:draft, :for_sale, :sold, :removed, :deleted], 
+  as_enum :status, [:draft, :for_sale, :sold, :deleted], 
   :whiny => false, :column => 'status_enum'
 
   validates :title,       presence: true, length: { maximum: 50 }
@@ -14,8 +14,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
   validates_associated :user, :if => :user_id
 
-  validates_presence_of :size
   belongs_to :size
+  validates_presence_of :size
   validates_associated :size, :if => :size_id
 
   has_many :images, dependent: :destroy
@@ -37,8 +37,7 @@ class Post < ActiveRecord::Base
   scope :inactive,     -> { where(status_enum: Post.draft) }
   scope :active,  -> { where(status_enum: Post.for_sale) }
   scope :depleted,      -> { where(status_enum: Post.sold) }
-  scope :gone,   -> { where(status_enum: Post.removed) }
-  scope :hidden,   -> { where(status_enum: Post.deleted) }
+  scope :removed,   -> { where(status_enum: Post.deleted) }
 
   scope :top,  ->  { order("cached_votes_score DESC") }
   scope :bottom, ->  { order("cached_votes_score ASC") }
@@ -56,6 +55,20 @@ class Post < ActiveRecord::Base
 
   def to_param
     "#{id} #{brand} #{title}".parameterize
+  end
+
+  def valid_statuses
+    statuses = Post.statuses.dup
+    case status
+    when :draft
+      statuses.extract!(:draft, :for_sale, :deleted)
+    when :deleted
+      statuses.extract!(:deleted, :draft)
+    when :sold
+      statuses.extract!(:sold, :for_sale, :draft)
+    when :for_sale
+      statuses.extract!(:for_sale, :draft, :sold)
+    end
   end
   
 end
