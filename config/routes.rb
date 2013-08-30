@@ -24,6 +24,7 @@ ShoeShop::Application.routes.draw do
   scope '/admin' do
     resources :sizes
   end
+  get 'sitemap', :to => 'pages#sitemap'
 
   get 'login', to: 'sessions#new'
   get 'logout', to: 'sessions#destroy'
