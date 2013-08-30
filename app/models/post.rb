@@ -34,9 +34,9 @@ class Post < ActiveRecord::Base
     end
   end
 
-  scope :inactive,     -> { where(status_enum: Post.draft) }
+  scope :drafted,     -> { where(status_enum: Post.draft) }
   scope :active,  -> { where(status_enum: Post.for_sale) }
-  scope :depleted,      -> { where(status_enum: Post.sold) }
+  scope :inactive,      -> { where(status_enum: Post.sold) }
   scope :removed,   -> { where(status_enum: Post.deleted) }
 
   scope :top,  ->  { order("cached_votes_score DESC") }
@@ -51,6 +51,10 @@ class Post < ActiveRecord::Base
 
   def self.filter(filter)
     self.send(filter)
+  end
+
+  def self.sort(sort)
+    self.send(sort)
   end
 
   def to_param

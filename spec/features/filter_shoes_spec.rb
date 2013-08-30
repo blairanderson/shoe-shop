@@ -8,6 +8,12 @@ describe 'Filtered Pairs' do
         visit target_path
         expect(current_path).to eq target_path 
       end
+
+      it "should show sold pairs sorting: #{sort}, and filtering: #{filter}" do 
+        target_path = "/pairs/sold/" + sort + "/" + filter
+        visit target_path
+        expect(current_path).to eq target_path 
+      end
     end
   end
 end

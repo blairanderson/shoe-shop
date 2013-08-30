@@ -20,17 +20,25 @@
 <ul class="thumbnails">
   <%= render partial: 'image', collection: @post.images, locals: {p_id: @post.user_id} %>
 </ul>
+<div class="row-fluid">
+  <div class="span9">
+    <ul class="comments unstyled">
+      <%= render partial: "comments/comment", collection: @post.comments %>
+    </ul>
+  </div>
+</div>
 
-<ul class="comments">
-  <%= render partial: "comments/comment", collection: @post.comments %>
-</ul>
-<% if current_user %>
-<h3>Submit a Comment</h3>
-    <%= simple_form_for [@post, @post.comments.build(post_id: @post.id)] do |f| %>
-      <%= f.input :body, input_html: {rows: 6} %>
-      <%= f.submit :submit, class: 'btn btn-mini btn-inverse' %>
+<div class="row-fluid">
+  <div class="span4 offset1">
+    <% if current_user %>
+    <h3>Submit a Comment</h3>
+      <%= simple_form_for [@post, @post.comments.build(post_id: @post.id)] do |f| %>
+        <%= f.input :body, input_html: {rows: 6} %>
+        <%= f.submit :submit, class: 'btn btn-mini btn-inverse' %>
+      <% end %>
     <% end %>
-<% end %>
+  </div>
+</div>
 
 <% content_for :sidebar do %>
   <%= render partial: 'shared/filepicker' %>

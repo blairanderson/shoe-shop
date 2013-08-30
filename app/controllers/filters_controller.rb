@@ -2,7 +2,11 @@ class FiltersController < ApplicationController
   before_action :validate_filter, :validate_sort
   
   def index
-    @posts = Post.filter(@filter).send(@sort)
+    @posts = Post.active.filter(@filter).sort(@sort)
+  end
+
+  def sold
+    @posts = Post.inactive.filter(@filter).sort(@sort)
   end
 
 private

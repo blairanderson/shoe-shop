@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.order("cached_votes_score DESC")
+    @posts = Post.active.order("cached_votes_score DESC")
   end
 
   def new

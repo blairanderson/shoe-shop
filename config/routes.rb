@@ -11,7 +11,8 @@ ShoeShop::Application.routes.draw do
     end
   end
   get 'pairs/:sort/:filter', to: 'filters#index', as: 'filters'
-  
+  get 'pairs/:sort/:filter/sold', to: 'filters#sold', as: 'sold_filters'
+
   resources :users do
     resources :watched_items, path: "watching", only: [:index] 
   end
