@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
+  revision: 82f1b343ffc0069bf99d2a3d4f0190bc87ba89ed
+  branch: 3
+  specs:
+    bootstrap-sass (3.0.0.0)
+      sass (~> 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -234,6 +242,7 @@ DEPENDENCIES
   acts_as_votable (~> 0.6.0)
   better_errors
   binding_of_caller
+  bootstrap-sass!
   capybara
   coffee-rails (~> 4.0.0)
   factory_girl_rails (~> 4.0)

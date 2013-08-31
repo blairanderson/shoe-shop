@@ -13,6 +13,8 @@ gem 'active_model_serializers'
 gem 'sorcery'
 gem 'simple_enum'
 
+gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
+
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'twitter'

@@ -6,7 +6,7 @@ en:
       post:
         price: Price, Must Include Shipping to US Only
         body: Description
-        status: Current Status - Update?
+        status_enum: Current Status - Update?
       # user:
         # username: 'User name'
         # password: 'Password'

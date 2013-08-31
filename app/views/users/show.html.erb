@@ -1,15 +1,53 @@
-<h1>
-  <%= @user.username %>
-</h1>
-
-<div class="span6">
-  <h2>Recent Pairs</h2>
-  <%= render partial: 'posts/post', collection: @user.posts %>
+<div class="row-fluid">
+  <h1><%= @user.username %></h1>
 </div>
-<% if current_user && current_user == @user %>
 
-  <div class="span6">
-    <h2>Pending Posts</h2>
-    <%= render partial: 'posts/post', collection: @user.posts %>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Active Pairs</h2>
   </div>
+  <ul class="list-group">
+    <%= render partial: 'posts/new_post', collection: @user.posts.active %>
+  </ul>
+</div>
+
+<% if current_user && current_user == @user %>
+<hr>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h2>Draft Posts</h2>
+  </div>
+    <ul class="list-group">
+      <%= render partial: 'posts/new_post', collection: @user.posts.drafted %>
+    </ul>
+</div>
+
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h2>Sold Pairs</h2>
+  </div>
+  <ul class="list-group">
+    <%= render partial: 'posts/new_post', collection: @user.posts.inactive %>
+  </ul>
+</div>
+
+
+
+
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h2>Deleted Pairs</h2>
+  </div>
+  <ul class="list-group">
+    <% @user.posts.removed.each do |p| %>
+      <li class="list-group-item"><%= post_title p %></li>
+    <% end %>
+  </ul>
+</div>
+
+
+
+
+
 <% end %>

@@ -1,6 +1,7 @@
 <% content_for :title, "Buy and Sell"  %>
-<div class="container-fluid">
-  <div class="row-fluid">
-    <%= render partial: @posts, spacer_template: 'post_spacer' %>
-  </div>
+<div class="panel panel-default">
+  <ul class="list-group">
+    <%= render partial: 'posts/new_post', collection: @posts %>
+  </ul>
 </div>
+
