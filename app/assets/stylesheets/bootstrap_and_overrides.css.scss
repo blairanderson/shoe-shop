@@ -1,7 +1,8 @@
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
 
-// Reset
+@import "variables";
+
 @import "bootstrap/normalize";
 @import "bootstrap/print";
 
