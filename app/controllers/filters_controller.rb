@@ -7,6 +7,7 @@ class FiltersController < ApplicationController
 
   def sold
     @posts = Post.inactive.filter(@filter).sort(@sort)
+    render :index
   end
 
 private

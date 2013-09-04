@@ -51,21 +51,21 @@ describe Post do
     describe '#valid_statuses' do
       it 'when "draft" it should return for_sale and deleted' do
         post.status = :draft
-        expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:for_sale, :deleted)
+        expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:draft, :for_sale, :deleted)
       end
 
       it 'when "for_sale" it should return draft and sold' do 
         post.status = :for_sale
-        expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:draft, :sold)
+        expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:for_sale, :draft, :deleted)
       end
       it 'when "sold" it should return for_sale and draft' do
         post.status = :sold
-        expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:for_sale, :draft)
+        expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:sold)
       end
 
       it 'when "deleted" it should return draft' do
         post.status = :deleted
-        expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:draft)
+        expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:draft, :deleted)
       end
     end
   end

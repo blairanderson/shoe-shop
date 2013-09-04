@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130830035952) do
+ActiveRecord::Schema.define(version: 20130904040155) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id",    null: false
@@ -58,6 +58,13 @@ ActiveRecord::Schema.define(version: 20130830035952) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id"
+
+  create_table "paypal_callbacks", force: true do |t|
+    t.text     "response"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "posts", force: true do |t|
     t.string   "brand"

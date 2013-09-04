@@ -29,15 +29,17 @@ class PostsController < ApplicationController
   end
 
   def callback
-
-    # mark post as paid/sold
-    # save the relevant payment info
-    puts "OH JUST SOME PARAMS FROM A CALLBACK#{params.inspect}"
-    puts ''
-    puts ''
-    puts ''
-    puts "for post:#{@post.inspect}"
+    @paypay = PaypalCallback.create(response: callback_params)
     render nothing: true
+  end
+
+  def callback_params
+    params.permit(
+      :id,
+      :payer_status,:payment_status,:payment_date,:verify_sign,:item_name,
+      :first_name,:last_name,
+      :address_name,:address_street,:address_city,:address_zip,:address_state,:address_country,:address_status,
+      :receiver_email,:receiver_id,:business,:payer_email)
   end
 
   def create
