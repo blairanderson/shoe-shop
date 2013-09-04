@@ -3,7 +3,7 @@ ShoeShop::Application.routes.draw do
 
   resources :posts, path: "pairs" do
     member do
-      get :callback
+      post :callback
     end
     resources :watched_items, path: "watch", only: [:create, :destroy] 
     resources :comments, shallow: true
