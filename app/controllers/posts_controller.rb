@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, except: [:new, :create, :index]
   before_action :require_login, except: [:show, :index, :callback]
   before_action :require_post_ownership, only: [:edit, :update, :destroy]
+  skip_before_filter :verify_authenticity_token, only: [:callback]
 
   def show
     impressionist(@post)
