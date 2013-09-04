@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, except: [:new, :create, :index]
-  before_action :require_login, except: [:show, :index]
+  before_action :require_login, except: [:show, :index, :callback]
   before_action :require_post_ownership, only: [:edit, :update, :destroy]
 
   def show
@@ -25,6 +25,18 @@ class PostsController < ApplicationController
   def downvote
     @post.downvote_from current_user
     redirect_to :back, notice: "downvote :("
+  end
+
+  def callback
+
+    # mark post as paid/sold
+    # save the relevant payment info
+    puts "OH JUST SOME PARAMS FROM A CALLBACK#{params.inspect}"
+    puts ''
+    puts ''
+    puts ''
+    puts "for post:#{@post.inspect}"
+    render nothing: true
   end
 
   def create

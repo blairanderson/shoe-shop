@@ -2,6 +2,9 @@ ShoeShop::Application.routes.draw do
   root to: 'posts#index'
 
   resources :posts, path: "pairs" do
+    member do
+      get :callback
+    end
     resources :watched_items, path: "watch", only: [:create, :destroy] 
     resources :comments, shallow: true
     resources :images, shallow: true

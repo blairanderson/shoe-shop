@@ -14,6 +14,24 @@
     <p><strong>Size: </strong><%= @post.size.name %></p>
     <p><strong>Price: </strong><%= number_to_currency(@post.price, precision: 0) %></p>
     <p><strong>Description:</strong><%= @post.body %></p>
+      <% if current_user && current_user.id == @post.user_id %>
+        <p class="alert alert-danger">
+          <%= render partial: 'shared/filepicker' %>
+        </p>
+        
+        <p class="alert alert-info">
+          <strong>status:</strong>
+          <%= @post.status.to_s.titleize %>
+        </p>
+        
+        <%= simple_form_for @post do |f| %>
+          <%= f.input :status_enum, collection: @post.valid_statuses, label_method: lambda {|key| key[0].to_s.titleize }, prompt: @post.status %>
+          <%= f.submit class: "btn btn-inverse btn-mini" %>
+        <% end %>
+      <% else %>
+        <%= render partial: "buy_now", locals: {post: @post, user: @post.user} %>
+      <% end %>
+
   </div>
 </div>
 
@@ -39,17 +57,3 @@
     <% end %>
   </div>
 </div>
-
-<% content_for :sidebar do %>
-  <%= render partial: 'shared/filepicker' %>
-    <% if current_user && current_user.id == @post.user_id %>
-    <p>
-      <strong>status:</strong>
-      <%= @post.status.to_s.titleize %>
-    </p>
-      <%= simple_form_for @post do |f| %>
-        <%= f.input :status_enum, collection: @post.valid_statuses, label_method: lambda {|key| key[0].to_s.titleize }, prompt: @post.status %>
-        <%= f.submit class: "btn btn-inverse btn-mini" %>
-      <% end %>
-    <% end %>
-<% end %>
