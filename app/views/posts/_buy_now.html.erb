@@ -7,8 +7,7 @@
     data-currency="USD" 
     data-shipping="0" 
     data-tax="0" 
-    data-callback="<%= callback_post_url(post) %>" 
-    data-env="sandbox"
+    data-callback="<%= callback_post_url(post) %>"
 ></script>
 <% else %>
   <small> <%= mail_to "info@solesout.com", "something went wrong, please email us", subject: "buy now button is missing for post id: #{post.id}" %>  </small>

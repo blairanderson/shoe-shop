@@ -4,6 +4,5 @@
   <%= f.association :size, collection: Size.all, prompt: "Choose a Size" %>
   <%= f.input :price, as: :tel %>
   <%= f.input :body %>
-  <%= f.input :status, as: :select, collection: [:draft, :for_sale] %>
-  <%= f.submit "Submit", class: "btn btn-inverse btn-large span3" %>
+  <%= f.submit :submit, class: "btn btn-inverse" %>
 <% end %>
