@@ -13,6 +13,7 @@ describe Post do
   describe 'associations' do 
     it { should belong_to :user }
     it { should belong_to :size }
+    it { should have_one :paypal_callback }
     it { should have_many(:images).dependent(:destroy)}
     it { should have_many(:comments).dependent(:destroy)}
     it { should have_many(:watched_items).dependent(:destroy) }
@@ -58,6 +59,7 @@ describe Post do
         post.status = :for_sale
         expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:for_sale, :draft, :deleted)
       end
+
       it 'when "sold" it should return for_sale and draft' do
         post.status = :sold
         expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:sold)

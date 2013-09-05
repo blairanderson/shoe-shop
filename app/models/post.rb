@@ -18,6 +18,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :size
   validates_associated :size, :if => :size_id
 
+  has_one :paypal_callback
   has_many :images, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :watched_items, dependent: :destroy

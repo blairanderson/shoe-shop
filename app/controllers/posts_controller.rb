@@ -29,18 +29,20 @@ class PostsController < ApplicationController
   end
 
   def callback
-    puts "THESE ARE PARAMS YALLL #{params.inspect}"
-    @paypay = PaypalCallback.create(response: callback_params)
+    @paypay = @post.build_paypal_callback(callback_params)
+    @paypay.response = callback_params
+    @paypay.save
+    @paypay.trigger_status_change
     render nothing: true
   end
 
   def callback_params
     params.permit(
-      :id,
-      :payer_status,:payment_status,:payment_date,:verify_sign,:item_name,
-      :first_name,:last_name,
-      :address_name,:address_street,:address_city,:address_zip,:address_state,:address_country,:address_status,
-      :receiver_email,:receiver_id,:business,:payer_email)
+      :payment_date, :payment_type, :payment_status, :payer_status, :payer_id, :payer_email, :payment_fee, :payment_gross,
+      :handling_amount, :shipping, :first_name, :last_name ,
+      :address_name, :address_status, :address_street, :address_city, :address_state, :address_zip, :address_country_code, :address_country,
+      :transaction_subject, :receiver_email, :receiver_id, :business, :protection_eligibility,
+      :verify_sign, :ipn_track_id, :txn_id, :txn_type, :residence_country)
   end
 
   def create

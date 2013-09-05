@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130904040155) do
+ActiveRecord::Schema.define(version: 20130905031206) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id",    null: false
@@ -64,6 +64,36 @@ ActiveRecord::Schema.define(version: 20130904040155) do
     t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "payment_date"
+    t.string   "payment_type"
+    t.string   "payment_status"
+    t.string   "payer_status"
+    t.string   "payer_id"
+    t.string   "payer_email"
+    t.string   "payment_fee"
+    t.string   "payment_gross"
+    t.string   "handling_amount"
+    t.string   "shipping"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address_name"
+    t.string   "address_status"
+    t.string   "address_street"
+    t.string   "address_city"
+    t.string   "address_state"
+    t.string   "address_zip"
+    t.string   "address_country_code"
+    t.string   "address_country"
+    t.string   "transaction_subject"
+    t.string   "receiver_email"
+    t.string   "receiver_id"
+    t.string   "business"
+    t.string   "protection_eligibility"
+    t.string   "verify_sign"
+    t.string   "ipn_track_id"
+    t.string   "txn_id"
+    t.string   "txn_type"
+    t.string   "residence_country"
   end
 
   create_table "posts", force: true do |t|

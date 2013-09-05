@@ -17,5 +17,5 @@
 $(document).ready(function() {
   filepicker.setKey('AoaxmLrr2Tj2EbZv0JS0Mz');
   var path = window.location.pathname;
-  $('a[href="' + path + '"]').parent().addClass('active');
+  // $('a[href="' + path + '"]').parent().addClass('active');
 });

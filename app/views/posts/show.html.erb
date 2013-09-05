@@ -1,11 +1,13 @@
 <% content_for :title, post_title(@post).to_s  %>
 <div class="row-fluid">
   <div class="span6">
-<p>
-  <%= link_to '<i class="icon-arrow-up icon-white"></i>UPVOTE'.html_safe, upvote_post_path(@post), class: "label label-inverse" %>
-  <strong>Score: </strong><%= @post.score %>
-  <%= link_to 'DOWNVOTE<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(@post), class: "label" %>
-</p>
+    <p>
+      <%= link_to '<i class="icon-arrow-up icon-white"></i>UPVOTE'.html_safe, upvote_post_path(@post), class: "label label-inverse" %>
+      <strong>Score: </strong><%= @post.score %>
+      <%= link_to 'DOWNVOTE<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(@post), class: "label" %>
+    </p>
+
+
     <p><strong>User Score: </strong><%= @profile.score %></p>
     <p><strong>User Influence: </strong><%= @profile.influence %></p>
     <p><strong>Views: </strong><%= @post.view_count %></p>
@@ -14,6 +16,8 @@
     <p><strong>Size: </strong><%= @post.size.name %></p>
     <p><strong>Price: </strong><%= number_to_currency(@post.price, precision: 0) %></p>
     <p><strong>Description:</strong><%= @post.body %></p>
+    
+
       <% if current_user && current_user.id == @post.user_id %>
         <p class="alert alert-danger">
           <%= render partial: 'shared/filepicker' %>
@@ -31,6 +35,9 @@
       <% else %>
         <%= render partial: "buy_now", locals: {post: @post, user: @post.user} %>
       <% end %>
+        <a href="https://twitter.com/share" data-url="<%= post_url(@post.id) %>" data-counturl="<%= post_url(@post) %>" class="twitter-share-button" data-lang="en" data-count='none' data-text="<%= @post.body[0..80] %>" data-hashtags="sneakers">Tweet</a>
+        
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
   </div>
 </div>
@@ -38,22 +45,26 @@
 <ul class="thumbnails">
   <%= render partial: 'image', collection: @post.images, locals: {p_id: @post.user_id} %>
 </ul>
-<div class="row-fluid">
-  <div class="span9">
-    <ul class="comments unstyled">
-      <%= render partial: "comments/comment", collection: @post.comments %>
-    </ul>
-  </div>
-</div>
+
 
 <div class="row-fluid">
-  <div class="span4 offset1">
-    <% if current_user %>
-    <h3>Submit a Comment</h3>
-      <%= simple_form_for [@post, @post.comments.build(post_id: @post.id)] do |f| %>
-        <%= f.input :body, input_html: {rows: 6} %>
-        <%= f.submit :submit, class: 'btn btn-mini btn-inverse' %>
-      <% end %>
-    <% end %>
-  </div>
+  <div class="span4">
+    <div class="list-group">
+      <div class="list-group-item active">
+        <span class="badge">1</span>
+        <h4 class="list-group-item-heading">Comments</h4>
+      </div>
+      <%= render partial: "comments/comment", collection: @post.comments %>
+      <% if current_user %>
+        <div class="list-group-item">
+          <h3 class="list-group-item-heading">Submit a Comment</h3>
+          <%= simple_form_for [@post, @post.comments.build(post_id: @post.id)] do |f| %>
+            <%= f.input :body, input_html: {rows: 6} %>
+            <%= f.submit :submit, class: 'btn btn-inverse' %>
+          <% end %>
+        </div>
+      <% end %>    
+    </div>
 </div>
+
+    

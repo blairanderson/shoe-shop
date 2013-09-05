@@ -3,54 +3,61 @@ require 'spec_helper'
 describe PostsController do
   describe "POST callback" do
     let(:callback_params) do
-      {"residence_country"=>"US", 
-      "invoice"=>"abc1234", 
-      "address_city"=>"San Jose", 
-      "first_name"=>"John", 
-      "payer_id"=>"TESTBUYERID01", 
-      "shipping"=>"3.04", 
-      "mc_fee"=>"0.44", 
-      "txn_id"=>"662452434", 
-      "receiver_email"=>"seller@paypalsandbox.com", 
-      "quantity"=>"1", 
-      "custom"=>"xyz123", 
-      "payment_date"=>"19:36:19 3 Sep 2013 PDT", 
-      "address_country_code"=>"US", 
-      "address_zip"=>"95131", 
-      "tax"=>"2.02", 
-      "item_name"=>"something", 
-      "address_name"=>"John Smith", 
-      "last_name"=>"Smith", 
-      "receiver_id"=>"seller@paypalsandbox.com", 
-      "item_number"=>"AK-1234", 
-      "verify_sign"=>"Adqkp7v50IUIfuUzXxkRvZdKbYrdAgN7F1S9kJWbAV8wUYNiptL2bb4L", 
-      "address_country"=>"United States", 
-      "payment_status"=>"Completed", 
-      "address_status"=>"confirmed", 
-      "business"=>"seller@paypalsandbox.com", 
-      "payer_email"=>"buyer@paypalsandbox.com", 
-      "notify_version"=>"2.1", 
-      "txn_type"=>"web_accept", 
-      "test_ipn"=>"1", 
-      "payer_status"=>"verified", 
-      "mc_currency"=>"USD", 
-      "mc_gross"=>"12.34", 
-      "address_state"=>"CA", 
-      "mc_gross1"=>"9.34", 
-      "payment_type"=>"instant", 
-      "address_street"=>"123, any street", 
-      "action"=>"callback", 
-      "controller"=>"posts"}
+      {
+        "mc_gross"=>"1.00",
+        "protection_eligibility"=>"Eligible",
+        "address_status"=>"confirmed",
+        "payer_id"=>"86SXQR5UAZYLC",
+        "tax"=>"0.00",
+        "address_street"=>"201 2nd St. S\r\n#101",
+        "payment_date"=>"19:44:03 Sep 04, 2013 PDT",
+        "payment_status"=>"Completed",
+        "charset"=>"windows-1252",
+        "address_zip"=>"98033",
+        "first_name"=>"Jonas",
+        "mc_fee"=>"0.33",
+        "address_country_code"=>"US",
+        "address_name"=>"Jonas Nelson",
+        "notify_version"=>"3.7",
+        "custom"=>"",
+        "payer_status"=>"verified",
+        "business"=>"blair81@gmail.com",
+        "address_country"=>"United States",
+        "address_city"=>"Kirkland",
+        "quantity"=>"1",
+        "verify_sign"=>"ApBHX6qbpxJW-Ll3oP22LSbo0WeuAVQTSPOAwCjG-XALhnEd7XwJeG0Z",
+        "payer_email"=>"jonaswnelson@gmail.com",
+        "txn_id"=>"3A345053FJ844903U",
+        "payment_type"=>"instant",
+        "last_name"=>"Nelson",
+        "address_state"=>"WA",
+        "receiver_email"=>"blanderson00@gmail.com",
+        "payment_fee"=>"0.33",
+        "receiver_id"=>"FU8FFDD8AX574",
+        "txn_type"=>"web_accept",
+        "item_name"=>"iPhone4, size: 6 $1",
+        "mc_currency"=>"USD",
+        "item_number"=>"",
+        "residence_country"=>"US",
+        "handling_amount"=>"0.00",
+        "transaction_subject"=>"iPhone4, size: 6 $1",
+        "payment_gross"=>"1.00",
+        "shipping"=>"0.00",
+        "ipn_track_id"=>"bcc0d508f0bfb",
+        "action"=>"callback",
+        "controller"=>"posts",
+        "id"=>"4-apple-iphone4"
+      }
     end
 
     it 'should build a payment object with the valid keys' do
-      valid_keys = %w(id payer_status payment_status payment_date verify_sign item_name first_name last_name address_name address_street address_city address_zip address_state address_country address_status receiver_email receiver_id business payer_email)
       pair = FactoryGirl.create(:post)
       valid_params = callback_params.merge(id: pair.id.to_s)
+      PaypalCallback.any_instance.stub(:trigger_status_change).and_return(true)
       post :callback, valid_params
 
-      expect( assigns(:paypay).response.keys ).to eq valid_keys
+      expect( assigns(:paypay).persisted? ).to eq true
     end
   end
-
 end
+ 
