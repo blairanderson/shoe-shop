@@ -1,7 +1,7 @@
 <% if user.email %>
 <script src="/assets/paypal-button.min.js?merchant=<%= user.email %>" 
     data-button="buynow" 
-    data-name="<%= post.title %>"
+    data-name="<%= post_title post %>"
     data-quantity="1" 
     data-amount="<%= post.price %>.00" 
     data-currency="USD" 

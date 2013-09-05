@@ -29,6 +29,7 @@ class PostsController < ApplicationController
   end
 
   def callback
+    puts "THESE ARE PARAMS YALLL #{params.inspect}"
     @paypay = PaypalCallback.create(response: callback_params)
     render nothing: true
   end
