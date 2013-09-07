@@ -59,7 +59,8 @@
         <div class="list-group-item">
           <h3 class="list-group-item-heading">Submit a Comment</h3>
           <%= simple_form_for [@post, @post.comments.build(post_id: @post.id)] do |f| %>
-            <%= f.input :body, input_html: {rows: 6} %>
+            <%= f.input :body, input_html: {rows: 6}, label: false %>
+            <br>
             <%= f.submit :submit, class: 'btn btn-inverse' %>
           <% end %>
         </div>

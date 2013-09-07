@@ -1,9 +1,7 @@
 <% content_for :title, "Buy and Sell"  %>
 <div class="panel panel-default">
-  <p class="lead panel-heading">Showing All Shoes, Sorted Top Down</p>
-
-    <ul class="list-group">
-      <%= render partial: 'posts/new_post', collection: @posts %>
-    </ul>
+  <ul class="list-group">
+    <%= render partial: 'posts/new_post', collection: @posts %>
+  </ul>
 </div>
 
