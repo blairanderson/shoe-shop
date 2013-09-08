@@ -1,5 +1,5 @@
 ShoeShop::Application.routes.draw do
-  root to: 'posts#index'
+  root to: redirect('/pairs/top/all')
 
   resources :posts, path: "pairs" do
     member do

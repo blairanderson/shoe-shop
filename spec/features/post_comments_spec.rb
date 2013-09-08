@@ -19,7 +19,7 @@ describe 'Commenting on a Post' do
 
       comment_body = Faker::Lorem.sentences(5).join
       
-      fill_in 'Body', with: comment_body
+      fill_in 'comment[body]', with: comment_body
       click_button "submit"
       expect(page).to have_content comment_body
     end
