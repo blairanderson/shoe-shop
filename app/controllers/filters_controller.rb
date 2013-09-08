@@ -1,12 +1,13 @@
 class FiltersController < ApplicationController
-  before_action :validate_filter, :validate_sort, :prepare_default_filter
+  before_action :validate_filter, :validate_sort
+  before_action :prepare_default_filter, only: [:index]
 
   def index
     @posts = @posts_relation.filter(@filter).sort(@sort)
   end
 
   def sold
-    @posts = @posts_relation.filter(@filter).sort(@sort)
+    @posts = Post.inactive.filter(@filter).sort(@sort)
     render :index
   end
 
