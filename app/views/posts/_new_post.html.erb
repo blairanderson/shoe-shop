@@ -14,7 +14,7 @@
     <%= link_to '<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(new_post), class: "label" %>
   <% end %>
   <%= link_to post_title(new_post), new_post %>
-  Sold by: <%= link_to "#{new_post.user.username} (#{new_post.user.score})", user_path(new_post.user) %>
+  Listed by: <%= link_to "#{new_post.user.username} (#{new_post.user.score})", user_path(new_post.user) %>
   <span class="label">views: <%= new_post.view_count %></span>      
   <%= render partial: "watched_items/watched_item", locals: {post: new_post} %>
 </li>

@@ -1,47 +1,65 @@
 <% content_for :title, post_title(@post).to_s  %>
 <div class="row-fluid">
   <div class="span6">
-    <p>
-      <%= link_to '<i class="icon-arrow-up icon-white"></i>UPVOTE'.html_safe, upvote_post_path(@post), class: "label label-inverse" %>
-      <strong>Score: </strong><%= @post.score %>
-      <%= link_to 'DOWNVOTE<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(@post), class: "label" %>
-    </p>
+    <div class="span6">
+      <div class="span12">
+        <div class="span6">
+          <p><strong>Brand: </strong><%= @post.brand %></p>
+        </div>
+        <div class="span3">
+          <p><strong>Size: </strong><%= @post.size.name %></p>
+        </div>
+        <div class="span3">
+          <p><strong>Price: </strong><%= number_to_currency(@post.price, precision: 0) %></p>
+        </div>
+     
+      </div>
+      <div class="span12">
+        <div class="span6">
+          <a href="https://twitter.com/share" data-url="<%= post_url(@post.id) %>" data-counturl="<%= post_url(@post) %>" class="twitter-share-button" data-lang="en" data-count='none' data-text="<%= post_title @post %>">Tweet</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <div class="span6">
+          <% if current_user %>
+            <%= render partial: "buy_now", locals: {post: @post, user: @post.user} %>
+          <% else %>
+            <%= link_to  login_path, class: "btn btn-mini btn-warning" do %>
+            <i class="icon-chevron-right icon-white"></i>
+            Login to Buy
+            <i class="icon-chevron-left icon-white"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="span12">
+        <p><strong>Title: </strong><%= @post.title %></p>
+      </div>
+      <div class="span12">
+        <p><strong>Description:</strong><%= @post.body %></p>
+      </div>
 
-
-    <p><strong>User Score: </strong><%= @profile.score %></p>
-    <p><strong>User Influence: </strong><%= @profile.influence %></p>
-    <p><strong>Views: </strong><%= @post.view_count %></p>
-    <p><strong>Brand: </strong><%= @post.brand %></p>
-    <p><strong>Title: </strong><%= @post.title %></p>
-    <p><strong>Size: </strong><%= @post.size.name %></p>
-    <p><strong>Price: </strong><%= number_to_currency(@post.price, precision: 0) %></p>
-    <p><strong>Description:</strong><%= @post.body %></p>
-    <p>
-    </p>
-    
-
-      <% if current_user && current_user.id == @post.user_id %>
-        <p class="alert alert-danger">
-          <%= render partial: 'shared/filepicker' %>
-        </p>
-        
-        <p class="alert alert-info">
-          <strong>status:</strong>
-          <%= @post.status.to_s.titleize %>
-        </p>
-        
-        <%= simple_form_for @post do |f| %>
-          <%= f.input :status_enum, collection: @post.valid_statuses, label_method: lambda {|key| key[0].to_s.titleize }, prompt: @post.status %>
-          <%= f.submit class: "btn btn-inverse btn-mini" %>
+    </div>
+    <div class="span6">
+      <p>
+        <%= link_to upvote_post_path(@post), class: "label label-inverse" do %>
+          <i class="icon-arrow-up icon-white"></i>
+          <span class="visible-desktop">UPVOTE</span>
         <% end %>
-      <% else %>
-        <%= render partial: "buy_now", locals: {post: @post, user: @post.user} %>
-      <% end %>
-        <a href="https://twitter.com/share" data-url="<%= post_url(@post.id) %>" data-counturl="<%= post_url(@post) %>" class="twitter-share-button" data-lang="en" data-count='none' data-text="<%= post_title @post %>">Tweet</a>
-        
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
+        <strong>Score: </strong><%= @post.score %>
+        <%= link_to downvote_post_path(@post), class: "label" do  %>
+        <span class="visible-desktop">DOWNVOTE</span>
+        <i class="icon-arrow-down icon-white"></i>
+        <% end %>
+      </p>
+      <p><strong>PageViews: </strong><%= @post.view_count %></p>
+      <p><strong>User Score: </strong><%= @profile.score %></p>
+      <p><strong>User Influence: </strong><%= @profile.influence %></p>
+    </div>
   </div>
+  <div class="span6">
+    <%= render partial: "post_owner_actions" %>
+  </div>
+
 </div>
 
 <ul class="thumbnails">
@@ -50,7 +68,7 @@
 
 
 <div class="row-fluid">
-  <div class="span4">
+  <div class="span6">
     <div class="list-group">
       <div class="list-group-item active">
         <span class="badge">1</span>

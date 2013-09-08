@@ -1,16 +1,31 @@
 class FiltersController < ApplicationController
-  before_action :validate_filter, :validate_sort
-  
+  before_action :validate_filter, :validate_sort, :prepare_default_filter
+
   def index
-    @posts = Post.active.filter(@filter).sort(@sort)
+    @posts = @posts_relation.filter(@filter).sort(@sort)
   end
 
   def sold
-    @posts = Post.inactive.filter(@filter).sort(@sort)
+    @posts = @posts_relation.filter(@filter).sort(@sort)
     render :index
   end
 
+  def toggle
+    if session[:posts_filter] == :active
+      session[:posts_filter] = :inactive
+    else
+      session[:posts_filter] = :active
+    end
+    redirect_to :back
+  end
+
 private
+
+  def prepare_default_filter
+    @posts_filter = session[:posts_filter] || :active
+    @posts_relation = Post.send(@posts_filter)
+  end
+
   def filter_params
     params.permit(:filter, :sort)[:filter]
   end

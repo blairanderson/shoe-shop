@@ -1,6 +1,9 @@
 <% if current_user && current_user.id == @post.user_id %>
-  <%= link_to 'Edit Post', edit_post_path(@post), class: "btn btn-inverse" %>
-  <%= link_to 'Add Image ', new_post_image_path(@post), class: "btn btn-inverse", id: "submit_photo" %>
+  <%= link_to new_post_image_path(@post), class: "btn btn-inverse", id: "submit_photo" do %>
+  <i class="icon-picture icon-white"></i>
+  Add Image
+  <% end %>
+
   <script type="text/javascript">
     console.log('<%= post_images_path(@post) %>');
     $(document).on('click','a#submit_photo', function(e) {

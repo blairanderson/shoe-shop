@@ -5,6 +5,16 @@
       <% @valid_filters.each do |filter, title| %>
         <li class="sort-pill"><%= link_to title, filters_path(@sort, filter) %></li>
       <% end %>
+      <li>
+        <%= form_tag toggle_filters_path(@sort, @filter), class: "navbar-form", id: "toggle_sold" do %>
+          <%= label_tag(:sold_listings, class: "checkbox") do %>
+            <%= check_box_tag :sold_listings, :sold, (@posts_filter == :inactive), onclick: "$('#toggle_sold').submit();" %>
+            Sold Listings
+          <% end %>
+        <% end %>
+      </li>
     </ul>
   </div>
+</div>
+<div class="container-fluid">
 </div>
