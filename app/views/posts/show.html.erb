@@ -20,22 +20,18 @@
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </div>
         <div class="span6">
-          <% if current_user %>
-            <%= render partial: "buy_now", locals: {post: @post, user: @post.user} %>
-          <% else %>
-            <%= link_to  login_path, class: "btn btn-mini btn-warning" do %>
-            <i class="icon-chevron-right icon-white"></i>
-            Login to Buy
-            <i class="icon-chevron-left icon-white"></i>
-            <% end %>
-          <% end %>
+          <%= render partial: "buy_now", locals: {post: @post, user: @post.user} %>
         </div>
       </div>
       <div class="span12">
-        <p><strong>Title: </strong><%= @post.title %></p>
-      </div>
-      <div class="span12">
-        <p><strong>Description:</strong><%= @post.body %></p>
+        <dl>
+          <dt>Title:</dt>
+          <dd><%= @post.title %></dd>
+          
+          <dt>Description:</dt>
+          <dd><%= @post.body %></dd>
+        </dl>
+        
       </div>
 
     </div>
