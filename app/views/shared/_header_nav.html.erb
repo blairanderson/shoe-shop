@@ -38,10 +38,10 @@
             <li><%= link_to "<i class='icon-off icon-white'></i> Logout".html_safe, logout_path %></li>
           </ul>
         <% else %>
-          <%= form_tag sessions_path, method: :post, class: "navbar-form pull-right" do  %>
-            <%= text_field_tag :username, nil, placeholder: "username", class: "span2" %>
-            <%= password_field_tag :password, nil,placeholder: "password", class: "span2" %>
-            <%= submit_tag "Login", class: "btn btn-inverse" %>
+          <%= simple_form_for User.new, url: sessions_path, method: :post, html: {class: "navbar-form pull-right"} do |f| %>
+            <%= f.text_field :username, placeholder: "username", class: "span2" %>
+            <%= f.password_field :password,placeholder: "password", class: "span2" %>
+            <%= f.submit "Login", class: "btn btn-inverse" %>
           <% end %>
         <% end %>
       </div><!--/.nav-collapse -->

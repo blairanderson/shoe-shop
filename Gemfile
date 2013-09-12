@@ -12,6 +12,7 @@ gem 'newrelic_rpm'
 gem 'active_model_serializers'
 gem 'sorcery'
 gem 'simple_enum'
+gem 'sendgrid'
 
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 

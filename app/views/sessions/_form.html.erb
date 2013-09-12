@@ -1,13 +1,11 @@
-<%= form_tag sessions_path, :method => :post do %>
+<%= simple_form_for User.new, url: sessions_path, :method => :post do |f| %>
   <div class="field">
-    <%= label_tag :username %>
-    <%= text_field_tag :username %>
+    <%= f.input :username, placeholder: "username" %>
   </div>
   <div class="field">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
+    <%= f.input :password, as: :password, required: true, placeholder: "password" %>
   </div>
   <div class="actions">
-    <%= submit_tag "Login", class: "btn btn-inverse" %>
+    <%= f.submit "Login", class: "btn btn-inverse" %>
   </div>
 <% end %>

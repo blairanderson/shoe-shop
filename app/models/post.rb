@@ -75,5 +75,4 @@ class Post < ActiveRecord::Base
       statuses.extract!(:for_sale, :draft, :deleted)
     end
   end
-  
 end

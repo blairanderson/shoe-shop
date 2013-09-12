@@ -97,6 +97,7 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
     kgio (2.8.0)
@@ -191,6 +192,8 @@ GEM
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
+    sendgrid (1.2.0)
+      json
     shoulda-matchers (2.2.0)
       activesupport (>= 3.0.0)
     simple_enum (1.6.5)
@@ -262,6 +265,7 @@ DEPENDENCIES
   rb-fsevent
   rspec-rails
   sass-rails (~> 4.0.0)
+  sendgrid
   shoulda-matchers (= 2.2.0)
   simple_enum
   simple_form
