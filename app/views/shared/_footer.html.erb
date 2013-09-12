@@ -5,13 +5,14 @@
     <li><%= link_to "About", about_path %></li>
     <li><%= link_to "Contact", contact_path %></li>
     <li><%= link_to "Twitter", twitter_path %></li>
-    <li><%= link_to "Blog", 'http://www.solesout.com/blog/' %></li>
+    <li><%= link_to "Blog", blog_route %></li>
     <li><%# link_to "Facebook", facebook_path %></li>
-    <% if current_admin %>
-      <li>
-        <%= link_to "ADMIN: SIZES", sizes_path %>
-      </li>
-    <% end %>
   </ul>
+    <% if current_admin %>
+    <ul class="nav nav-pills pull-left">
+      <li><%= link_to "ADMIN: SIZES", sizes_path %></li>
+      <li><%= link_to "ADMIN: BLOG", blog_route(:admin_login_path) %></li>
+    </ul>
+    <% end %>
 </footer>
 <!-- footer end here -->
