@@ -1,0 +1,24 @@
+<meta name="twitter:card" content="product">
+<meta name="twitter:site" content="@solesout">
+<meta name="twitter:creator" content="@solesout">
+<meta name="twitter:title" content="<%= post_title post %>">
+<meta name="twitter:description" content="<%= post.body %>">
+<% if post.images.count > 0 %>
+  <meta name="twitter:image:src" content="<%= post.images.first.url_size(100)%>">
+<% else %>
+  <meta name="twitter:image:src" content="http://placehold.it/50/50">
+<% end %>
+<meta name="twitter:data1" content="<%= number_to_currency(post.price, precision: 0) %>">
+<meta name="twitter:label1" content="PRICE">
+<meta name="twitter:data2" content="<%= post.size.name %>">
+<meta name="twitter:label2" content="SIZE">
+<meta name="twitter:domain" content="<%= post_url(post)%>">
+<meta name="twitter:app:name:iphone" content="">
+<meta name="twitter:app:name:ipad" content="">
+<meta name="twitter:app:name:googleplay" content="">
+<meta name="twitter:app:url:iphone" content="">
+<meta name="twitter:app:url:ipad" content="">
+<meta name="twitter:app:url:googleplay" content="">
+<meta name="twitter:app:id:iphone" content="">
+<meta name="twitter:app:id:ipad" content="">
+<meta name="twitter:app:id:googleplay" content="">
