@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130905031206) do
+ActiveRecord::Schema.define(version: 20130912070962) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id",    null: false
@@ -58,6 +58,51 @@ ActiveRecord::Schema.define(version: 20130905031206) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id"
+
+  create_table "monologue_posts", force: true do |t|
+    t.integer  "posts_revision_id"
+    t.boolean  "published"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "monologue_posts_revisions", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "url"
+    t.integer  "post_id"
+    t.datetime "published_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "monologue_posts_revisions", ["id"], name: "index_monologue_posts_revisions_on_id", unique: true
+  add_index "monologue_posts_revisions", ["post_id"], name: "index_monologue_posts_revisions_on_post_id"
+  add_index "monologue_posts_revisions", ["published_at"], name: "index_monologue_posts_revisions_on_published_at"
+  add_index "monologue_posts_revisions", ["url"], name: "index_monologue_posts_revisions_on_url"
+
+  create_table "monologue_taggings", force: true do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
+  end
+
+  add_index "monologue_taggings", ["post_id"], name: "index_monologue_taggings_on_post_id"
+  add_index "monologue_taggings", ["tag_id"], name: "index_monologue_taggings_on_tag_id"
+
+  create_table "monologue_tags", force: true do |t|
+    t.string "name"
+  end
+
+  add_index "monologue_tags", ["name"], name: "index_monologue_tags_on_name"
+
+  create_table "monologue_users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "paypal_callbacks", force: true do |t|
     t.text     "response"

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:title) || "Buying Shoes | Selling Shoes" %> | <%= site_title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="google-site-verification" content="q6v9pd9XSk1f_V1QSOisUMSGDGY72yHlun_gMKr7_uw" />
+  <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"%>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="/blog"><%= site_title + "Blog"%></a>
+      <ul class="nav">
+        <li><%= link_to "BackToStore", "http://www.solesout.com/" %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class='container-fluid'>
+  <div class="row-fluid">
+    <div class="span6">
+      <%= yield %>
+    </div>
+    <div class="span3">
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+    </div>
+    <div class="span3">
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+      <h1>some Sidebar shit</h1>
+    </div>
+  </div>
+  <div class="footer">
+    <p>© SolesOut <%= Date.today.year  %> </p>
+    <p>
+      <%= link_to "BackToStore", "http://www.solesout.com/"  %>
+    </p>
+  </div>
+</div>
+</body>
+</html>

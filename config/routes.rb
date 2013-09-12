@@ -28,8 +28,8 @@ ShoeShop::Application.routes.draw do
   scope '/admin' do
     resources :sizes
   end
-  get 'sitemap', :to => 'pages#sitemap'
 
+  get 'sitemap', :to => 'pages#sitemap'
   get 'login', to: 'sessions#new'
   get 'logout', to: 'sessions#destroy'
   get 'about', to: 'pages#about'
@@ -38,4 +38,5 @@ ShoeShop::Application.routes.draw do
   get 'privacy_policy', to: 'pages#privacy_policy'
   get 'facebook', to: redirect("https://facebook.com/solesout")
   get 'twitter', to: redirect("https://twitter.com/solesout")
+  mount Monologue::Engine, at: '/blog'
 end
