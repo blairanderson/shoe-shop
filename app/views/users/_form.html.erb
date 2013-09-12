@@ -1,7 +1,7 @@
-<%= simple_form_for @user do |f| %>
+<%= simple_form_for @user, remote: true do |f| %>
   <%= f.input :username %>
   <%= f.input :email %>
   <%= f.input :password %>
   <%= f.input :password_confirmation %>
-  <%= f.submit "Create", class: "btn btn-inverse" %>
+  <%= f.submit "Create", class: "btn btn-inverse", disable_with: "i'd like to take a minute just sit right there" %>
 <% end %>

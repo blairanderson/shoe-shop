@@ -14,6 +14,8 @@ gem 'sorcery'
 gem 'simple_enum'
 gem 'sendgrid'
 
+# resque http://stackoverflow.com/a/11235919/1536309
+
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 
 gem 'omniauth'

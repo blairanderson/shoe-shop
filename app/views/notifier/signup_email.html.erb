@@ -1,201 +1,114 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
-
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>SolesOut Signup :)</title>
-  <style>
-  a:hover {
-    text-decoration: underline !important;
-  }
-  td.promocell p { 
-    color:#e1d8c1;
-    font-size:16px;
-    line-height:26px;
-    font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
-    margin-top:0;
-    margin-bottom:0;
-    padding-top:0;
-    padding-bottom:14px;
-    font-weight:normal;
-  }
-  td.contentblock h4 {
-    color:#444444 !important;
-    font-size:16px;
-    line-height:24px;
-    font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
-    margin-top:0;
-    margin-bottom:10px;
-    padding-top:0;
-    padding-bottom:0;
-    font-weight:normal;
-  }
-  td.contentblock h4 a {
-    color:#444444;
-    text-decoration:none;
-  }
-  td.contentblock p { 
-      color:#888888;
-    font-size:13px;
-    line-height:19px;
-    font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
-    margin-top:0;
-    margin-bottom:12px;
-    padding-top:0;
-    padding-bottom:0;
-    font-weight:normal;
-  }
-  td.contentblock p a { 
-      color:#3ca7dd;
-    text-decoration:none;
-  }
-  @media only screen and (max-device-width: 480px) {
-       div[class="header"] {
-            font-size: 16px !important;
-       }
-       table[class="table"], td[class="cell"] {
-            width: 300px !important;
-       }
-    table[class="promotable"], td[class="promocell"] {
-            width: 325px !important;
-       }
-    td[class="footershow"] {
-            width: 300px !important;
-       }
-    table[class="hide"], img[class="hide"], td[class="hide"] {
-            display: none !important;
-       }
-       img[class="divider"] {
-          height: 1px !important;
-     }
-     td[class="logocell"] {
-      padding-top: 15px !important; 
-      padding-left: 15px !important;
-      width: 300px !important;
-     }
-       img[id="screenshot"] {
-            width: 325px !important;
-            height: 127px !important;
-       }
-    img[class="galleryimage"] {
-        width: 53px !important;
-            height: 53px !important;
-    }
-    p[class="reminder"] {
-      font-size: 11px !important;
-    }
-    h4[class="secondary"] {
-      line-height: 22px !important;
-      margin-bottom: 15px !important;
-      font-size: 18px !important;
-    }
-  }
-  </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">    <!-- So that mobile webkit will display zoomed in -->
+    <meta name="format-detection" content="telephone=no"> <!-- disable auto telephone linking in iOS -->
+
+    <title>Antwort - responsive Email Layout</title>
+    <style type="text/css">
+
+        /* Resets: see reset.css for details */
+        .ReadMsgBody { width: 100%; background-color: #ebebeb;}
+        .ExternalClass {width: 100%; background-color: #ebebeb;}
+        .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height:100%;}
+        body {-webkit-text-size-adjust:none; -ms-text-size-adjust:none;}
+        body {margin:0; padding:0;}
+        table {border-spacing:0;}
+        table td {border-collapse:collapse;}
+        .yshortcuts a {border-bottom: none !important;}
+
+
+        /* Constrain email width for small screens */
+        @media screen and (max-width: 600px) {
+            table[class="container"] {
+                width: 95% !important;
+            }
+        }
+
+        /* Give content more room on mobile */
+        @media screen and (max-width: 480px) {
+            td[class="container-padding"] {
+                padding-left: 12px !important;
+                padding-right: 12px !important;
+            }
+        }
+
+
+        /* Styles for forcing columns to rows */
+        @media only screen and (max-width : 600px) {
+
+            /* force container columns to (horizontal) blocks */
+            td[class="force-col"] {
+                display: block;
+                padding-right: 0 !important;
+            }
+            table[class="col-3"] {
+                /* unset table align="left/right" */
+                float: none !important;
+                width: 100% !important;
+
+                /* change left/right padding and margins to top/bottom ones */
+                margin-bottom: 12px;
+                padding-bottom: 12px;
+                border-bottom: 1px solid #eee;
+            }
+
+            /* remove bottom border for last column/row */
+            table[id="last-col-3"] {
+                border-bottom: none !important;
+                margin-bottom: 0;
+            }
+
+            /* align images right and shrink them a bit */
+            img[class="col-3-img"] {
+                float: right;
+                margin-left: 6px;
+                max-width: 130px;
+            }
+        }
+
+    </style>
 </head>
-<body bgcolor="#e4e4e4" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0" style="-webkit-font-smoothing: antialiased;width:100% !important;background:#e4e4e4;-webkit-text-size-adjust:none;">
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#e4e4e4">
+<body style="margin:0; padding:10px 0;" bgcolor="#ebebeb" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+
+<br>
+
+<!-- 100% wrapper (grey background) -->
+<table border="0" width="100%" height="100%" cellpadding="0" cellspacing="0" bgcolor="#ebebeb">
+  <tr>
+    <td align="center" valign="top" bgcolor="#ebebeb" style="background-color: #ebebeb;">
+
+      <!-- 600px container (white background) -->
+    <table border="0" width="600" cellpadding="0" cellspacing="0" class="container" bgcolor="#ffffff">
     <tr>
-      <td bgcolor="#e4e4e4" width="100%">
-        <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="table">
-          <tr>
-            <td width="600" class="cell">
-              <table width="600" cellpadding="0" cellspacing="0" border="0" class="table">
-                <tr>
-                  <td width="250" bgcolor="#e4e4e4" class="logocell">
-                    <img border="0" src="images/spacer.gif" width="1" height="20" class="hide"><br class="hide">
-                    <img src="<%= 'http://placehold.it/178/76' %>" width="178" height="76" alt="SolesOut Signup :)" style="-ms-interpolation-mode:bicubic;">
-                    <br>
-                    <img border="0" src="images/spacer.gif" width="1" height="10" class="hide"><br class="hide">
-                  </td>
-                  <td align="right" width="350" class="hide" style="color:#a6a6a6;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;text-shadow: 0 1px 0 #ffffff;" valign="top" bgcolor="#e4e4e4">
-                    <img border="0" src="images/spacer.gif" width="1" height="63">
-                    <br>
-                    <strong><span style="text-transform:uppercase;"> <currentmonthname> <currentyear></span></strong>
-                  </td>
-                </tr>
-              </table>
-            <repeater>
-              <layout label="New feature">
-                <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                  <tr>
-                    <td bgcolor="#000" nowrap>
-                      <img border="0" src="images/spacer.gif" width="5" height="1">
-                    </td>
-                    <td width="100%" bgcolor="#ffffff">
-                      <table width="100%" cellpadding="20" cellspacing="0" border="0">
-                        <tr>
-                          <td bgcolor="#ffffff" class="contentblock">
-                            <h4 class="secondary"><strong><singleline label="Title">Welcome to SolesOut</singleline></strong></h4>
-                            <multiline label="Description"><p>Thanks for signing up. Your username is: <%= @user.username%></p></multiline>
-                            <multiline label="Description"><p>Your profile is at <a href="http://www.solesout.com/profile">solesout.com/profile</a></p></multiline>
-                            <multiline label="Description"><p>Please leave us any <a href="https://solesout.uservoice.com/forums/222164-general">feedback and support</a> requests</p></multiline>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                </table>  
-                <img border="0" src="images/spacer.gif" width="1" height="15" class="divider"><br>
-              </layout>
-            </repeater>           
-          </td>
-        </tr>
-      </table>
-      <img border="0" src="images/spacer.gif" width="1" height="25" class="divider"><br>
-      <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f2f2f2">
-        <tr>
-          <td>
-          <img border="0" src="images/spacer.gif" width="1" height="30"><br>
-            <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="table">
-              <tr>
-                <td width="600" nowrap bgcolor="#f2f2f2" class="cell">
-        
-          <table width="600" cellpadding="0" cellspacing="0" border="0" class="table">
-          <tr>
-            <td width="380" valign="top" class="footershow">
-            
-              <img border="0" src="images/spacer.gif" width="1" height="8"><br>  
-            
-              <p style="color:#a6a6a6;font-size:12px;font-family:Helvetica,Arial,sans-serif;margin-top:0;margin-bottom:15px;padding-top:0;padding-bottom:0;line-height:18px;" class="reminder">
-                You’re receiving this because you just signed up with <a href="http://www.solesout.com/" style="color:#a6a6a6;text-decoration:underline;">SolesOut</a>.
-              </p>
-            
-            </td>
-            <td align="right" width="220" style="color:#a6a6a6;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;text-shadow: 0 1px 0 #ffffff;" valign="top" class="hide">
-            
-              <table cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td><a href="http://www.solesout.com/twitter"><img border="0" src="http://www.solesout.com/assets/twitter.gif" width="42" height="32" alt="Follow us on Twitter"></a></td>
-                <td><a href="http://www.solesout.com/facebook"><img border="0" src="http://www.solesout.com/assets/facebook.gif" width="32" height="32" alt="Visit us on Facebook"></a></td>
-              </tr>
-              </table>
-            
-              <img border="0" src="images/spacer.gif" width="1" height="10">
-              <br>
-              <p style="color:#b3b3b3;font-size:11px;line-height:15px;font-family:Helvetica,Arial,sans-serif;margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0;font-weight:bold;">
-                SolesOut
-              </p>
-              <p style="color:#b3b3b3;font-size:11px;line-height:15px;font-family:Helvetica,Arial,sans-serif;margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0;font-weight:normal;">
-                Kirkland WA 98034
-              </p>
-            </td>
-          </tr>
-          </table>
-        
-        </td>
-      </tr> 
-        </table>
-
-      <img border="0" src="images/spacer.gif" width="1" height="25"><br>
-    
-     </td>
-  </tr>
+    <td class="container-padding" bgcolor="#ffffff" style="background-color: #ffffff; padding-left: 30px; padding-right: 30px; font-size: 13px; line-height: 20px; font-family: Helvetica, sans-serif; color: #333;" align="left">
+        <div style="font-weight: bold; font-size: 18px; line-height: 24px; color: #D03C0F;">
+          Welcome to SolesOut
+        </div>
+        Thanks for Signing up.
+        <br>
+        Your username is: <%= @user.username%> 
+        <br>
+        Your profile can be found at <a href="http://www.solesout.com/profile">solesout.com/profile</a>
+        <br>
+        We welcome all <a href="https://solesout.uservoice.com/forums/222164-general">feedback and feature requests</a>.
+        <br><br>
+        <div style="font-weight: bold; font-size: 18px; line-height: 24px; color: #D03C0F">
+            <a href="http://www.solesout.com/twitter"><img border="0" src="https://abs.twimg.com/a/1378701295/images/resources/twitter-bird-light-bgs.png" width="42" height="32" alt="Follow us on Twitter">follow our tweets</a>
+            <!-- <a href="http://www.solesout.com/facebook"><img border="0" src="http://i.imgur.com/dVb0cDD.png" width="32" height="32" alt="Visit us on Facebook"></a> -->
+        </div>
+      </td>
+    </tr>
   </table>
-  
-  </td>
-</tr>
-</table>                   
+      <!--/600px container -->
 
+    </td>
+  </tr>
+</table>
+<!--/100% wrapper-->
+<br>
+<br>
 </body>
 </html>

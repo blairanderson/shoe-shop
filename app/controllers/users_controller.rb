@@ -19,7 +19,8 @@ class UsersController < ApplicationController
 
     if @user.save
       auto_login(@user)
-      redirect_to new_post_path, notice: "Account Created Successfully"
+      Notifier.signup_email(@user).deliver
+      render 'create'
     else
       render :action => "new"
     end
