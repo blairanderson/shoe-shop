@@ -8,6 +8,14 @@
     <% end %>
   <% end %>
 
+  <%= link_to root_path do  %>
+    <p>
+      link to root
+    </p>
+    <%= image_tag("facebook.gif")  %>
+  <% end %>
+
+
   <%= content_tag :span do  %>
     <%= link_to '<i class="icon-arrow-up icon-white"></i>'.html_safe, upvote_post_path(new_post), class: "label label-inverse" %>
     [<%= new_post.score %>]
