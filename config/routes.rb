@@ -36,4 +36,6 @@ ShoeShop::Application.routes.draw do
   get 'contact', to: 'pages#contact'
   get 'tos', to: 'pages#tos'
   get 'privacy_policy', to: 'pages#privacy_policy'
+  get 'facebook', to: redirect("https://facebook.com/solesout")
+  get 'twitter', to: redirect("https://twitter.com/solesout")
 end
