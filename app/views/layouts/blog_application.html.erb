@@ -24,28 +24,16 @@
       <%= yield %>
     </div>
     <div class="span3">
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
+      <ul class="thumbnails">
+        <%= render partial: 'posts/image', collection: Image.order('created_at DESC')[0..4] %>
+      </ul>
     </div>
     <div class="span3">
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
-      <h1>some Sidebar shit</h1>
+      <% if Image.count > 5 %>
+        <ul class="thumbnails">
+          <%= render partial: 'posts/image', collection: Image.order('created_at DESC')[5..9] %>
+        </ul>
+      <% end %>      
     </div>
   </div>
   <div class="footer">
