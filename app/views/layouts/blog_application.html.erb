@@ -25,13 +25,13 @@
     </div>
     <div class="span3">
       <ul class="thumbnails">
-        <%= render partial: 'posts/image', collection: Image.order('created_at DESC')[0..4] %>
+        <%= render partial: 'posts/image', collection: Image.order('created_at DESC')[0..4], locals: {p_id: nil} %>
       </ul>
     </div>
     <div class="span3">
       <% if Image.count > 5 %>
         <ul class="thumbnails">
-          <%= render partial: 'posts/image', collection: Image.order('created_at DESC')[5..9] %>
+          <%= render partial: 'posts/image', collection: Image.order('created_at DESC')[5..9], locals: {p_id: nil} %>
         </ul>
       <% end %>      
     </div>
