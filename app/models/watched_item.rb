@@ -6,4 +6,5 @@ class WatchedItem < ActiveRecord::Base
   validates_presence_of :user_id
 
   validates_uniqueness_of :user_id, scope: [:post_id], message: "Already Watching"
+
 end

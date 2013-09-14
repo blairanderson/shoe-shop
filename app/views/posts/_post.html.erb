@@ -1,28 +1,19 @@
-<div class="row-fluid">
-  <div class="media">
-    <%= link_to post, class: "pull-left" do %>
-      <div class="pull-left">
-        <% if post.images.count > 0 %>
-          <%= image_tag post.images.first.url_size(65) , class: 'media-object img-rounded' %>
-        <% else %>
-          <%= image_tag "http://placehold.it/65x65", class: 'media-object img-rounded' %>
-        <% end %>
-      </div>
+<li class="list-group-item">
+  <%= image_tag("sold-out-stamp-large.png",size:"100", style: "position:absolute;left:0;top:20px;") if post.sold?  %>
+  <%= link_to post do %>
+    <% if post.images.count > 0 %>
+      <%= image_tag post.images.first.url_size(65) , class: 'img-rounded' %>
+    <% else %>
+      <%= image_tag "http://placehold.it/65x65", class: 'img-rounded' %>
     <% end %>
-    <div class="media-body">
-      <p class="lead media-heading">
-        <%= content_tag :span, class: "" do  %>
-          <%= link_to '<i class="icon-arrow-up icon-white"></i>'.html_safe, upvote_post_path(post), class: "label label-inverse" %>
-          [<%= post.score %>]
-          <%= link_to '<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(post), class: "label" %>
-        <% end %>
-        <%= link_to post_title(post), post %>
-      </p>
-      <p class="small">
-        Sold by: <%= link_to "#{post.user.username} (#{post.user.score})", user_path(post.user) %>
-        <span class="label">views: <%= post.view_count %></span>      
-        <%= render partial: "watched_items/watched_item", locals: {post: post} %>
-      </p>
-    </div>
-  </div>
-</div>
+  <% end %>
+  <%= content_tag :span do  %>
+    <%= link_to '<i class="icon-arrow-up icon-white"></i>'.html_safe, upvote_post_path(post), class: "label label-inverse" %>
+    [<%= post.score %>]
+    <%= link_to '<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(post), class: "label" %>
+  <% end %>
+  <%= link_to post_title(post), post %>
+  Listed by: <%= link_to "#{post.user.username} (#{post.user.score})", user_path(post.user) %>
+  <span class="label">views: <%= post.view_count %></span>      
+  <%= render partial: "watched_items/watched_item", locals: {post: post} %>
+</li>

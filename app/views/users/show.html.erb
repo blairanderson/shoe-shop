@@ -7,7 +7,7 @@
     <h2>Active Pairs</h2>
   </div>
   <ul class="list-group">
-    <%= render partial: 'posts/new_post', collection: @user.posts.active %>
+    <%= render partial: 'posts/post', collection: @user.posts.active %>
   </ul>
 </div>
 
@@ -19,7 +19,7 @@
       <h2>Draft Posts</h2>
     </div>
       <ul class="list-group">
-        <%= render partial: 'posts/new_post', collection: @user.posts.drafted %>
+        <%= render partial: 'posts/post', collection: @user.posts.drafted %>
       </ul>
   </div>
 
@@ -28,7 +28,7 @@
       <h2>Sold Pairs</h2>
     </div>
     <ul class="list-group">
-      <%= render partial: 'posts/new_post', collection: @user.posts.inactive %>
+      <%= render partial: 'posts/post', collection: @user.posts.inactive %>
     </ul>
   </div>
 
