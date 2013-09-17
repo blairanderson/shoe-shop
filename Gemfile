@@ -13,9 +13,7 @@ gem 'active_model_serializers'
 gem 'sorcery'
 gem 'simple_enum'
 gem 'sendgrid'
-gem "tinymce-rails", :git => 'git://github.com/spohlenz/tinymce-rails.git', :branch => 'tinymce-4'
-gem 'monologue', :git => 'git://github.com/davidlbatey/monologue.git', :branch =>'rails_4'
-
+gem 'activeadmin', github: 'gregbell/active_admin', branch: 'rails4'
 # resque http://stackoverflow.com/a/11235919/1536309
 
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'

@@ -1,4 +1,6 @@
 ShoeShop::Application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   root to: redirect('/pairs/top/all')
 
   resources :posts, path: "pairs" do
@@ -38,5 +40,4 @@ ShoeShop::Application.routes.draw do
   get 'privacy_policy', to: 'pages#privacy_policy'
   get 'facebook', to: redirect("https://facebook.com/solesout")
   get 'twitter', to: redirect("https://twitter.com/solesout")
-  mount Monologue::Engine, at: '/blog'
 end
