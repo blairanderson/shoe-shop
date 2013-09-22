@@ -13,7 +13,6 @@ gem 'active_model_serializers'
 gem 'sorcery'
 gem 'simple_enum'
 gem 'sendgrid'
-gem 'activeadmin', github: 'gregbell/active_admin', branch: 'rails4'
 # resque http://stackoverflow.com/a/11235919/1536309
 
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
