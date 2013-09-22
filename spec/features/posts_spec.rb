@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'posting' do 
   let!(:post) { FactoryGirl.create(:post) }
-  let!(:valid_user) { post.user }
+  let(:valid_user) { post.user }
 
   def login(user, password = "password")
     visit root_path

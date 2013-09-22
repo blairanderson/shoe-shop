@@ -4,7 +4,7 @@ en:
   simple_form:
     labels:
       post:
-        price: Price, Must Include Shipping to US Only
+        price: Price Must Include Shipping to US Only
         body: Description
         status_enum: Current Status - Update?
       # user:

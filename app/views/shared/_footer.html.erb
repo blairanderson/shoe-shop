@@ -12,15 +12,17 @@
     <li><%= link_to "About", about_path %></li>
     <li><%= link_to "Contact", contact_path %></li>
     <li><%= link_to "Twitter", twitter_path %></li>
-    <li><%= link_to "Blog", blog_route %></li>
     <li><%# link_to "Facebook", facebook_path %></li>
   </ul>
 
 
     <% if current_admin %>
-    <ul class="nav nav-pills pull-left">
-      <li><%= link_to "ADMIN: SIZES", sizes_path %></li>
-      <li><%= link_to "ADMIN: BLOG", blog_route(:admin_login_path) %></li>
+    <ul class="breadcrumb">
+      <li class="active" ><%= link_to "ADMIN: SIZES", sizes_path %></li>
+      <li>user count: <span class="badge"><%= user_count %></span></li>
+      <li>post count: <span class="badge"><%= post_count %></span></li>
+      <li>image count: <span class="badge"><%= image_count %></span></li>
+      <li>dollar count: <span class="badge"><%= dollar_count %></span></li>
     </ul>
     <% end %>
 </footer>

@@ -18,4 +18,20 @@ module ApplicationHelper
       "http://www.solesout.com/"
     end
   end
+
+  def user_count
+    User.count
+  end
+
+  def post_count
+    Post.count
+  end
+
+  def dollar_count
+    Post.sum('price')
+  end
+
+  def image_count
+    Image.count    
+  end
 end
