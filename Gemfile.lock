@@ -6,16 +6,6 @@ GIT
     bootstrap-sass (3.0.0.0)
       sass (~> 3.2)
 
-GIT
-  remote: https://github.com/iex-eng/style-guide
-  revision: e3de7fdc25de0c5b5c6eb4f447d1b36dc1f18afc
-  branch: rails4
-  specs:
-    style-guide (1.0.0)
-      github-markdown (~> 0.5)
-      nokogiri (~> 1.5)
-      rails (>= 4.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -87,7 +77,6 @@ GEM
       multipart-post (~> 1.2.0)
     ffi (1.9.0)
     formatador (0.2.4)
-    github-markdown (0.5.3)
     guard (1.8.2)
       formatador (>= 0.2.4)
       listen (>= 1.0.0)
@@ -111,6 +100,9 @@ GEM
     json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.8.0)
     launchy (2.3.0)
       addressable (~> 2.3)
@@ -226,6 +218,10 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     sqlite3 (1.3.7)
+    style-guide (0.3.0)
+      i18n
+      jquery-rails
+      rails
     thor (0.18.1)
     thread_safe (0.1.2)
       atomic
@@ -265,6 +261,7 @@ DEPENDENCIES
   guard-rspec
   impressionist
   jquery-rails
+  kaminari
   launchy
   newrelic_rpm
   omniauth
@@ -282,7 +279,7 @@ DEPENDENCIES
   simple_form
   sorcery
   sqlite3
-  style-guide!
+  style-guide
   twitter
   uglifier (>= 1.3.0)
   unicorn

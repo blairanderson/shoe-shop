@@ -6,6 +6,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 gem 'acts_as_votable', '~> 0.6.0' #https://github.com/ryanto/acts_as_votable
 gem 'impressionist'
+# resque http://stackoverflow.com/a/11235919/1536309
 
 gem 'simple_form'
 gem 'newrelic_rpm'
@@ -13,18 +14,14 @@ gem 'active_model_serializers'
 gem 'sorcery'
 gem 'simple_enum'
 gem 'sendgrid'
-# resque http://stackoverflow.com/a/11235919/1536309
-
-gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
+gem 'kaminari'
 
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'twitter'
 
+gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 gem 'sass-rails', '~> 4.0.0'
-
-# bootstrap-sass :) 
-# gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
@@ -45,7 +42,7 @@ end
 group :development do 
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'style-guide', git: "https://github.com/iex-eng/style-guide", branch: "rails4"
+  gem 'style-guide'
 end
 
 group :test do 

@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   is_impressionable counter_cache: true
   acts_as_votable
+  max_paginates_per 25
 
   as_enum :status, [:draft, :for_sale, :sold, :deleted], 
   :whiny => false, :column => 'status_enum'
@@ -35,6 +36,14 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def self.filter(filter)
+    self.send(filter)
+  end
+
+  def self.sort(sort)
+    self.send(sort)
+  end
+
   scope :drafted,     -> { where(status_enum: Post.draft) }
   scope :active,  -> { where(status_enum: Post.for_sale) }
   scope :inactive,      -> { where(status_enum: Post.sold) }
@@ -49,14 +58,6 @@ class Post < ActiveRecord::Base
   scope :med, ->  { where(size_id: [8,9]) }# 'nine5-to-10'
   scope :lrg, ->  { where(size_id: [10,11]) }# 'ten5-to-eleven'
   scope :xl, ->  { where(size_id: [12,13,14,15,16,17,18,19]) } # 'eleven5_plus' 
-
-  def self.filter(filter)
-    self.send(filter)
-  end
-
-  def self.sort(sort)
-    self.send(sort)
-  end
 
   def to_param
     "#{id} #{brand} #{title}".parameterize
