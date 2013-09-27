@@ -1,5 +1,4 @@
 <li class="list-group-item">
-  <span><%= post_counter + 1 + (@posts.offset_value || 0) %></span>
   <%= image_tag("sold-out-stamp-large.png",size:"100", style: "position:absolute;left:0;top:20px;") if post.sold?  %>
   <%= link_to post do %>
     <% if post.images.count > 0 %>
