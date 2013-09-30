@@ -14,6 +14,5 @@
   <% end %>
   <%= link_to post_title(post), post %>
   Listed by: <%= link_to "#{post.user.username} (#{post.user.score})", user_path(post.user) %>
-  <span class="label">views: <%= post.view_count %></span>      
   <%= render partial: "watched_items/watched_item", locals: {post: post} %>
 </li>
