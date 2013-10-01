@@ -9,5 +9,17 @@ FactoryGirl.define do
     size {Size.first || create(:size) }
     status_enum 0
     user
+ 
+    trait :for_sale do
+      status_enum 1
+    end
+    
+    trait :sold do
+      status_enum 2
+    end
+    
+    trait :deleted do
+      status_enum 3
+    end
   end
 end
