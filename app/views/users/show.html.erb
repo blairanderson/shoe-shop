@@ -1,3 +1,4 @@
+<%= header "Shoes and Pairs for #{@user.username}" %>
 <div class="row-fluid">
   <h1><%= @user.username %></h1>
 </div>
@@ -19,7 +20,7 @@
       <h2>Draft Posts</h2>
     </div>
       <ul class="list-group">
-        <%= render partial: 'posts/post', collection: @user.posts.drafted %>
+        <%= render partial: 'post', collection: @user.posts.drafted %>
       </ul>
   </div>
 
@@ -28,7 +29,7 @@
       <h2>Sold Pairs</h2>
     </div>
     <ul class="list-group">
-      <%= render partial: 'posts/post', collection: @user.posts.inactive %>
+      <%= render partial: 'post', collection: @user.posts.inactive %>
     </ul>
   </div>
 
