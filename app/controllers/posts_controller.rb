@@ -50,7 +50,7 @@ class PostsController < ApplicationController
 
     if @post.save
       @post.liked_by current_user
-      redirect_to @post, notice: 'Post was successfully created.'
+      redirect_to @post, notice: 'Post was successfully created. Add images for more upvotes!'
     else
       render action: 'new'
     end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130927020721) do
+ActiveRecord::Schema.define(version: 20131014045400) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id",    null: false
@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20130927020721) do
     t.integer  "images_count",       default: 0
     t.integer  "impressions_count",  default: 0
     t.integer  "price"
-    t.integer  "status_enum",        default: 0
+    t.integer  "status_enum",        default: 1
   end
 
   add_index "posts", ["cached_votes_down"], name: "index_posts_on_cached_votes_down"

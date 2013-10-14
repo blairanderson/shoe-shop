@@ -32,7 +32,7 @@ class Post < ActiveRecord::Base
 
   def set_default_enum
     if status.nil?
-      self.status = :draft
+      self.status = :for_sale
     end
   end
 
@@ -67,13 +67,13 @@ class Post < ActiveRecord::Base
     statuses = Post.statuses.dup
     case status
     when :draft
-      statuses.extract!(:draft, :for_sale, :deleted)
+      statuses.extract!(:for_sale, :deleted)
     when :deleted
-      statuses.extract!(:draft, :deleted)
+      statuses.extract!(:deleted)
     when :sold
-      statuses.extract!(:sold)
+      statuses.extract!(:sold, :for_sale)
     when :for_sale
-      statuses.extract!(:for_sale, :draft, :deleted)
+      statuses.extract!(:for_sale, :sold)
     end
   end
 end
