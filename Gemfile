@@ -1,7 +1,6 @@
 ruby '2.0.0'
 source 'https://rubygems.org'
 
-
 # gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 gem 'acts_as_votable', '~> 0.6.0' #https://github.com/ryanto/acts_as_votable
