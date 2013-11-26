@@ -5,7 +5,6 @@ class PostsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:callback]
 
   def show
-    #impressionist(@post)
     @images = @post.images
     @profile = ProfilePresenter.new(@post.user)
   end

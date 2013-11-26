@@ -29,6 +29,8 @@ ShoeShop::Application.routes.draw do
 
   scope '/admin' do
     resources :sizes
+    get 'users' => 'admin#users_index', as: 'users_index'
+    post 'users/:id' => 'admin#reset_user_password', as: 'reset_user_password'
   end
 
   get 'sitemap', :to => 'pages#sitemap'

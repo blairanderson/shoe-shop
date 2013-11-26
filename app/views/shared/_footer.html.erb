@@ -17,13 +17,14 @@
 
 
     <% if current_admin %>
-    <ul class="breadcrumb">
-      <li class="active" ><%= link_to "ADMIN: SIZES", sizes_path %></li>
-      <li>user count: <span class="badge"><%= user_count %></span></li>
-      <li>post count: <span class="badge"><%= post_count %></span></li>
-      <li>image count: <span class="badge"><%= image_count %></span></li>
-      <li>dollar count: <span class="badge"><%= dollar_count %></span></li>
-    </ul>
+      <ul>
+        <li><%= link_to "ADMIN: SIZES", sizes_path %></li>
+        <li><%= link_to "ADMIN: Reset Passwords", users_index_path %></li>
+        <li>user count: <span class="badge"><%= user_count %></span></li>
+        <li>post count: <span class="badge"><%= post_count %></span></li>
+        <li>image count: <span class="badge"><%= image_count %></span></li>
+        <li>dollar count: <span class="badge"><%= dollar_count %></span></li>
+      </ul>
     <% end %>
 </footer>
 <!-- footer end here -->

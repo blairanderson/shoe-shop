@@ -1,0 +1,7 @@
+<% @users.each do |user| %>
+  <hr>
+  <%= "username: #{user.username}" %>
+  <%= "| email: #{user.email}" %>
+  <%= "| account created #{time_ago_in_words user.created_at} ago." %>
+  <%= link_to "reset password", reset_user_password_path(user), method: :post, data: {confirm: "are you sure?"}, class: 'btn' %>
+<% end %>
