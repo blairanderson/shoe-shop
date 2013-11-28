@@ -1,4 +1,5 @@
 
+
 <% if current_user && current_user.id == @post.user_id %>
   <%= link_to edit_post_path(@post), class: "btn btn-inverse" do %>
     <i class="icon-edit icon-white"></i>  
@@ -7,7 +8,7 @@
 
   <%= render partial: 'shared/filepicker' %>
   
-  <div class="alert alert-info">
+  <div class="status-update">
     <strong>Current Status:</strong>
     <%= simple_form_for @post do |f| %>
       <%= f.input :status_enum, collection: @post.valid_statuses, label_method: lambda {|key| key[0].to_s.titleize }, prompt: @post.status, required: false, label:false  %>
@@ -16,3 +17,4 @@
   </div>
   
 <% end %>
+

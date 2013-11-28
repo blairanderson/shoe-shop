@@ -1,18 +1,20 @@
 <!-- footer starts here -->
 <footer class="footer">
   <hr>
-  <div class="row-fluid">
-    <div class="span2 pull-right">
-      <a href="https://twitter.com/solesout" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @solesout</a>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-    </div>
-  </div>
+
 
   <ul class="nav nav-pills">
     <li><%= link_to "About", about_path %></li>
     <li><%= link_to "Contact", contact_path %></li>
     <li><%= link_to "Twitter", twitter_path %></li>
     <li><%# link_to "Facebook", facebook_path %></li>
+    <li class="pull-right">
+      
+
+
+    <a href="https://twitter.com/solesout" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @twitter</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </li>
   </ul>
 
 
@@ -27,4 +29,5 @@
       </ul>
     <% end %>
 </footer>
+
 <!-- footer end here -->
