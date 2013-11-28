@@ -9,11 +9,174 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  */
-.btn-watch {
-  color: gold; }
+* {
+  border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+  -webkit-border-radius: 0px !important;
+  box-shadow: 0 0px 0 !important;
+  -moz-box-shadow: 0 0px 0 !important;
+  -webkit-box-shadow: 0 0px 0 !important;
+  text-shadow: 0 0px 0 !important; }
 
-#toggle_sold .checkbox {
-  margin: 10px 0px; }
+body {
+  font-size: 14px;
+  font-family: sans-serif;
+  background-color: #ecf0f1; }
+  body * {
+    margin: 0px;
+    padding: 0px;
+    border: 0px; }
+
+h1 {
+  line-height: auto;
+  text-align: center;
+  font-size: 2em; }
+
+p {
+  font-size: 1em;
+  text-align: center; }
+
+.branding {
+  background-color: #2185c5;
+  color: #FFFFFF !important; }
+
+.navbar-inner {
+  padding: 10px;
+  background-image: none;
+  background-color: #34495e; }
+  .navbar-inner img {
+    margin-left: 20px;
+    margin-right: 50px;
+    margin-top: 10px; }
+  .navbar-inner a {
+    color: #FFFFFF !important; }
+  .navbar-inner .btn-navbar {
+    background-color: #2C3E50;
+    background-image: none; }
+
+.btn-inverse[value=Login] {
+  background-image: none !important;
+  background-color: #2C3E50 !important; }
+
+#header-nav {
+  padding-top: 25px;
+  padding-bottom: 25px; }
+
+.narbar {
+  margin-bottom: 0px !important; }
+
+.checkbox {
+  padding: 5px;
+  margin-left: 30px; }
+
+.list-group-item {
+  margin: 10px;
+  overflow: hidden; }
+
+.left-panel {
+  width: 80%;
+  float: left;
+  height: 100%; }
+
+.right-panel {
+  width: 20%;
+  float: left;
+  height: 100%; }
+
+.snapshot {
+  height: 100%;
+  width: 65px;
+  margin-right: 10px;
+  float: left; }
+
+.title, .author {
+  float: left;
+  width: 70%; }
+
+.nav-collapse .nav > li > a:hover, .nav-collapse .nav > li > a:focus, .nav-collapse .dropdown-menu a:hover, .nav-collapse .dropdown-menu a:focus {
+  background-color: #2C3E50; }
+
+/* STYLING OF SALE ITEMS */
+.title {
+  font-size: 1.2em;
+  font-weight: bold; }
+
+.alert {
+  color: #FFFFFF;
+  background-color: #34495e; }
+
+.watch {
+  margin-right: 10px;
+  float: right; }
+
+.watch .btn-watch, .watch .label-inverse {
+  margin-top: 2px;
+  font-weight: 100;
+  font-size: 0.7em;
+  text-align: center;
+  background-image: none; }
+
+.votes {
+  width: 40px;
+  float: right;
+  padding: 1px;
+  margin-right: 5px; }
+  .votes a {
+    width: 100%;
+    text-align: center; }
+  .votes #score {
+    width: 100%;
+    text-align: center;
+    font-size: 1em; }
+  .votes .upvote {
+    background-color: #2185c5; }
+  .votes .downvote {
+    background-color: #E74C3C; }
+
+.status-update {
+  margin-top: 20px; }
+
+select {
+  width: 100%;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  border: 1px solid #cccccc; }
+
+.descriptors {
+  border: 1px solid #cccccc;
+  padding: 10px; }
+  .descriptors div {
+    margin-bottom: 10px; }
+
+.well {
+  background-color: #FFFFFF;
+  padding: 40px; }
+  .well input {
+    width: 100%;
+    padding: 20px 10px 20px 10px;
+    box-sizing: border-box;
+    background-image: none;
+    background-color: #F7F7F7; }
+  .well input[type=submit] {
+    background-color: #34495e; }
+
+textarea {
+  resize: none;
+  width: 100%;
+  padding: 20px 10px 20px 10px;
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+  margin-bottom: 10px; }
+
+#center-score {
+  text-align: center;
+  margin-bottom: 20px; }
+
+.comments {
+  background-color: #CCCCCC !important; }
+
+.thumbnail {
+  margin-top: 20px; }
 
 /*! normalize.css v2.1.0 | MIT License | git.io/normalize */
 article,
@@ -1177,10 +1340,37 @@ a.list-group-item {
 
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 980px) {
-  body {
-    padding-top: 60px;
-    padding-bottom: 40px; } }
+  .navbar {
+    padding-bottom: 20px; } }
 /* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+  body {
+    padding: 0px; } }
 /* Landscape phones and down */
 @media (max-width: 480px) {
-  padding-bottom: 40px; }
+  body {
+    padding: 0px; }
+
+  .title {
+    font-size: 1em; }
+
+  .well {
+    padding: 10px; } }
+@media (max-width: 390px) {
+  .snapshot {
+    display: none !important; } }
+@media (max-width: 980px) {
+  .filters {
+    display: none !important; }
+
+  .navbar-inner img {
+    margin: 0px; }
+
+  .watch {
+    display: none !important; }
+
+  #header-nav {
+    padding: 0px; } }
+@media (max-width: 1020px) {
+  .navbar-inner img {
+    margin: 10px; } }
