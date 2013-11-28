@@ -1,21 +1,44 @@
-<li class="list-group-item">
-  <% if try(:post_counter) %>
-    <span><%= post_counter + 1 + @posts.offset_value %></span>
-  <% end %>
-  <%= image_tag("sold-out-stamp-large.png",size:"100", style: "position:absolute;left:0;top:20px;") if post.sold?  %>
-  <%= link_to post do %>
-    <% if post.images.count > 0 %>
-      <%= image_tag post.images.first.url_size(65) , class: 'img-rounded' %>
-    <% else %>
-      <%= image_tag "http://placehold.it/65x65", class: 'img-rounded' %>
-    <% end %>
-  <% end %>
-  <%= content_tag :span do  %>
-    <%= link_to '<i class="icon-arrow-up icon-white"></i>'.html_safe, upvote_post_path(post), class: "label label-inverse" %>
-    [<%= post.score %>]
-    <%= link_to '<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(post), class: "label" %>
-  <% end %>
-  <%= link_to post_title(post), post %>
-  Listed by: <%= link_to "#{post.user.username} (#{post.user.score})", user_path(post.user) %>
-  <%= render partial: "watched_items/watched_item", locals: {post: post} %>
-</li>
+
+<div class="list-group-item">
+  <div class="left-panel">
+
+    <div class="snapshot">
+      <% if try(:post_counter) %>
+        <span><%= post_counter + 1 + @posts.offset_value %></span>
+      <% end %>
+      <%= image_tag("sold-out-stamp-large.png",size:"100", style: "position:absolute;left:0;top:20px;") if post.sold?  %>
+      <%= link_to post do %>
+        <% if post.images.count > 0 %>
+          <%= image_tag post.images.first.url_size(65) , class: 'img-rounded' %>
+        <% else %>
+          <%= image_tag "http://placehold.it/65x65", class: 'img-rounded' %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="title">
+      <%= link_to post_title(post), post %>
+    </div>
+
+    <div class="author">
+      <%= link_to "#{post.user.username} (#{post.user.score})", user_path(post.user) %>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <div class="votes">
+      <%= content_tag :span do  %>
+        <%= link_to '<i class="icon-arrow-up icon-white"></i>'.html_safe, upvote_post_path(post), class: "label upvote" %>
+        <span id="score">
+        [<%= post.score %>]
+        </span>
+        <%= link_to '<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(post), class: "label downvote" %>
+      <% end %>
+    </div>
+    
+    <div class="watch">
+      <%= render partial: "watched_items/watched_item", locals: {post: post} %>
+    </div>
+
+  </div>
+</div>
