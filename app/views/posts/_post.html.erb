@@ -1,4 +1,3 @@
-
 <div class="list-group-item">
   <div class="left-panel">
 
@@ -27,13 +26,9 @@
 
   <div class="right-panel">
     <div class="votes">
-      <%= content_tag :span do  %>
         <%= link_to '<i class="icon-arrow-up icon-white"></i>'.html_safe, upvote_post_path(post), class: "label upvote" %>
-        <span id="score">
-        [<%= post.score %>]
-        </span>
+        <a class="score label"><%= post.score %></a>
         <%= link_to '<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(post), class: "label downvote" %>
-      <% end %>
     </div>
     
     <div class="watch">
