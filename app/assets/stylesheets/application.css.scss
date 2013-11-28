@@ -44,7 +44,10 @@
 
 @media (max-width: 390px){
   .snapshot{
-    display: none !important;
+    width: 200px;
+    img{
+      width: 100%;
+    }
   }
 }
 
