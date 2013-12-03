@@ -9,7 +9,6 @@ class Post < ActiveRecord::Base
   validates :title,       presence: true, length: { maximum: 50 }
   validates :price,       presence: true, numericality: true
   validates :body,        presence: true
-  validates :brand,       presence: true
   validates :status_enum, presence: true
 
   belongs_to :user
@@ -60,7 +59,7 @@ class Post < ActiveRecord::Base
   scope :xl, ->  { where(size_id: [12,13,14,15,16,17,18,19]) } # 'eleven5_plus' 
 
   def to_param
-    "#{id} #{brand} #{title}".parameterize
+    "#{id} #{title}".parameterize
   end
 
   def valid_statuses

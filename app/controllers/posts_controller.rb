@@ -77,6 +77,6 @@ private
   end
 
   def post_params
-    params.require(:post).permit(:brand, :title, :size_id, :price, :body, :status_enum)
+    params.require(:post).permit(:title, :size_id, :price, :body, :status_enum)
   end
 end

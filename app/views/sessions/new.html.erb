@@ -1,11 +1,10 @@
 <% content_for :title, "Login or Create Account | Sell in Minutes" %>
 <div class="row-fluid">
-  <div class="span6 well">
+  <div class="well">
     <h1>Login</h1>
     <%= render 'form' %>
   </div>
-  <div class="span6 well">
-    <h1>Create Account</h1>
-    <%= render 'users/form' %>
+  <div class="well">
+    <h1>No Account? <%= link_to "Create One!", new_user_path %></h1>
   </div>
 </div>

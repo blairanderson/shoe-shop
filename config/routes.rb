@@ -1,6 +1,4 @@
 ShoeShop::Application.routes.draw do
-  # devise_for :admin_users, ActiveAdmin::Devise.config
-  # ActiveAdmin.routes(self)
   root to: redirect('/pairs/top/all')
 
   resources :posts, path: "pairs" do

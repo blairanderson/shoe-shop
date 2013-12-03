@@ -1,5 +1,4 @@
 <%= simple_form_for(@post) do |f| %>
-  <%= f.input :brand %>
   <%= f.input :title %>
   <%= f.association :size, collection: Size.all, prompt: "Choose a Size" %>
   <%= f.input :price, as: :tel %>

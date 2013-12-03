@@ -17,9 +17,6 @@ describe 'posting' do
     visit new_post_path
     expect(current_path).to eq new_post_path
 
-    expect(page).to have_field 'post_brand'
-    fill_in 'post_brand', with: "NIKE"
-
     expect(page).to have_field 'post_title'
     fill_in 'post_title', with: "Jordans and shit"
 

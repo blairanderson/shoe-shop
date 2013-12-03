@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if @user.save
       auto_login(@user)
       Notifier.signup_email(@user).deliver
-      render 'create'
+      redirect_to new_post_path
     else
       render :action => "new", notice: "Sorry There Were Errors"
     end

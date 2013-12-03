@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if @user = login(user_params[:username].downcase ,user_params[:password])
       redirect_back_or_to(root_path, :notice => 'Login successful.')
     else
-      flash[:alert] = "Login Failed."
+      flash[:alert] = "Login Failed. Try Again."
       redirect_to login_path
     end
   end
