@@ -2,27 +2,33 @@
     <% content_for :title, post_title(@post).to_s    %>
     <div class="row-fluid">
         <div class="span6">
-            <h1><strong><%= @post.title %></strong></h1>
-            <div id="center-score">
-                <strong>Score: </strong><%= @post.score %></span>
-            </div>
-            <table class="table">
+            <h2><%= @post.title %></h2>
+
+            <table class="table voting">
+            <tr>
+                <td>
+                    <%= link_to upvote_post_path(@post), class: "label label-inverse upvote" do %>
+                    <i class="icon-arrow-up icon-white"></i>
+                    <span class="visible-desktop">UPVOTE</span>
+                    <% end %>
+                </td>
+                <td>
+                    <strong>Score: </strong><%= @post.score %></span>
+                </td>
+                <td>
+                    <%=link_to downvote_post_path(@post), class: "label downvote" do    %>
+                    <span class="visible-desktop">DOWNVOTE</span>
+                    <i class="icon-arrow-down icon-white"></i>
+                    <% end %>  
+                </td>
+            </tr>
+
+            </table>
+
+
+            <table class="table about-item">
                 <tr>
-                    <td>
-                        <%= link_to upvote_post_path(@post), class: "label label-inverse" do %>
-                        <i class="icon-arrow-up icon-white"></i>
-                        <span class="visible-desktop">UPVOTE</span>
-                        <% end %>
-                    </td>
-                    <td>
-                        <%= link_to downvote_post_path(@post), class: "label" do    %>
-                        <span class="visible-desktop">DOWNVOTE</span>
-                        <i class="icon-arrow-down icon-white"></i>
-                        <% end %>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="200"><strong>Description</strong></td>
+                    <td width="10p"><strong>Description</strong></td>
                     <td><%= @post.body %></td>
                 </tr>
                 <tr>
@@ -65,12 +71,12 @@
             </div>
         </div>
         <div class="span6">
-            <div>
-                <%= render partial: "post_owner_actions" %>
-            </div>
             <ul class="thumbnails">
                 <%= render partial: 'image', collection: @post.images, locals: {p_id: @post.user_id} %>
             </ul>
+            <div>
+                <%= render partial: "post_owner_actions" %>
+            </div>
         </div>
     </div>
 

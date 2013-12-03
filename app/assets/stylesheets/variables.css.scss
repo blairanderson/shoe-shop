@@ -1,28 +1,13 @@
-// $panel-danger-heading-bg: ;
+/*
+=========================================================================================
 
-$panel-danger-text: 		white;
-$panel-danger-heading-bg: 	#e74c3c;
+  Variables Stylesheet
+    Contains variables for use in application.
+    Includes all color codes, etc.
 
-$panel-success-text: 		white;
-$panel-success-heading-bg: 	#27ae60;
+=========================================================================================
+*/
 
-$panel-info-text: 			white;
-$panel-info-heading-bg:		#34495e;
-
-$panel-primary-text: 		white; 
-$panel-primary-heading-bg: 	#2980b9; 
-
-@mixin clear-border(){
-	border-radius: 			0px !important;
-	-moz-border-radius: 	0px !important;
-	-webkit-border-radius:	0px !important;
-}
-
-@mixin clear-shadow(){
-	box-shadow: 			0 0px 0 !important;
-	-moz-box-shadow: 		0 0px 0 !important;
-	-webkit-box-shadow: 	0 0px 0 !important;
-}
 
 
 $base-grey:			#3E454C;
@@ -31,3 +16,18 @@ $base-white:		#ECF0F1;
 $base-orange: 		#FF7F66;
 $base-ashphalt: 	#34495E;
 $base-blue:			#2980B9;
+
+
+
+
+$color-1:			rgb(52,82,111); // Dark blue
+$color-2:			rgb(46,73,99); // Darker blue
+$color-3:			#ecf0f1; // Off white
+$color-4: 			#253443; // Even darker Blue
+
+
+
+
+
+
+

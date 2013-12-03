@@ -1,51 +1,55 @@
 <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".col2">
+      <button type="button" class="btn btn-navbar button-collapse" data-toggle="collapse" data-target=".col2">
         <i class='icon-user icon-white'></i>
       </button>
-      <button type="button" class="btn btn-navbar pull-left" data-toggle="collapse" data-target=".col1">
+      <button type="button" class="btn btn-navbar pull-left button-collapse" data-toggle="collapse" data-target=".col1">
         <i class='icon-cog icon-white'></i>
       </button>
-      <a class="pull-left" href="/">
+      <a class="pull-left" id="logo" href="/">
         <%= white_logo %>
       </a>
-      <div class="nav-collapse col1">
-        <ul class="nav" id="header-nav">
-          <li>
-            <%= link_to "Top", filters_path(:top, :all)  %>
-          </li>
-          <li>
-            <%= link_to "Bottom", filters_path(:bottom, :all) %>
-          </li>
-          <li>
-            <%= link_to "Old", filters_path(:oldest, :all) %>
-          </li>
-          <li>
-            <%= link_to "New", filters_path(:newest, :all) %>
-          </li>
-        </ul>
-      </div>
-      <div class="nav-collapse col2">
-        <ul class="nav" id="header-nav">
-          <li><%= link_to("Create Account", new_user_path) unless current_user %></li>
-        </ul>
-        <% if current_user %>
-          <ul class="nav pull-right" id="header-nav">
-            <li><%= link_to "<i class='icon-fire icon-white'></i> New Pair".html_safe , new_post_path %></li>
-            <li><%= link_to "<i class='icon-user icon-white'></i> View Profile".html_safe , profile_path %></li>
-            <li><%= link_to "<i class='icon-star-empty icon-white'></i> Watching".html_safe, profile_watching_path %></li>
-            <li><%= link_to "<i class='icon-cog icon-white'></i> Edit Profile".html_safe, edit_user_path(current_user.id) %></li>
-            <li><%= link_to "<i class='icon-off icon-white'></i> Logout".html_safe, logout_path %></li>
+
+
+      <div id="main-nav">
+        <div class="nav-collapse col1">
+          <ul class="nav header-nav" id="left-nav">
+            <li>
+              <%= link_to "Top", filters_path(:top, :all)  %>
+            </li>
+            <li>
+              <%= link_to "Bottom", filters_path(:bottom, :all) %>
+            </li>
+            <li>
+              <%= link_to "Old", filters_path(:oldest, :all) %>
+            </li>
+            <li>
+              <%= link_to "New", filters_path(:newest, :all) %>
+            </li>
           </ul>
-        <% else %>
-          <%= simple_form_for User.new, url: sessions_path, method: :post, html: {class: "navbar-form pull-right", id: "header-nav"} do |f| %>
-            <%= f.text_field :username, placeholder: "username", class: "span2" %>
-            <%= f.password_field :password,placeholder: "password", class: "span2" %>
-            <%= f.submit "Login", class: "btn btn-inverse" %>
+        </div>
+        <div class="nav-collapse col2">
+          <ul class="nav header-nav create">
+            <li><%= link_to("Create Account", new_user_path) unless current_user %></li>
+          </ul>
+          <% if current_user %>
+            <ul class="nav pull-right header-nav" id="right-nav">
+              <li><%= link_to "<i class='icon-fire icon-white'></i> New Pair".html_safe , new_post_path %></li>
+              <li><%= link_to "<i class='icon-user icon-white'></i> View Profile".html_safe , profile_path %></li>
+              <li><%= link_to "<i class='icon-star-empty icon-white'></i> Watching".html_safe, profile_watching_path %></li>
+              <li><%= link_to "<i class='icon-cog icon-white'></i> Edit Profile".html_safe, edit_user_path(current_user.id) %></li>
+              <li><%= link_to "<i class='icon-off icon-white'></i> Logout".html_safe, logout_path, class: "log" %></li>
+            </ul>
+          <% else %>
+            <%= simple_form_for User.new, url: sessions_path, method: :post, html: {class: "navbar-form pull-right", id: "header-nav"} do |f| %>
+              <%= f.text_field :username, placeholder: "username", class: "span2 header-user" %>
+              <%= f.password_field :password,placeholder: "password", class: "span2 header-pass" %>
+              <%= f.submit "Login", class: "btn btn-inverse header-submit", id: "user_submit" %>
+            <% end %>
           <% end %>
-        <% end %>
-      </div><!--/.nav-collapse -->
+        </div><!--/.nav-collapse -->
+      </div>
     </div>
   </div>
 </div>

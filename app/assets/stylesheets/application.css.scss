@@ -10,68 +10,12 @@
  *
  */
 
+
+
 @import 'bootstrap_and_overrides.css.scss';
-
-/* Portrait tablet to landscape and desktop */
-@media (min-width: 980px){ 
-  .navbar {
-    padding-bottom: 20px;
-  }
-}
-
-
-/* Landscape phone to portrait tablet */
-@media (max-width: 767px) {
-  body {
-    padding: 0px;
-  }
-}
- 
-/* Landscape phones and down */
-@media (max-width: 480px) {
-  body {
-    padding: 0px;
-  }
-
-  .title{
-    font-size: 1em;
-  }
-
-  .well{
-    padding: 10px;
-  }
-}
-
-@media (max-width: 390px){
-  .snapshot{
-    width: 200px;
-    img{
-      width: 100%;
-    }
-  }
-}
-
-
-@media (max-width: 980px){
-  .filters{
-    display: none !important;
-  }
-    .navbar-inner img{
-      margin: 0px;
-  }
-  .watch{
-    display: none !important;
-  }
-
-  #header-nav{
-    padding: 0px;
-  }
-
-}
-
-
-@media (max-width: 1020px){
-  .navbar-inner img{
-    margin: 10px;
-  }
-}
+@import "variables.css.scss";
+@import "globals.css.scss";
+@import "general.css.scss";
+@import "navigation.css.scss";
+@import "input.css.scss";
+@import "responsive.css.scss";
