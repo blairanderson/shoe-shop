@@ -5,7 +5,7 @@ class Search
 
   def self.find_products(query)
     posts = all_posts
-    posts = posts.where("title like ?", "%#{query}%") if query.present?
+    posts = posts.where("title ILIKE ?", "%#{query}%") if query.present?
     posts
   end
 
