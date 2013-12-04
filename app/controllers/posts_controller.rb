@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.active.order(cached_votes_score: :desc, created_at: :desc)
+    @posts = Search.for(params[:search]).page(params[:page])
   end
 
   def new

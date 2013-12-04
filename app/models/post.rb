@@ -48,10 +48,10 @@ class Post < ActiveRecord::Base
   scope :inactive,      -> { where(status_enum: Post.sold) }
   scope :removed,   -> { where(status_enum: Post.deleted) }
 
-  scope :top,  ->  { order("cached_votes_score DESC") }
-  scope :bottom, ->  { order("cached_votes_score ASC") }
-  scope :oldest, ->  { order("created_at ASC") }
-  scope :newest, ->  { order("created_at DESC") }
+  scope :top,  ->  { order(cached_votes_score: :desc, created_at: :desc) }
+  scope :bottom, ->  { order(cached_votes_score: :asc, created_at: :desc) }
+  scope :oldest, ->  { order(created_at: :asc) }
+  scope :newest, ->  { order(created_at: :desc) }
   
   scope :sml, ->  { where(:size_id => [1,2,3,4,5,6,7]) } # 'nine-and-under'
   scope :med, ->  { where(size_id: [8,9]) }# 'nine5-to-10'
