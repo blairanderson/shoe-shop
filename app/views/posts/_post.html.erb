@@ -1,4 +1,3 @@
-
 <div class="list-group-item">
   <div class="left-panel">
 
@@ -9,9 +8,9 @@
       <%= image_tag("sold-out-stamp-large.png",size:"100", style: "position:absolute;left:0;top:20px;") if post.sold?  %>
       <%= link_to post do %>
         <% if post.images.count > 0 %>
-          <%= image_tag post.images.first.url_size(65) , class: 'img-rounded' %>
+          <%= image_tag post.images.first.url_size(100) , class: 'img-rounded' %>
         <% else %>
-          <%= image_tag "http://placehold.it/65x65", class: 'img-rounded' %>
+          <%= image_tag "http://placehold.it/100x100", class: 'img-rounded' %>
         <% end %>
       <% end %>
     </div>
@@ -27,13 +26,9 @@
 
   <div class="right-panel">
     <div class="votes">
-      <%= content_tag :span do  %>
         <%= link_to '<i class="icon-arrow-up icon-white"></i>'.html_safe, upvote_post_path(post), class: "label upvote" %>
-        <span id="score">
-        [<%= post.score %>]
-        </span>
+        <a class="score label"><%= post.score %></a>
         <%= link_to '<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(post), class: "label downvote" %>
-      <% end %>
     </div>
     
     <div class="watch">

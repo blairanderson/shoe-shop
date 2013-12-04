@@ -1,0 +1,105 @@
+/*
+=========================================================================================
+
+  Responsive Stylesheet
+    Contains all non-bootstrap media queries.
+
+=========================================================================================
+*/
+
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 1325px) {
+
+  #logo img{
+    padding: 10px;
+    margin-right: 5px;
+    margin-left: 0px;
+  }
+
+  .header-nav li a{
+    width: auto;
+  }
+
+  #right-nav li a{
+    width: auto;
+  }
+
+}
+ 
+@media (max-width: 1050px){
+  .navbar-inner{
+    padding: 0px;
+  }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+  body {
+    padding: 0px;
+  }
+
+  .title{
+    font-size: 1em;
+  }
+
+  .well{
+    padding: 10px;
+  }
+
+  .title, .author{
+    float: left;
+
+  }
+  .left-panel{
+    float: left;
+    width: auto;
+  }
+
+  .right-panel{
+    float: left;
+    width: 100%;
+    opacity: 0.5;
+  }
+  .votes{
+    margin-top: 10px;
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 530px){
+  h1{
+    font-size: 2em;
+  }
+
+  h2{
+    font-size: 1.7em;
+    font-weight: normal;
+  }
+  h3{
+    font-size: 1.3em;
+  }
+}
+
+
+@media (max-width: 980px){
+  .navbar {
+    padding-bottom: 20px;
+  }
+    .navbar-inner img{
+      margin: 0px;
+  }
+  .watch{
+    display: none !important;
+  }
+
+  #header-nav{
+    padding: 0px;
+  }
+  .header-user, .header-pass, .header-submit{
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+}
+

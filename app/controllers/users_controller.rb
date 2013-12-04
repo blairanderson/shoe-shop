@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       Notifier.signup_email(@user).deliver
       render 'create'
     else
-      render :action => "new"
+      render :action => "new", notice: "Sorry There Were Errors"
     end
   end
 

@@ -1,5 +1,5 @@
 <% if current_user && current_user.id == @post.user_id %>
-  <%= link_to new_post_image_path(@post), class: "btn btn-inverse", id: "submit_photo" do %>
+  <%= link_to new_post_image_path(@post), class: "btn btn-inverse edit-add", id: "submit_photo" do %>
   <i class="icon-picture icon-white"></i>
   Add Image
   <% end %>

@@ -1,205 +1,34 @@
-*{
-	@include clear-border;
-	@include clear-shadow;
-	text-shadow: 0 0px 0 !important;
-}
+/*
+=========================================================================================
+
+	Global Stylesheet
+		Contains all HTML element styling (NO ID OR CLASS BASED STLYING).
+		Includes typography styling.
+
+=========================================================================================
+*/
 
 body{
 	font-size: 			14px;
 	font-family: 		sans-serif;
-	background-color: 	$base-white;
-	*{
-		margin: 	0px;
-		padding:	0px;
-		border:		0px;
-	}
+	color: 				$color-1;
+	padding: 0px;
+
+	*{text-shadow: 			0 0px 0 !important;}
 }
 
-h1{
-	line-height: 	auto;
-	text-align: 	center;
-	font-size: 		2em;
+h1{ 
+	font-size: 3em;
+	font-weight: lighter;
 }
 
 p{
 	font-size: 		1em;
 	text-align: 	center;
 }
-.branding{
-	background-color: $base-deep-blue;
-	color: #FFFFFF !important;
-}
 
-.navbar-inner{
-	img{
-		margin-left: 20px;
-		margin-right: 50px;
-		margin-top: 10px;
-	}
-	a{
-		color: #FFFFFF !important; 
-	}
-
-	padding: 10px;
-	background-image: 	none;
-	background-color: 	$base-ashphalt;
-
-	.btn-navbar{
-		background-color: #2C3E50;
-		background-image: none;
-	}
-}
-
-	.btn-inverse[value=Login]{
-		background-image: none !important;
-		background-color: #2C3E50 !important;
-	}
-
-#header-nav{
-	padding-top: 25px;
-	padding-bottom: 25px ;
-}
-
-.narbar{ margin-bottom: 0px !important; }
-
-.checkbox{
-	padding: 5px;
-	margin-left: 30px;
-}
-
-.list-group-item{
-	margin: 10px;
-	overflow: hidden;
-}
-
-.left-panel{
-	width: 80%;
-	float: left;
-	height: 100%;
-}
-.right-panel{
-	width: 20%;
-	float: left;
-	height: 100%;
-}
-
-.snapshot{
-	height: 100%;
-	width: 65px;
-	margin-right: 10px;
-	float: left;
-}
-.title, .author{
-	float: left;
-	width: 70%;
-
-}
-
-.nav-collapse .nav>li>a:hover, .nav-collapse .nav>li>a:focus, .nav-collapse .dropdown-menu a:hover, .nav-collapse .dropdown-menu a:focus{ background-color: #2C3E50; }
-
-
-/* STYLING OF SALE ITEMS */
-
-.title{
-	font-size: 1.2em;
-	font-weight: bold;
-}
-
-.alert{
-	color: #FFFFFF;
-	background-color: $base-ashphalt;
-}
-
-.watch{
-	margin-right: 10px;
-	float: right;
-}
-.watch .btn-watch, .watch .label-inverse{
-	margin-top: 2px;
-	font-weight: 100;
-	font-size: 0.7em;
+h2{
+	font-weight: 2em;
 	text-align: center;
-
-	background-image: none;
+	font-weight: lighter;
 }
-
-.votes{
-	width: 40px;
-	float: right;
-	padding: 1px;
-
-	margin-right: 5px;
-	a{
-		width: 100%;
-		text-align: center;
-
-	}
-	#score{
-		width: 100%;
-		text-align: center;
-		font-size: 1em;
-	}
-
-	.upvote{ background-color: $base-deep-blue; }
-	.downvote{ background-color: #E74C3C; }
-}
-
-.status-update{
-	margin-top: 20px;
-
-}
-select{
-	width: 100%;
-	margin-top: 10px !important;
-	margin-bottom: 10px !important;
-		border: 1px solid #cccccc;
-}
-.descriptors{
-	border: 1px solid #cccccc;
-	padding: 10px;
-	div{ margin-bottom: 10px; }
-}
-
-.well{
-	background-color: 	#FFFFFF;
-	padding: 			40px;
-	input{
-		width: 100%;
-		padding: 20px 10px 20px 10px;
-		box-sizing: border-box;
-
-		background-image: none;
-		background-color: #F7F7F7;
-	}
-	input[type=submit]{ background-color: $base-ashphalt;}
-
-}
-
-textarea{
-	resize: none;
-	width: 100%;
-	padding: 20px 10px 20px 10px;
-	box-sizing: border-box;
-	border: 1px solid #cccccc;
-	margin-bottom: 10px;
-}
-
-#center-score{
-	text-align: center;
-	margin-bottom: 20px;
-}
-
-.comments{
-	background-color: #CCCCCC !important;
-}
-
-select{
-
-}
-
-.thumbnail{
-	margin-top: 20px;
-}
-
-
-

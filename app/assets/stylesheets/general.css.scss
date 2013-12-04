@@ -1,0 +1,181 @@
+/*
+=========================================================================================
+
+	General Stylesheet
+		Contains all individualy styled classes and ids.
+
+=========================================================================================
+*/
+
+
+/* STYLING OF ITEM LIST */
+.list-group-item{
+	background-color: #e6e6e6;
+	margin: 10px;
+	overflow: hidden;
+}
+
+.left-panel{
+	width: 80%;
+	float: left;
+	height: 100%;
+}
+
+.right-panel{
+	width: 20%;
+	float: left;
+	height: 100%;
+}
+
+.snapshot{
+	height: 100%;
+	width: 65px;
+	margin-right: 10px;
+	float: left;
+}
+
+.title{
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.watch{
+	margin-right: 10px;
+	float: right;
+}
+.watch .btn-watch, .watch .label-inverse{
+	margin-top: 2px;
+	font-weight: 100;
+	font-size: 0.7em;
+	text-align: center;
+
+	background-image: none;
+}
+
+.title, .author{
+	float: left;
+	width: 70%;
+} // END STYLING OF ITEM LIST
+
+
+ul{
+	margin: 0px;
+}
+
+
+.votes{
+	width: 40px;
+	float: right;
+	padding: 1px;
+
+	margin-right: 5px;
+	a{
+		width: 100%;
+		text-align: center;
+
+	}
+	#score{
+		width: 100%;
+		text-align: center;
+		font-size: 1em;
+	}
+
+	.upvote{ background-color: $base-deep-blue; }
+	.downvote{ background-color: #E74C3C; }
+	.score { 
+		background-color: #e6e6e6;
+		color: #000;
+		width: 100%;
+		text-align: center; }
+
+	.score:hover{
+		color: black;
+	}
+}
+
+.nav-collapse .nav>li>a:hover, .nav-collapse .nav>li>a:focus, .nav-collapse .dropdown-menu a:hover, .nav-collapse .dropdown-menu a:focus{ background-color: #2C3E50; }
+
+
+.checkbox{
+	padding: 5px;
+	margin-left: 30px;
+}
+
+.alert{
+	color: #2c3e50;
+	font-size: 2em;
+	font-weight: bold;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	background-color: #bdc3c7;
+}
+
+.status-update{
+	margin-top: 20px;
+
+}
+
+.descriptors{
+	border: 1px solid #cccccc;
+	padding: 10px;
+	div{ margin-bottom: 10px; }
+}
+
+.well{
+	h1{
+		text-align: center;
+	}
+	background-color: #e6e6e6;
+
+}
+
+
+.lead{
+	font-size: inherit !important;
+}
+
+
+
+dl{
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+dd{
+	margin-bottom: 10px;
+}
+
+
+.voting{
+	margin: 10px;
+	td{text-align: center;}
+	td tr{
+		width: 20px;
+	}
+}
+
+.about-item{
+	margin: 10px;
+	width: 100%;
+}
+
+
+table .upvote, table .downvote{
+	width: 100% !important;
+	padding: 10px;
+	box-sizing: border-box;
+}
+.upvote{
+	background-color: #2185c5 !important;
+}
+.downvote{
+	background-color: #E74C3C !important;
+}
+
+.edit-add{
+	background-image: none;
+	border:0px;
+	padding: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
