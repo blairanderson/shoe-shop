@@ -26,9 +26,9 @@
 
   <div class="right-panel">
     <div class="votes">
-        <%= link_to '<i class="icon-arrow-up icon-white"></i>'.html_safe, upvote_post_path(post), class: "label upvote" %>
-        <a class="score label"><%= post.score %></a>
-        <%= link_to '<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(post), class: "label downvote" %>
+      <%= link_to '<i class="icon-arrow-up icon-white"></i>'.html_safe, upvote_post_path(post), data: remote_options, class: "label upvote"%>
+      <a class="score label"><%= post.score %></a>
+      <%= link_to '<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(post), data: remote_options, class: "label downvote" %>
     </div>
     
     <div class="watch">

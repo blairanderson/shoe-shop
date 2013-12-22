@@ -7,4 +7,12 @@ module PostsHelper
   def verbose_post_title(post)
     "For Sale: #{ post_title(post) } #{post_url(post)} | #solesout"
   end
+
+  def remote_options
+    if logged_in?
+      {remote: true}
+    else 
+      {}
+    end
+  end
 end
