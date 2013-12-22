@@ -19,14 +19,33 @@
 
 
     <% if current_admin %>
-      <ul>
-        <li><%= link_to "ADMIN: SIZES", sizes_path %></li>
-        <li><%= link_to "ADMIN: Reset Passwords", users_index_path %></li>
-        <li>user count: <span class="badge"><%= user_count %></span></li>
-        <li>post count: <span class="badge"><%= post_count %></span></li>
-        <li>image count: <span class="badge"><%= image_count %></span></li>
-        <li>dollar count: <span class="badge"><%= dollar_count %></span></li>
-      </ul>
+      <% if current_admin.keychain %>
+        <p class="alert">
+          <%= link_to "Restart Twitter", "/auth/twitter"%>
+        </p>
+      <% else %>
+        <p class="alert">
+          <%= link_to "Setup Twitter", "/auth/twitter"%>
+        </p>
+      <% end %>
+        <p class="alert">
+          <%= link_to "Update Sizes", sizes_path %>
+        </p>
+        <p class="alert">
+          <%= link_to "Reset Passwords", users_index_path %>
+        </p>
+        <p class="alert">
+          users: <%= user_count %>
+        </p>
+        <p class="alert">
+          posts: <%= post_count %>
+        </p>
+        <p class="alert">
+          images: <%= image_count %>
+        </p>
+        <p class="alert">
+          dollars: <%= dollar_count %>
+        </p>
     <% end %>
 </footer>
 

@@ -31,6 +31,8 @@ ShoeShop::Application.routes.draw do
     post 'users/:id' => 'admin#reset_user_password', as: 'reset_user_password'
   end
 
+  match 'auth/twitter/callback', to: 'sessions#twitter_auth', via: [:get, :post]
+
   get 'sitemap', :to => 'pages#sitemap'
   get 'login', to: 'sessions#new'
   get 'logout', to: 'sessions#destroy'

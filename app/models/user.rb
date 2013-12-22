@@ -16,12 +16,22 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :watched_items, dependent: :destroy
   has_many :watched_posts, through: :watched_items, source: :post
+  has_one :keychain, dependent: :destroy
 
   def watching?(post)
     if watching(post)
       true
     else
       false
+    end
+  end
+
+  def update_omniauth(auth)
+    self.tap do |user|
+      user.provider = auth["provider"]
+      user.uid = auth["uid"]
+      user.twitter = auth["info"]["nickname"]
+      user.keychain = Keychain.from_auth(auth)
     end
   end
 

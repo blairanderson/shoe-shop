@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe User do
   describe 'validations' do
+    before { FactoryGirl.create(:user) }
     it { should validate_presence_of :username }
     it { should validate_uniqueness_of(:username).case_insensitive }
     it { should ensure_length_of(:username).is_at_least(5)}
@@ -13,9 +14,7 @@ describe User do
     it { should have_many(:posts).dependent(:destroy) }
     it { should have_many(:comments).dependent(:destroy) }
     it { should have_many(:watched_items).dependent(:destroy) }
-    it { should have_many(:watched_posts).through(:watched_items)}
-  end
-
-  describe '#watching?' do 
+    it { should have_many(:watched_posts).through(:watched_items) }
+    it { should have_one(:keychain).dependent(:destroy) }
   end
 end
