@@ -10,7 +10,7 @@ module PostsHelper
 
   def remote_options
     if logged_in?
-      {remote: true}
+      {remote: true, disable_with: 'x'}
     else 
       {}
     end
