@@ -8,6 +8,14 @@ module PostsHelper
     "For Sale: #{ post_title(post) } #{post_url(post)} | #solesout"
   end
 
+  def search_query
+    if params && params[:search] && params[:search][:query]
+      "Search: #{params[:search][:query]}"
+    else
+      "Search"
+    end
+  end
+
   def remote_options
     if logged_in?
       {remote: true, disable_with: 'x'}

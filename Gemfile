@@ -32,6 +32,7 @@ group :production do
 end
 
 group :test, :development do 
+  gem 'figaro'
   gem 'sqlite3'
   gem 'faker'
   gem 'factory_girl_rails', '~> 4.0'
