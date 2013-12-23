@@ -10,8 +10,6 @@
       <a class="pull-left" id="logo" href="/">
         <%= white_logo %>
       </a>
-
-
       <div id="main-nav">
         <div class="nav-collapse col1">
           <ul class="nav header-nav" id="left-nav">
@@ -43,10 +41,18 @@
             </script>
           <% if current_user %>
             <ul class="nav pull-right header-nav" id="right-nav">
-              <li><%= link_to "<i class='icon-fire icon-white'></i> New".html_safe , new_post_path %></li>
-              <li><%= link_to "<i class='icon-user icon-white'></i> Profile".html_safe , profile_path %></li>
-              <li><%= link_to "<i class='icon-star-empty icon-white'></i> Watching".html_safe, profile_watching_path %></li>
-              <li><%= link_to "<i class='icon-off icon-white'></i> Logout".html_safe, logout_path, class: "log" %></li>
+              <li><%= link_to new_post_path do %>
+                <i class='icon-fire icon-white'></i> New
+              <% end %></li>
+              <li><%= link_to profile_path do %>
+                <i class='icon-user icon-white'></i> Profile
+              <% end %></li>
+              <li><%= link_to profile_watching_path do %>
+                <i class='icon-star-empty icon-white'></i> Watching
+              <% end %></li>
+              <li><%= link_to logout_path, class: "log"  do %>
+                <i class='icon-off icon-white'></i> Logout 
+              <% end %></li>
             </ul>
           <% end %>
         </div><!--/.nav-collapse -->
@@ -55,21 +61,29 @@
   </div>
 </div>
 
-<section class="semantic-content" id="modal-text" tabindex="-1"
-        role="dialog" aria-labelledby="modal-label" aria-hidden="true">
-
-    <div class="modal-inner">
-        <header id="modal-label">
-        </header>
-        <div class="modal-content">
-          <%= simple_form_for :search, method: :get, url: posts_path, remote: true do |f| %>
-            <%= f.search_field :query, placeholder: 'Search Posts', id: 'st-search-input', input_html: {class: 'col-xs-12', style: 'width: 100%;'} %>
-          <% end %>
-
-        </div>
-        <footer><!-- Footer --></footer>
+<% if @history %>
+  <p class="alert container">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <a href="#modal-text">
+      Seriously, SolesOut is better with Twitter.
+    </a>
+  </p>
+  <h1 class="container">
+    We will tweet at you when someone comments on a shoe you're "watching".
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </h1>
+<section class="semantic-content" id="modal-text" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+  <div class="modal-inner">
+    <header id="modal-label">
+      Header
+    </header>
+    <div class="modal-content">
+      The modals content
     </div>
-
-    <a href="#!" class="modal-close" title="Close this modal" data-close="Close"
-        data-dismiss="modal">×</a>
+    <footer>
+      Footer
+    </footer>
+  </div>
+  <a href="#!" class="modal-close" title="Close this modal" data-close="Close" data-dismiss="modal">×</a>
 </section>
+<% end %>

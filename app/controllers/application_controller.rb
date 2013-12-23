@@ -5,6 +5,18 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_admin
 
+  before_action :add_route_to_session
+
+  def add_route_to_session
+    session[:history] ||= Hash.new(0)
+    session[:history][request.env["REQUEST_URI"]] += 1
+    session[:history]["total"] += 1
+    # unless current_user.twitter
+      session[:history]["show_twitter"] = session[:history]["total"] % 2 == 0 ? true : false
+      @history = session[:history]["show_twitter"] ? session[:history] : false
+    # end
+  end
+
   def redirect_path
     session[:return_to_url] || login_path
   end
@@ -39,7 +51,6 @@ class ApplicationController < ActionController::Base
       return
     end
   end
-
 
   def require_admin
     unless logged_in? && admin_user?
