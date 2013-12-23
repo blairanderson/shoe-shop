@@ -1,4 +1,4 @@
-<%= link_to comment.user, class: "list-group-item" do  %>
+<%= link_to post_path(comment.post, anchor: "c-#{comment.id}"), class: "list-group-item", id: "c-#{comment.id}" do  %>
   <h4><%= comment.body %></h4>
   <p>by <%= comment.user.username %>, <%= time_ago_in_words(comment.created_at) %> ago</p>
 <% end %>
