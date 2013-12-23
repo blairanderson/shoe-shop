@@ -11,10 +11,15 @@ class TCO
   end
 
   def notification(user, post, comment)
+  def comment_update(to, post, comment)
+    client.update comment_notification(to, post, comment)
+  end
+
+  def comment_notification(user, post, comment)
     tweet = "@#{user.twitter} NEW COMMENT ON #SOLESOUT: " 
-    url = "http://www.solesout.com/pairs/#{post.id}#c-#{comment.id} | " 
-    message = comment.body[0..(140 - [tweet, url].join.length)]
-    [[tweet, url].join , message].join
+    url = post_url(post, anchor: "c-#{comment.id}") 
+    message = comment.body[0..(137 - [tweet, url].join.length)]
+    [[tweet, url].join , message].join(" | ")
   end
 
 private

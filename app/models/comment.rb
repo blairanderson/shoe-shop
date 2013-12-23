@@ -19,7 +19,7 @@ class Comment < ActiveRecord::Base
     group << post.user if post.user.twitter
     group.uniq
     group.each do |to|
-      service.update( to, post, self) unless to.id == self.user_id
+      service.comment_update( to, post, self) unless to.id == self.user_id
     end
   end
 end
