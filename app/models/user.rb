@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
       user.uid = auth["uid"]
       user.twitter = auth["info"]["nickname"]
       user.keychain = Keychain.from_auth(auth)
+      user.save
     end
   end
 
