@@ -6,11 +6,14 @@ class TCO
   def initialize(options={})
   end
 
-  def update(to, body, action)
-    client.update notification(to, body, action)
+  def post_update(post)
+    client.update post_notification(post)
   end
 
-  def notification(user, post, comment)
+  def post_notification(post)
+    verbose_post_title(post)
+  end
+
   def comment_update(to, post, comment)
     client.update comment_notification(to, post, comment)
   end

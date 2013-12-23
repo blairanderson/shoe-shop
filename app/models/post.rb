@@ -81,4 +81,10 @@ class Post < ActiveRecord::Base
   def watch_the_post
     WatchedItem.where( post_id: self.id, user_id: self.user_id ).first_or_create
   end
+
+  after_save :send_notifications 
+  def send_notifications
+    service = TCO.new
+    service.post_update(self)
+  end
 end
