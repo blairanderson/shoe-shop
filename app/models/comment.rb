@@ -11,9 +11,7 @@ class Comment < ActiveRecord::Base
     WatchedItem.where( {post_id: self.post_id,user_id: self.user_id} ).first_or_create
   end
 
-  # UNCOMMENT AFTER WE GET CREDS FROM BELLY
-  # after_save :send_notifications 
-  
+  after_save :send_notifications 
   def send_notifications
     post = self.post
     service = TCO.new
