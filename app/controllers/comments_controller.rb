@@ -6,7 +6,6 @@ class CommentsController < ApplicationController
 
   def create
     validate_comment
-    
     @comment = current_user.comments.build(@comment_params)
 
     if @comment.save
