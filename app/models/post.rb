@@ -75,4 +75,10 @@ class Post < ActiveRecord::Base
       statuses.extract!(:for_sale, :sold)
     end
   end
+
+  after_save :watch_the_post
+
+  def watch_the_post
+    WatchedItem.where( post_id: self.id, user_id: self.user_id ).first_or_create
+  end
 end
