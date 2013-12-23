@@ -1,4 +1,8 @@
 class TCO
+  include PostsHelper
+  include ActionView::Helpers::NumberHelper
+  include Rails.application.routes.url_helpers
+
   def initialize(options={})
   end
 
