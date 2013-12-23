@@ -15,7 +15,7 @@ class Comment < ActiveRecord::Base
   def send_notifications
     post = self.post
     service = TCO.new
-    group = post.watchers.where.not(twitter: nil)
+    group = post.watchers.where.not(twitter: nil, id: self.user_id)
     group << post.user if post.user.twitter
     group.uniq
     group.each do |to|
