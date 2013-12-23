@@ -17,7 +17,7 @@ gem 'kaminari'
 
 gem 'omniauth'
 gem 'omniauth-twitter'
-gem 'twitter'
+gem 'twitter', '~> 5.3.0'
 
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 gem 'sass-rails', '~> 4.0.0'
