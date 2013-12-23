@@ -8,7 +8,7 @@ class TCO
 
   def notification(user, post, comment)
     tweet = "@#{user.twitter} NEW COMMENT ON #SOLESOUT: " 
-    url = "http://www.solesout.com/pairs/#{post.id}#c-#{comment.id}&from=tweet | " 
+    url = "http://www.solesout.com/pairs/#{post.id}#c-#{comment.id} | " 
     message = comment.body[0..(140 - [tweet, url].join.length)]
     [[tweet, url].join , message].join
   end
