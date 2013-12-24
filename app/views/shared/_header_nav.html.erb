@@ -38,12 +38,6 @@
               <li><%= link_to "<i class='icon-cog icon-white'></i> Edit Profile".html_safe, edit_user_path(current_user.id) %></li>
               <li><%= link_to "<i class='icon-off icon-white'></i> Logout".html_safe, logout_path, class: "log" %></li>
             </ul>
-          <% else %>
-            <%= simple_form_for User.new, url: sessions_path, method: :post, html: {class: "navbar-form pull-right", id: "header-nav"} do |f| %>
-              <%= f.text_field :username, placeholder: "username", class: "span2 header-user" %>
-              <%= f.password_field :password,placeholder: "password", class: "span2 header-pass" %>
-              <%= f.submit "Login", class: "btn btn-inverse header-submit", id: "user_submit" %>
-            <% end %>
           <% end %>
         </div><!--/.nav-collapse -->
       </div>
