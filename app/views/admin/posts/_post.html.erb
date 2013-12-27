@@ -1,0 +1,24 @@
+<div class="list-group-item">
+  <div class="left-panel">
+
+    <div class="snapshot">
+      <% if post.images.count > 0 %>
+        <%= image_tag post.images.first.url_size(100) , class: 'img-rounded' %>
+      <% else %>
+        <%= image_tag "http://placehold.it/100x100", class: 'img-rounded' %>
+      <% end %>
+    </div>
+
+    <div class="title">
+      <%= post_title(post) %>
+    </div>
+
+    <div class="author">
+      <%= "#{post.user.username} (#{post.user.score})" %>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <%= link_to "delete?", admin_post_path(post.id), method: :delete, data: {confirm: "Sure you want to Delete?", disable_with: "deleting..."}, class: 'btn' %>
+  </div>
+</div>
