@@ -29,10 +29,13 @@
         </p>
       <% end %>
         <p class="alert">
-          <%= link_to "Update Sizes", sizes_path %>
+          <%= link_to "Sizes", admin_sizes_path %>
         </p>
         <p class="alert">
-          <%= link_to "Reset Passwords", users_index_path %>
+          <%= link_to "Users/Passwords", admin_users_path %>
+        </p>
+        <p class="alert">
+          <%= link_to "Edit/Remove Posts", admin_posts_path %>
         </p>
         <p class="alert">
           users: <%= user_count %>
