@@ -27,6 +27,11 @@ class Post < ActiveRecord::Base
   alias_attribute :score, :cached_votes_score 
   alias_attribute :view_count, :impressions_count 
 
+  after_save :watch_the_post
+
+  def watch_the_post
+    WatchedItem.where( post_id: self.id, user_id: self.user_id ).first_or_create
+  end
   before_validation :set_default_enum
 
   def set_default_enum
@@ -76,13 +81,7 @@ class Post < ActiveRecord::Base
     end
   end
 
-  after_save :watch_the_post
 
-  def watch_the_post
-    WatchedItem.where( post_id: self.id, user_id: self.user_id ).first_or_create
-  end
-
-  after_save :send_notifications 
   def send_notifications
     service = TCO.new
     service.post_update(self)
