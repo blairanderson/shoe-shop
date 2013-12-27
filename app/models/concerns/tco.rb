@@ -7,7 +7,7 @@ class TCO
   end
 
   def post_update(post)
-    client.update post_notification(post)
+    update post_notification(post)
   end
 
   def post_notification(post)
@@ -15,7 +15,7 @@ class TCO
   end
 
   def comment_update(to, post, comment)
-    client.update comment_notification(to, post, comment)
+    update comment_notification(to, post, comment)
   end
 
   def comment_notification(user, post, comment)
@@ -23,6 +23,14 @@ class TCO
     url = post_url(post, anchor: "c-#{comment.id}") 
     message = comment.body[0..(137 - [tweet, url].join.length)]
     [[tweet, url].join , message].join(" | ")
+  end
+
+  def update(text)
+    begin
+      client.update text
+    rescue
+      puts "Twitter::Error  - #{text}"
+    end
   end
 
 private
