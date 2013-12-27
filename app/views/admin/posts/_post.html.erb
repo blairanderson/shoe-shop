@@ -19,6 +19,6 @@
   </div>
 
   <div class="right-panel">
-    <%= link_to "delete?", admin_post_path(post.id), method: :delete, data: {confirm: "Sure you want to Delete?", disable_with: "deleting..."}, class: 'btn' %>
+    <%= link_to "Delete Post Number #{post.id}?", admin_post_path(post.id), method: :delete, data: {confirm: "Sure you want to Delete?", disable_with: "deleting..."}, class: 'btn btn-danger' %>
   </div>
 </div>
