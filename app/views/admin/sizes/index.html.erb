@@ -1,7 +1,7 @@
 <%= render 'sizes_nav' %>
 
 <h1>New Size</h1>
-<%= simple_form_for Size.new do |f| %>
+<%= simple_form_for [:admin, Size.new] do |f| %>
   <%= f.input :name %>
   <%= f.submit nil, class: "btn btn-inverse"%>
 <% end %>

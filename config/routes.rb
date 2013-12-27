@@ -25,10 +25,11 @@ ShoeShop::Application.routes.draw do
     
   resource :sessions, only: [:new, :create, :destroy]
 
-  scope '/admin' do
+  namespace :admin do
+    post 'users/:id' => 'users#reset_user_password', as: 'reset_user_password'
     resources :sizes
-    get 'users' => 'admin#users_index', as: 'users_index'
-    post 'users/:id' => 'admin#reset_user_password', as: 'reset_user_password'
+    resources :posts
+    resources :users
   end
 
   match 'auth/twitter/callback', to: 'sessions#twitter_auth', via: [:get, :post]

@@ -1,4 +1,4 @@
-class SizesController < ApplicationController
+class Admin::SizesController < ApplicationController
   before_action :require_admin
 
   def index
@@ -13,7 +13,7 @@ class SizesController < ApplicationController
     @size = Size.new(size_params)
 
     if @size.save
-      redirect_to sizes_path, notice: "Size #{@size.name} Created..."
+      redirect_to admin_sizes_path, notice: "Size #{@size.name} Created..."
     else
       render :index, notice: "There was an error"
     end
@@ -26,7 +26,7 @@ class SizesController < ApplicationController
   def destroy
     @size = Size.find(params[:id])
     @size.destroy
-    redirect_to sizes_path, notice: "Size #{@size.name} destroyed..."
+    redirect_to admin_sizes_path, notice: "Size #{@size.name} destroyed..."
   end
 
 end
