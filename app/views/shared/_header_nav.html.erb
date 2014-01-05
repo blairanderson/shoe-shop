@@ -61,29 +61,4 @@
   </div>
 </div>
 
-<% if @history %>
-  <p class="alert container">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <a href="#modal-text">
-      Seriously, SolesOut is better with Twitter.
-    </a>
-  </p>
-  <h1 class="container">
-    We will tweet at you when someone comments on a shoe you're "watching".
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-  </h1>
-<section class="semantic-content" id="modal-text" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
-  <div class="modal-inner">
-    <header id="modal-label">
-      Header
-    </header>
-    <div class="modal-content">
-      The modals content
-    </div>
-    <footer>
-      Footer
-    </footer>
-  </div>
-  <a href="#!" class="modal-close" title="Close this modal" data-close="Close" data-dismiss="modal">×</a>
-</section>
-<% end %>
+<%= render 'shared/popups/twitter', visible: @twitter_notification %>
