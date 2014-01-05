@@ -6,19 +6,18 @@ class ApplicationController < ActionController::Base
   helper_method :current_admin
 
   before_action :add_route_to_session
-  before_action :twitter_notification
+  before_action :include_popups
 
   def add_route_to_session
     session[:history] ||= Hash.new(0)
     session[:history][request.env["REQUEST_URI"]] += 1
     session[:history]["total"] += 1
+    @notifications = []
   end
 
-  def twitter_notification
+  def include_popups
     if current_user && current_user.keychain.nil? && session[:history]["total"] % 10 == 0
-      @twitter_notification = true
-    else
-      @twitter_notification = false
+      @notifications << "twitter"
     end
   end
 
