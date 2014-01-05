@@ -13,12 +13,9 @@ class Comment < ActiveRecord::Base
 
   after_save :send_notifications 
   def send_notifications
-    post = self.post
     service = TCO.new
-    group = post.watchers.where.not(twitter: nil)
-    group << post.user if post.user.twitter
-    group.uniq
-    group.each do |to|
+    post = self.post
+    post.watchers.where.not(twitter: nil).each do |to|
       service.comment_update( to, post, self) unless to.id == self.user_id
     end
   end

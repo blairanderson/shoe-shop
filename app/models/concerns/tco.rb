@@ -19,7 +19,7 @@ class TCO
   end
 
   def comment_notification(user, post, comment)
-    tweet = "@#{user.twitter} NEW COMMENT ON #SOLESOUT: " 
+    tweet = "@#{user.twitter} new comment on shoes you're watching #SOLESOUT: " 
     url = post_url(post, anchor: "c-#{comment.id}") 
     message = comment.body[0..(137 - [tweet, url].join.length)]
     [[tweet, url].join , message].join(" | ")
