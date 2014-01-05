@@ -26,11 +26,22 @@
             <li><%= link_to("Create Account", new_user_path) unless current_user %></li>
             <li><%= link_to("Login", login_path) unless current_user %></li>
           </ul>
-          <% if current_user %>
           <%= simple_form_for :search, method: :get, url: posts_path, html: {class: "navbar-form pull-left", id: "header-nav"} do |f| %>
-              <%= f.search_field :query, placeholder: "search... BETA", class: "span2 header-user" %>
-              <%= f.submit :Search, class: "btn btn-inverse header-submit", id: "user_submit" %>
-            <% end %>
+            <%= f.search_field :query, placeholder: "search... BETA", class: "header-user", id: 'st-search-input' %>
+          <% end %>
+          <script type="text/javascript">
+            var Swiftype = window.Swiftype || {};
+              (function() {
+                Swiftype.key = '3txNe8AJCi3AfXKHSMxf';
+
+                /** DO NOT EDIT BELOW THIS LINE **/
+                var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+                script.src = "//s.swiftypecdn.com/embed.js";
+                var entry = document.getElementsByTagName('script')[0];
+                entry.parentNode.insertBefore(script, entry);
+              }());
+            </script>
+          <% if current_user %>
             <ul class="nav pull-right header-nav" id="right-nav">
               <li><%= link_to "<i class='icon-fire icon-white'></i> New Pair".html_safe , new_post_path %></li>
               <li><%= link_to "<i class='icon-user icon-white'></i> View Profile".html_safe , profile_path %></li>
@@ -44,3 +55,22 @@
     </div>
   </div>
 </div>
+
+<section class="semantic-content" id="modal-text" tabindex="-1"
+        role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+
+    <div class="modal-inner">
+        <header id="modal-label">
+        </header>
+        <div class="modal-content">
+          <%= simple_form_for :search, method: :get, url: posts_path, remote: true do |f| %>
+            <%= f.search_field :query, placeholder: 'Search Posts', id: 'st-search-input', input_html: {class: 'col-xs-12', style: 'width: 100%;'} %>
+          <% end %>
+
+        </div>
+        <footer><!-- Footer --></footer>
+    </div>
+
+    <a href="#!" class="modal-close" title="Close this modal" data-close="Close"
+        data-dismiss="modal">×</a>
+</section>
