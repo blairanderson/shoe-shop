@@ -7,6 +7,15 @@ module ApplicationHelper
     content_for :title, content
   end
 
+  def robots
+    instructions = {
+      'users' => 'noindex',
+      'filters' => 'noindex',
+      'posts' => 'index'
+    }[params[:controller]] || 'noindex'
+    tag :meta, content: instructions, property: 'st:robots'
+  end
+
   def white_logo
     image_tag("solesout-small.png", size: "100")
   end
