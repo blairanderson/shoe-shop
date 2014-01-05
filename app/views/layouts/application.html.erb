@@ -13,24 +13,14 @@
 </head>
 <body>
 <%= render partial: 'shared/header_nav' %>
-<% if notice %>
-  <p class="alert container">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <%= notice %>
-  </p>
-<% end %>
-<% if alert %>
-  <p class="alert container">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <%= alert %>
-  </p>
-<% end %>
+<%= render partial: 'shared/notices_alerts_popups' %>
 <div class='container'>
   <div class="row-fluid">
     <div class="span12">
       <%= yield %>
     </div>
   </div>
+
   <div class="row-fluid">
     <div class="span12">
       <!-- footer starts here -->
