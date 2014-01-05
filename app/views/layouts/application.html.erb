@@ -31,9 +31,17 @@
       <%= yield %>
     </div>
   </div>
-  <%= render partial: "shared/footer" %>
+  <div class="row-fluid">
+    <div class="span12">
+      <!-- footer starts here -->
+      <footer class="footer">
+        <%= render partial: "shared/footer" %>
+        <%= render partial: "shared/admin_footer" if current_admin %>
+      </footer>
+      <!-- footer end here -->
+    </div>
+  </div>
 </div>
-
-<%= render partial: 'layouts/analytics' %>
+  <%= render partial: 'layouts/analytics' %>
 </body>
 </html>

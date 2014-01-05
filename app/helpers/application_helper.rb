@@ -28,6 +28,16 @@ module ApplicationHelper
     end
   end
 
+  def admin_counts
+    {
+      users: user_count,
+      twitter_users: tweeps_count,
+      posts: post_count,
+      dollars: dollar_count,
+      images: image_count
+    }
+  end
+
   def user_count
     User.count
   end
@@ -42,5 +52,9 @@ module ApplicationHelper
 
   def image_count
     Image.count    
+  end
+
+  def tweeps_count
+    Keychain.count
   end
 end

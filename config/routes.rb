@@ -26,6 +26,7 @@ ShoeShop::Application.routes.draw do
   resource :sessions, only: [:new, :create, :destroy]
 
   namespace :admin do
+    root to: :dashboard
     post 'users/:id' => 'users#reset_user_password', as: 'reset_user_password'
     resources :sizes
     resources :posts

@@ -1,0 +1,8 @@
+<p class="alert">
+  <%= link_to "Admin Dashboard", admin_root_path %>
+</p>
+<% admin_counts.each do |label, count| %>
+  <p class="alert">
+     <%= label.to_s.titleize %>: <%= count %>
+  </p>
+<% end %>

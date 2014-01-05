@@ -1,0 +1,18 @@
+<% if current_admin.keychain %>
+  <p class="alert">
+    <%= link_to "Restart Twitter", "/auth/twitter"%>
+  </p>
+<% else %>
+  <p class="alert">
+    <%= link_to "Setup Twitter", "/auth/twitter"%>
+  </p>
+<% end %>
+<p class="alert">
+  <%= link_to "Sizes", admin_sizes_path %>
+</p>
+<p class="alert">
+  <%= link_to "Users/Passwords", admin_users_path %>
+</p>
+<p class="alert">
+  <%= link_to "Edit/Remove Posts", admin_posts_path %>
+</p>
