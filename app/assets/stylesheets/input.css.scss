@@ -44,9 +44,7 @@ textarea{
 .thumbnail{
 	margin-top: 20px;
 }
-#st-search-input:focus{
-	position: absolute;
-	left: 0px;
-	width: 100%;
-	z-index: 300;
+.swiftype-widget > div.autocomplete{
+	width: 90% !important;
+	left: 5% !important;
 }
