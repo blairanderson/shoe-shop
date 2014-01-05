@@ -44,3 +44,9 @@ textarea{
 .thumbnail{
 	margin-top: 20px;
 }
+#st-search-input:focus{
+	position: absolute;
+	left: 0px;
+	width: 100%;
+	z-index: 300;
+}
