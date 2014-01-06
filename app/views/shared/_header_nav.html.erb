@@ -27,22 +27,10 @@
           <%= simple_form_for :search, method: :get, url: posts_path, html: {class: "navbar-form pull-left", id: "header-nav"} do |f| %>
             <%= f.search_field :query, placeholder: "search... BETA", class: "header-user", id: 'st-search-input' %>
           <% end %>
-          <script type="text/javascript">
-            var Swiftype = window.Swiftype || {};
-              (function() {
-                Swiftype.key = '3txNe8AJCi3AfXKHSMxf';
-
-                /** DO NOT EDIT BELOW THIS LINE **/
-                var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-                script.src = "//s.swiftypecdn.com/embed.js";
-                var entry = document.getElementsByTagName('script')[0];
-                entry.parentNode.insertBefore(script, entry);
-              }());
-            </script>
           <% if current_user %>
             <ul class="nav pull-right header-nav" id="right-nav">
               <li><%= link_to new_post_path do %>
-                <i class='icon-fire icon-white'></i> New
+                <i class='icon-fire icon-white'></i> New Pair
               <% end %></li>
               <li><%= link_to profile_path do %>
                 <i class='icon-user icon-white'></i> Profile
