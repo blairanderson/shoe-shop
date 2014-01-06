@@ -10,9 +10,9 @@ module ApplicationHelper
   def robots
     instructions = {
       'users' => 'noindex',
-      'filters' => 'noindex',
+      'filters' => 'index',
       'posts' => 'index'
-    }[params[:controller]] || 'noindex'
+    }[params[:controller]] || 'index'
     tag :meta, content: instructions, property: 'st:robots'
   end
 
