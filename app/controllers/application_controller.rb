@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def include_popups
-    if current_user && current_user.keychain.nil? && session[:history]["total"] % 10 == 0
+    if current_user && current_user.keychain.nil? && session[:history]["total"] % 4 == 0
       @notifications << "twitter"
     end
   end
