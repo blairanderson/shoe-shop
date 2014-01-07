@@ -35,6 +35,10 @@ ShoeShop::Application.routes.draw do
 
   match 'auth/twitter/callback', to: 'sessions#twitter_auth', via: [:get, :post]
 
+  match '404' => 'errors#not_found', via: [:get, :post]
+  match '422' => 'errors#not_found', via: [:get, :post]
+  match '500' => 'errors#error', via: [:get, :post]
+
   get 'sitemap', :to => 'pages#sitemap'
   get 'login', to: 'sessions#new'
   get 'logout', to: 'sessions#destroy'
@@ -44,4 +48,6 @@ ShoeShop::Application.routes.draw do
   get 'privacy_policy', to: 'pages#privacy_policy'
   get 'facebook', to: redirect("https://facebook.com/solesout")
   get 'twitter', to: redirect("https://twitter.com/solesout")
+
+  get ':missing', to: "errors#not_found"
 end
