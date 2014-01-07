@@ -13,7 +13,11 @@
 </head>
 <body>
 <%= render partial: 'shared/header_nav' %>
-<%= render partial: 'shared/notices_alerts_popups' %>
+
+<% if notice || alert || @notifications.present? %>
+  <%= render partial: 'shared/notices_alerts_popups' %>
+<% end %>
+
 <div class='container'>
   <div class="row-fluid">
     <div class="span12">

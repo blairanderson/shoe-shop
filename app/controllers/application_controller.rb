@@ -5,18 +5,11 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_admin
 
-  before_action :add_route_to_session
   before_action :include_popups
 
-  def add_route_to_session
-    session[:history] ||= Hash.new(0)
-    session[:history][request.env["REQUEST_URI"]] += 1
-    session[:history]["total"] += 1
-    @notifications = []
-  end
-
   def include_popups
-    if current_user && current_user.keychain.nil? && session[:history]["total"] % 4 == 0
+    @notifications = []
+    if current_user && current_user.keychain.nil?
       @notifications << "twitter"
     end
   end

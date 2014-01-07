@@ -1,20 +1,11 @@
 en:
-  hello: "Hello world"
-en:
   simple_form:
     labels:
       post:
         price: Price Must Include Shipping to US Only
         body: Description
         status_enum: Current Status - Update?
-      # user:
-        # username: 'User name'
-        # password: 'Password'
     hints:
-      # user:
-        # username: 'User name to sign in.'
-        # password: 'No special characters, please.'
     placeholders:
-      # user:
-        # username: 'Your username'
-        # password: '****'
+  twitter:
+    link: SolesOut is better with Twitter.
