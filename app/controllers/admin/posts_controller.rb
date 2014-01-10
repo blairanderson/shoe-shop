@@ -2,7 +2,7 @@ class Admin::PostsController < AdminController
   before_action :set_post, only: [:destroy]
 
   def index
-    @posts = Post.order(created_at: :desc).page(params[:page])
+    @posts = Post.order(created_at: :desc).includes(:user, :size).page(params[:page])
   end
 
   def destroy

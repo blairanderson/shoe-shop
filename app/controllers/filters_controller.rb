@@ -3,11 +3,11 @@ class FiltersController < ApplicationController
   before_action :prepare_default_filter, only: [:index]
 
   def index
-    @posts = @posts_relation.filter(@filter).sort(@sort).includes(:images, :user).page(params[:page])
+    @posts = @posts_relation.filter(@filter).sort(@sort).includes(:user, :size, :images).page(params[:page])
   end
 
   def sold
-    @posts = Post.inactive.filter(@filter).sort(@sort).page(params[:page])
+    @posts = Post.inactive.filter(@filter).sort(@sort).includes(:user, :size).page(params[:page])
     render :index
   end
 
