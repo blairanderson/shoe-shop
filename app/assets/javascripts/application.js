@@ -12,10 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require bootstrap-tour
+//= require tour-steps
 
 $(document).ready(function() {
   filepicker.setKey('AoaxmLrr2Tj2EbZv0JS0Mz');
   var path = window.location.pathname;
   // $('a[href="' + path + '"]').parent().addClass('active');
 });
+
+
