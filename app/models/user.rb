@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, :if => :password
 
   validates_presence_of :email
-  validates_uniqueness_of :email , :case_sensitive => true
+  validates_uniqueness_of :email , :case_sensitive => false
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy

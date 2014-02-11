@@ -10,12 +10,12 @@ describe UsersController do
   end
   
    def login(user, password = "password")
-    visit root_path
+    visit login_path
     expect(page).to have_field "username"
     fill_in "username", with: user.username
     expect(page).to have_field "password"
     fill_in "password", with: password
-    click_on "Login"
+    page.find('input[type="submit"]').click
   end
   
   it 'profile path should not have errors' do

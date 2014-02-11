@@ -5,12 +5,13 @@ describe 'posting' do
   let(:valid_user) { post.user }
 
   def login(user, password = "password")
-    visit root_path
+    visit logout_path
+    visit login_path
     expect(page).to have_field "username"
     fill_in "username", with: user.username
     expect(page).to have_field "password"
     fill_in "password", with: password
-    click_on "Login"
+    find('input[type="submit"]').click
   end
 
   def create_valid_post
