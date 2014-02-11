@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :username , :case_sensitive => false
   validates_length_of :username, :minimum => 5
+  validates_format_of :username, with: /\A[a-z0-9_\-]*\z/i
   
   validates_length_of :password, :minimum => 5, :if => :password
   validates_confirmation_of :password, :if => :password
