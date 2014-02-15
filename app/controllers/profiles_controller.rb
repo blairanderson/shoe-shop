@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
 
   def update
     @user = current_user
+    
     if @user.update(profile_params)
       redirect_to profile_path, notice: 'Successfully updated.'
     else
