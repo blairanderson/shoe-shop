@@ -37,6 +37,8 @@ ShoeShop::Application.routes.draw do
     resources :users
   end
 
+  resources :password_resets
+
   match 'auth/twitter/callback', to: 'sessions#twitter_auth', via: [:get, :post]
 
   match '404' => 'errors#not_found', via: [:get, :post]

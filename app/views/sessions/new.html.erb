@@ -7,4 +7,8 @@
   <div class="well">
     <h1>No Account? <%= link_to "Create One!", new_user_path %></h1>
   </div>
+  <div class="well">
+    <h1>Forgot Password?</h1>
+    <%= render 'password_resets/forgot_password_form' %>
+  </div>
 </div>
