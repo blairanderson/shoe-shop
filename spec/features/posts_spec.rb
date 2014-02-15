@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe 'posting' do 
-  let!(:post) { FactoryGirl.create(:post) }
-  let(:valid_user) { post.user }
+  let(:valid_user) { FactoryGirl.create(:user) }
+  let!(:post) { FactoryGirl.create(:post, user: valid_user) }
 
   def login(user, password = "password")
     visit logout_path

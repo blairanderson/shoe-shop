@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe 'Commenting on a Post' do 
-  let(:post) { FactoryGirl.create(:post) }
-  let(:user) { post.user }
+  let(:user) { FactoryGirl.create(:user) }
+  let(:post) { FactoryGirl.create(:post, user: user) }
   let!(:another_user) {FactoryGirl.create(:user) }
   describe 'an authenticated user' do 
 

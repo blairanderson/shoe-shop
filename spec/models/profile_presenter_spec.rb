@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ProfilePresenter do
-  before :all do
+  before do
     @user =  FactoryGirl.create(:user)
     @posts = FactoryGirl.create_list(:post,5, user: @user)
   end

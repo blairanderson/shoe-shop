@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe CommentsController do
 
-  let(:pair) { FactoryGirl.create(:post)}
   let(:commenting_user) { FactoryGirl.create(:user) }
+  let(:pair_owner) { FactoryGirl.create(:user) }
+  let(:pair) { FactoryGirl.create(:post, user: pair_owner)}
   
   describe 'POST create' do
     it 'should build a comment for a user and a post' do
