@@ -1,10 +1,14 @@
 <div class="panel panel-warning">
   <div class="panel-heading">
-    <h2>Watching</h2>
+    <h2>Watching <%= @watched_items.count %></h2>
   </div>
-  <ul class="list-group">
-    <% @posts.each do |watched_post| %>
-      <%=  render partial: 'posts/post', locals: {post: watched_post.post}  %>
+</div>
+<% @watched_items.in_groups_of(3, false) do |items| %>
+  <ul class="thumbnails">
+    <% items.each do |item| %>
+      <li class="span4">
+        <%=  render "watched_item", item: item, post: item.post  %>
+      </li>
     <% end %>
   </ul>
-</div>
+<% end %>

@@ -4,7 +4,7 @@ class WatchedItemsController < ApplicationController
   before_action :set_user
 
   def index
-    @posts = @user.watched_items.includes(post: [:size, :user])
+    @watched_items = @user.watched_items.includes(post: [:size, :user])
   end
 
   def create
