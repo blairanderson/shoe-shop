@@ -17,7 +17,7 @@ class PasswordResetsController < ApplicationController
     @token = params[:id]
 
     if @user.blank?
-      not_authenticated
+      redirect_to login_path, notice: "Please Reset Again"
       return
     end
   end

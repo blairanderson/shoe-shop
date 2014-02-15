@@ -15,7 +15,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo-black.png'] = File.read('app/assets/images/logo-black.png')
     @user = user
     @url  = edit_password_reset_url(user.reset_password_token)
-    mail to: user.email, from: 'password_reset@solesout.com', subject: "Your password has been reset"
+    mail to: user.email, from: 'solesout@solesout.com', subject: "SolesOut Password Reset"
   end
 end
 
