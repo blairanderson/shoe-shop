@@ -9,3 +9,7 @@ en:
     placeholders:
   twitter:
     link: SolesOut is better with Twitter.
+  user: 
+    update: 
+      email: "Update Your Email"
+      password: "Update Your Password"

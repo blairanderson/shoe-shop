@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:edit, :update, :destroy, :profile]
+  before_action :require_login, only: [:edit, :update, :destroy]
   before_action :require_current_owner, only: [:edit, :update]
 
 
@@ -9,11 +9,6 @@ class UsersController < ApplicationController
   end
 
   def show
-  end
-
-  def profile
-    @user = current_user
-    render :show
   end
 
   def create
@@ -41,11 +36,12 @@ class UsersController < ApplicationController
 
 private
 
-def require_current_owner
-  Authorization.before(self)
-end
+  def require_current_owner
+    Authorization.before(self)
+  end
+
   def set_user
-    @user = User.where(id: params[:id]).first
+    @user = User.with_posts.where(id: params[:id]).first
     unless @user
       redirect_to '/pairs/top/all', notice: "User Does Not Exist"
       return
@@ -55,4 +51,5 @@ end
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation)
   end
+
 end

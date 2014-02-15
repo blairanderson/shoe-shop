@@ -15,3 +15,17 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.order = "random"
 end
+
+def by(message)
+  if block_given?
+    yield
+  else
+    pending message
+  end
+end
+
+def t(translation)
+  I18n.t(translation)
+end
+
+alias and_by by

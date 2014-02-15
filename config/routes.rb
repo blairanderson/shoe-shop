@@ -20,8 +20,12 @@ ShoeShop::Application.routes.draw do
   resources :users do
     resources :watched_items, path: "watching", only: [:index] 
   end
-  get 'profile' => 'users#profile'
-  get 'profile/watching' => 'watched_items#index'
+
+  resource :profile, only: [:show, :update]  do
+    collection do
+      get :watching, to: 'watched_items#index', as: :watching
+    end
+  end
     
   resource :sessions, only: [:new, :create, :destroy]
 
