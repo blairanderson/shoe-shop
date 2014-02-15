@@ -32,23 +32,8 @@
       <a class="score label"><%= post.score %></a>
       <%= link_to '<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(post), data: remote_options, class: "label downvote" %>
     </div>
-    
     <div class="watch">
-      <span class="">
-        <% if current_user && current_user.watching?(post) %>
-          <span class="label label-inverse">
-            watching
-            <%= link_to post_watched_item_path(post, current_user.watching(post)), method: :delete do %>
-              <i class="icon-remove icon-white"></i>
-            <% end %>
-          </span>
-        <% else %>
-          <%= link_to post_watched_items_path(post), method: :post, class: "btn btn-inverse btn-watch btn-mini" do %>
-            Watch<i class="icon-star icon-white"></i>
-          <% end %>
-        <% end %>
-      </span>
+      <%= render 'watched_items/watched_item', post: post %>
     </div>
-
   </div>
 </div>

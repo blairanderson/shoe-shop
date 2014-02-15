@@ -24,8 +24,9 @@ def by(message)
   end
 end
 
+alias and_by by
+
+
 def t(translation)
   I18n.t(translation)
 end
-
-alias and_by by

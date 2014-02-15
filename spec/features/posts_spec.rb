@@ -11,7 +11,9 @@ describe 'posting' do
     fill_in "username", with: user.username
     expect(page).to have_field "password"
     fill_in "password", with: password
-    find('input[type="submit"]').click
+    within('#new_user') do
+      find('input[type="submit"]').click
+    end
   end
 
   def create_valid_post

@@ -17,7 +17,9 @@ describe 'User Auth' do
 
       fill_in "username", with: valid_user.username
       fill_in "password", with: password
-      page.find('input[type="submit"]').click
+      within('#new_user') do 
+        find('input[type="submit"]').click
+      end
       expect( page ).to have_content "Logout"
     end
   end
@@ -26,7 +28,10 @@ describe 'User Auth' do
     it 'user cannot login' do 
       fill_in "username", with: valid_user.username
       fill_in "password", with: password + "654"
-      page.find('input[type="submit"]').click
+      
+      within('#new_user') do 
+        find('input[type="submit"]').click
+      end
       expect( page ).to have_content "Login Failed"
     end
   end

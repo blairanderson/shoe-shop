@@ -13,10 +13,11 @@ describe "UsersFeatures" do
 
     fill_in "username", with: @user.username
     fill_in "password", with: 'password'
-    page.find('input[type="submit"]').click
+    within '#new_user' do
+      page.find('input[type="submit"]').click
+    end
   end
   
-
   it 'can manage their account' do
     visit user_path(@user)
     expect(page).to have_content @user.username

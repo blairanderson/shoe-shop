@@ -1,0 +1,10 @@
+<div class="thumbnail">
+  <h4 class="list-group-item-heading">
+    <%= link_to post_title(post), post %>
+  </h4>
+  <div>Watching for <%= time_ago_in_words item.created_at %></div>
+  <%= link_to post_watched_item_path(post, current_user.watching(post)), method: :delete do %>
+    unwatch
+    <i class="icon-remove"></i>
+  <% end %>
+</div>

@@ -7,7 +7,7 @@
   <ul class="thumbnails">
     <% items.each do |item| %>
       <li class="span4">
-        <%=  render "watched_item", item: item, post: item.post  %>
+        <%=  render "item", item: item, post: item.post  %>
       </li>
     <% end %>
   </ul>
