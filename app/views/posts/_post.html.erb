@@ -1,4 +1,4 @@
-<div class="list-group-item" id="post-<%= post_counter %>">
+<div class="list-group-item" id="post-<%= try(:post_counter) %>">
   <div class="left-panel">
 
     <div class="snapshot">
@@ -20,7 +20,7 @@
     <% end %>
 
     <%= div_for post.user, class: 'author' do |user| %>
-      <%= link_to "#{user.username} (#{user.score})", user_path(post.user), id: "author-#{post_counter}" %>
+      <%= link_to "#{user.username} (#{user.score})", user_path(post.user), id: "author-#{try(:post_counter)}" %>
     <% end %>
   </div>
 
