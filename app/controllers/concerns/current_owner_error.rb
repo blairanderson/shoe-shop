@@ -1,0 +1,2 @@
+class CurrentOwnerError < Exception
+end

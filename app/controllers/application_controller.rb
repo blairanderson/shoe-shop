@@ -1,14 +1,19 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-
-  helper_method :current_admin
+  rescue_from CurrentOwnerError, with: :user_not_authorized
 
   before_action :include_popups
 
+  helper_method :current_admin, :current_owner
+
+  def current_owner
+    current_user && @user && current_user.id == @user.id    
+  end
+
   def include_popups
     @notifications = []
+    @notifications << "alert"  if alert
+    @notifications << "notice" if notice
     if current_user && current_user.keychain.nil?
       @notifications << "twitter"
     end
@@ -69,4 +74,15 @@ private
     User.where(email: ENV['ADMINB']).first
   end
 
+  def redirect_path
+    profile_path
+  end
+
+  def alert_path
+    profile_path + "#alert" 
+  end
+
+  def user_not_authorized
+    redirect_to alert_path, alert: "You don't have access to that section."
+  end
 end

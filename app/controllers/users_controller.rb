@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_login, only: [:edit, :update, :destroy, :profile]
+  before_action :require_current_owner, only: [:edit, :update]
+
 
   def new
     @user = User.new
@@ -27,27 +29,25 @@ class UsersController < ApplicationController
   end
 
   def edit
-    unless current_user == @user
-      redirect_to root_path, notice: "Wrong Profile"
-    end
   end
 
   def update
-    unless current_user == @user
-      redirect_to root_path, notice: "Wrong Profile"
-    end
     if @user.update(user_params)
-      redirect_to root_path, notice: 'Successfully updated.'
+      render action: :edit, notice: 'Successfully updated.'
     else
-      render action: 'edit'
+      render action: :edit
     end
   end
 
 private
+
+def require_current_owner
+  Authorization.before(self)
+end
   def set_user
     @user = User.where(id: params[:id]).first
     unless @user
-      redirect_to root_path, notice: "User Does Not Exist"
+      redirect_to '/pairs/top/all', notice: "User Does Not Exist"
       return
     end
   end
