@@ -8,11 +8,11 @@ class ProfilesController < ApplicationController
   def update
     @user = current_user
     if @user.update(profile_params)
-      render action: :show, notice: 'Successfully updated.'
+      redirect_to profile_path, notice: 'Successfully updated.'
     else
-      render action: :show, alert: 'Sorry, Something Went Wrong'
+      errors = @user.errors.full_messages.join("<br/>")
+      redirect_to profile_path, alert: errors.html_safe
     end
-
   end
 
   def profile_params

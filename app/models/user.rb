@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates_format_of :username, with: /\A[a-z0-9_\-]*\z/i
   
   validates_length_of :password, :minimum => 5, :if => :password
-  validates_confirmation_of :password, :if => :password
+  validates_confirmation_of :password
 
   validates_presence_of :email
   validates_uniqueness_of :email , :case_sensitive => false

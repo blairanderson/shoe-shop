@@ -9,7 +9,7 @@
     <h4><%= link_to t('twitter.link'), auth_path(:twitter) %></h4>
   <% end %>
   <h4>EMAIL: <%= @user.email %> - <%= link_to t('user.update.email'), '#edit-email' %></h4>
-  <!-- <h4>UPDATED: <%= time_ago_in_words @user.updated_at %> - <%= link_to t('user.update.password'), '#edit-password' %></h4> -->
+  <h4><%= link_to t('user.update.password'), '#edit-password' %></h4>
 </div>
 
 

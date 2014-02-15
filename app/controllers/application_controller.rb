@@ -78,11 +78,7 @@ private
     profile_path
   end
 
-  def alert_path
-    profile_path + "#alert" 
-  end
-
   def user_not_authorized
-    redirect_to alert_path, alert: "You don't have access to that section."
+    redirect_to profile_path, alert: "You don't have access to that section."
   end
 end
