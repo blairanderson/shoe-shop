@@ -19,12 +19,12 @@ class PostsController < ApplicationController
 
   def upvote
     @post.liked_by current_user
-    redirect_to :back, notice: "upvote :)"
+    render json: @post.to_json
   end
 
   def downvote
     @post.downvote_from current_user
-    redirect_to :back, notice: "downvote :("
+    render json: @post.to_json
   end
 
   def callback

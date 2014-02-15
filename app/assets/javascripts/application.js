@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap-tour
 //= require tour-steps
+//= require post
 
 $(document).ready(function() {
   filepicker.setKey('AoaxmLrr2Tj2EbZv0JS0Mz');
