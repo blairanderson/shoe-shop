@@ -16,7 +16,7 @@
       </h2>
     </header>
     <div class="modal-content">
-      <h3><%= link_to 'Authenticate with Twitter.', '/auth/twitter' %> Get Proper Notifications.</h3>
+      <h3><%= link_to 'Authenticate with Twitter.', auth_path(:twitter) %> Get Proper Notifications.</h3>
       <dl class="dl-horizontal">
         <dt>Selling Shoes?</dt>
         <dd>Get notified when someone comments on a pair of your shoes.</dd>
@@ -27,7 +27,7 @@
       </dl>
     </div>
     <footer>
-      <%= link_to 'authenticate', '/auth/twitter' %>
+      <%= link_to 'authenticate', auth_path(:twitter) %>
     </footer>
   </div>
   <a href="#!" class="modal-close" title="Close this modal" data-close="Close" data-dismiss="modal">×</a>

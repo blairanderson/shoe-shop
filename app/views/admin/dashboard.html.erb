@@ -1,10 +1,10 @@
 <% if current_admin.keychain %>
   <p class="alert">
-    <%= link_to "Restart Twitter", "/auth/twitter"%>
+    <%= link_to "Restart Twitter", auth_path(:twitter) %>
   </p>
 <% else %>
   <p class="alert">
-    <%= link_to "Setup Twitter", "/auth/twitter"%>
+    <%= link_to "Setup Twitter", auth_path(:twitter) %>
   </p>
 <% end %>
 <p class="alert">

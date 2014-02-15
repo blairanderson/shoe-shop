@@ -7,6 +7,10 @@ module ApplicationHelper
     content_for :title, content
   end
 
+  def auth_path(provider)
+    "/auth/#{provider.to_s.downcase}"
+  end
+
   def robots
     instructions = {
       'users' => 'noindex',
