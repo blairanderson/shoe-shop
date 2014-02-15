@@ -34,6 +34,10 @@
           <td><%= @post.body %></td>
         </tr>
         <tr>
+          <td><strong>Score</strong></td>
+          <td><%= @post.cached_votes_score %></td>
+        </tr>
+        <tr>
           <td><strong>Size</strong></td>
           <td><%= @post.size.name %></td>
         </tr>
