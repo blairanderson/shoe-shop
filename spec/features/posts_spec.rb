@@ -95,23 +95,13 @@ describe 'posting' do
     end
 
     describe 'should be returned to the home page' do 
-      let(:post) { Post.first }
+      let(:post) { FactoryGirl.create(:post) }
       it 'after trying to create a post' do 
         visit new_post_path
         expect(current_path).to eq login_path
       end
       it 'after trying to visit the edit page' do
         visit edit_post_path(post)
-        expect(current_path).to eq login_path
-      end
-
-      it 'after trying to upvote a post' do
-        visit upvote_post_path(post)
-        expect(current_path).to eq login_path
-      end
-
-      it 'after trying to downvote a post' do 
-        visit downvote_post_path(post)
         expect(current_path).to eq login_path
       end
     end

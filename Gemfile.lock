@@ -61,6 +61,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    database_cleaner (1.2.0)
     debug_inspector (0.0.2)
     descendants_tracker (0.0.3)
     diff-lcs (1.2.5)
@@ -274,6 +275,7 @@ DEPENDENCIES
   bullet
   capybara
   coffee-rails (~> 4.0.0)
+  database_cleaner
   factory_girl_rails (~> 4.0)
   faker
   figaro
