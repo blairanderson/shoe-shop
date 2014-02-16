@@ -5,7 +5,7 @@ describe BlogPostsController do
 
   let(:user) { FactoryGirl.create(:user) }
   let(:payload_params) do
-    {payload: {
+    {
       user: {email: user.email, id: 1525774},
       folder_id: nil,
       id: 185131,
@@ -16,23 +16,27 @@ describe BlogPostsController do
       content_html: "<p>i think this is working</p><p>HOLY Crap this is amazing. </p><p>like totally awesome</p>",
       content_html_raw: "<p>i think this is working</p><p>HOLY Crap this is amazing. </p><p>like totally awesome</p>",
       updated_at: "2014-02-15T17:53:47-07:00",
-      created_at: "2013-11-25T09:07:08-07:00"}
+      created_at: "2013-11-25T09:07:08-07:00"
     }
   end
 
   describe 'POST #webhook' do
     it 'finds the admin author' do
-      post :webhook, token: 12345, params: payload_params
+      webhook_service = double('BlogPostWebHook.new')
+      BlogPostWebHook.should_receive(:new).and_return(webhook_service)
+      webhook_service.should_receive(:include_user)
+      webhook_service.should_receive(:do_work)
+      post :webhook, token: 12345, payload: payload_params
       expect(assigns(:user)).to eq user
     end
 
-
-    it 'rejects the POST request if the admin does not exist' do
-      # post :webhook, token: 12345, params: payload_params
-      
+    it 'ignores the POST request if the admin does not exist' do
+      invalid_params = payload_params.clone
+      invalid_params[:user][:email] = Faker::Internet.email
+      invalid_params[:user][:id] = "invalid"
+      post :webhook, token: 12345, payload: invalid_params
+      expect(response.status).to eq 422
     end
-
-    it 'attempts to find a blog-post with the provided identifier'
 
     describe 'data mapping' do
       it 'uses the NAME as the title'

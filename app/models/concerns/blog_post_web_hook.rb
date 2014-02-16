@@ -1,0 +1,3 @@
+class BlogPostWebHook
+  
+end
