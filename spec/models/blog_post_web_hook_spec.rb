@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe BlogPostWebHook do
   let(:user) { FactoryGirl.create(:user) }
-  let(:payload_params) do
+  let(:payload) do
     {
       user: {email: user.email, id: 1525774},
       id: 185131,
@@ -17,16 +17,41 @@ describe BlogPostWebHook do
   end
 
   describe '#new' do
+    before do
+      @service = BlogPostWebHook.new(payload)
+      @post = @service.blog_post
+    end
+
+    it "exposes a BlogPost" do
+      expect(@post).to be_a(BlogPost)
+    end
+
     describe 'data mapping' do
-      it 'uses the NAME as the title'
-      it 'uses the parameterized NAME as the slug'
-      it 'uses the ID as the identifier'
-      it 'saves the content, content_html, content_html_raw'
+      it 'uses the NAME as the title' do
+        expect(@post.title).to eq payload[:name]
+      end
+
+      it 'uses the ID as the identifier' do
+        expect(@post.identifier).to eq payload[:id]
+      end
+
+      it 'assigns content' do
+        expect(@post.content).to eq payload[:content]
+      end
+
+      it 'assigns content_html' do
+        expect(@post.content_html).to eq payload[:content_html]
+      end
+
+      it 'assigns content_html_raw' do
+        expect(@post.content_html_raw).to eq payload[:content_html_raw]
+      end
     end
 
     context 'if a blog-post does not exist' do
-      it 'creates a blog-post'
-      it 'attributes the blog-post to the author'
+      it 'builds a new instance' do
+        expect(@post).to be_a_new_record
+      end
     end
 
     context 'if a blog-post does exist' do
