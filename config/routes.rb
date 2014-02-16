@@ -40,7 +40,7 @@ ShoeShop::Application.routes.draw do
   resources :password_resets
   resources :blog_posts, path: 'blog', only: [:show, :index] do
     collection do
-      get 'webhook/:token' => 'blog_posts#webhook'
+      post 'webhook/:token' => 'blog_posts#webhook'
     end
   end
 
