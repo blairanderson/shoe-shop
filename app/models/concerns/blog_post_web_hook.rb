@@ -37,8 +37,33 @@ private
 
   def parse_images
     html_doc = ::Nokogiri::HTML(parse_content_html_raw)
-    html_doc.search('img').map{|node| node.src }
+    # consider the alternative, fetching the image and storing it on S3
+    # html_doc.search('img').map do |node|
+    #   fetch( node['src'] )
+    # end
+    
+    # def fetch(uri_str, limit = 10)
+    #   # You should choose a better exception.
+    #   raise ArgumentError, 'too many HTTP redirects' if limit == 0
+
+    #   response = Net::HTTP.get_response(URI(uri_str))
+
+    #   case response
+    #   when Net::HTTPFound then
+    #     response['location']
+    #   when Net::HTTPRedirection then
+    #     location = response['location']
+    #     warn "redirected to #{location}"
+    #     fetch(location, limit - 1)
+    #   # when Net::HTTPOK then
+    #   #   response
+    #   else
+    #     uri_str
+    #   end
+    # end
+    html_doc.search('img').map{|node| node['src'] }
   end
+
 
   def parse_content
     raw_data[:content]
