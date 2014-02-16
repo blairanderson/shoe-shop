@@ -286,6 +286,7 @@ DEPENDENCIES
   kaminari
   launchy
   newrelic_rpm
+  nokogiri
   omniauth
   omniauth-twitter
   pg

@@ -36,7 +36,7 @@ private
   end
 
   def parse_images
-    html_doc = Nokogiri::HTML(parse_content_html_raw)
+    html_doc = ::Nokogiri::HTML(parse_content_html_raw)
     html_doc.search('img').map{|node| node.src }
   end
 

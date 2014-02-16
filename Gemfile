@@ -14,6 +14,7 @@ gem 'sorcery'
 gem 'simple_enum'
 gem 'sendgrid'
 gem 'kaminari'
+gem 'nokogiri'
 
 gem 'omniauth'
 gem 'omniauth-twitter'
