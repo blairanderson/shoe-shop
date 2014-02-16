@@ -1,3 +1,5 @@
-<%= div_for(@blog_posts) do |post| %>
-  <%= render "blog_post", blog_post: post %>
-<% end %>
+<ul class="thumbnails">
+  <%= div_for(@blog_posts, class: 'span6') do |post| %>
+    <%= render "blog_post", blog_post: post %>
+  <% end %>
+</ul>

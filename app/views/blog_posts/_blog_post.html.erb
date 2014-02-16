@@ -1,3 +1,8 @@
-<%= link_to blog_post do %>
-  <%= image_tag "http://placehold.it/400x300" %>
+<%= link_to blog_post, class: 'thumbnail' do %>
+  <h1><%= blog_post.title %></h1>
+  <% if blog_post.images.present? %>
+    <%= image_tag blog_post.images[0], size: '400x300' %>
+  <% else %>
+    <%= blog_post.content %>
+  <% end %>
 <% end %>

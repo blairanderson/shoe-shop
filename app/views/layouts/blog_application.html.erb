@@ -12,7 +12,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render partial: 'shared/blog_header_nav' %>
+<%= render partial: 'shared/blog/header_nav' %>
 
 <% if @notifications.present? %>
   <%= render partial: 'shared/notices_alerts_popups' %>
@@ -23,7 +23,7 @@
       <%= yield %>
     </div>
     <div class="span3">
-      sidebar
+      <div id="sidebar"></div>
     </div>
   </div>
   <div class="row-fluid">
