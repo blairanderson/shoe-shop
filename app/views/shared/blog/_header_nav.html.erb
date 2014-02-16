@@ -1,0 +1,26 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar pull-left button-collapse" data-toggle="collapse" data-target=".col1">
+        <i class='icon-cog icon-white'></i>
+      </button>
+      <a class="pull-left" id="logo" href="/">
+        <%= white_logo %>
+      </a>
+      <div id="main-nav">
+        <div class="nav-collapse col1">
+          <ul class="nav header-nav" id="left-nav">
+            <li><%= link_to "Top", filters_path(:top, :all)  %></li>
+            <li><%= link_to "Bottom", filters_path(:bottom, :all) %></li>
+            <li><%= link_to "Old", filters_path(:oldest, :all) %></li>
+            <li><%= link_to "New", filters_path(:newest, :all) %></li>
+            <li><%= link_to profile_path do %>
+              <i class='icon-user icon-white'></i> Profile
+            <% end %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
