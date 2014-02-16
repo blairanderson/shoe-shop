@@ -1,4 +1,13 @@
 class BlogPostsController < ApplicationController
+  layout 'blog_application'
+
+  def index
+    @blog_posts = BlogPost.all
+  end
+
+  def show
+    @blog_post = BlogPost.where(id: params[:id]).first
+  end
 
   def webhook
     # eventually need to block things with an improper token
@@ -9,7 +18,6 @@ class BlogPostsController < ApplicationController
     if @user
       service = BlogPostWebHook.new(payload)
       service.include_user(@user)
-      service.do_work
       head :ok
     else
       head :unprocessable_entity

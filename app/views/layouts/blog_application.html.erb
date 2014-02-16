@@ -1,47 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= yield(:title) || "Buying Shoes | Selling Shoes" %> | <%= site_title %></title>
+  <title><%= yield(:title) %> <%= site_title %>, Buying Shoes, Selling Shoes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="google-site-verification" content="q6v9pd9XSk1f_V1QSOisUMSGDGY72yHlun_gMKr7_uw" />
+  <%= robots %>
   <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"%>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="navbar">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="brand" href="/blog"><%= site_title + "Blog"%></a>
-      <ul class="nav">
-        <li><%= link_to "BackToStore", "http://www.solesout.com/" %></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<%= render partial: 'shared/blog_header_nav' %>
+
+<% if @notifications.present? %>
+  <%= render partial: 'shared/notices_alerts_popups' %>
+<% end %>
 <div class='container'>
   <div class="row-fluid">
-    <div class="span6">
+    <div class="span9">
       <%= yield %>
     </div>
     <div class="span3">
-      <ul class="thumbnails">
-        <%= render partial: 'posts/image', collection: Image.order('created_at DESC')[0..4], locals: {p_id: nil} %>
-      </ul>
-    </div>
-    <div class="span3">
-      <% if Image.count > 5 %>
-        <ul class="thumbnails">
-          <%= render partial: 'posts/image', collection: Image.order('created_at DESC')[5..9], locals: {p_id: nil} %>
-        </ul>
-      <% end %>      
+      sidebar
     </div>
   </div>
-  <div class="footer">
-    <p>© SolesOut <%= Date.today.year  %> </p>
-    <p>
-      <%= link_to "BackToStore", "http://www.solesout.com/"  %>
-    </p>
+  <div class="row-fluid">
+    <div class="span12">
+      <!-- footer starts here -->
+      <footer class="footer">
+        <%= render partial: "shared/footer" %>
+        <%= render partial: "shared/admin_footer" if current_admin %>
+      </footer>
+      <!-- footer end here -->
+    </div>
   </div>
 </div>
+  <%= render partial: 'layouts/analytics' %>
 </body>
 </html>

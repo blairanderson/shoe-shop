@@ -25,7 +25,6 @@ describe BlogPostsController do
       webhook_service = double('BlogPostWebHook.new')
       BlogPostWebHook.should_receive(:new).and_return(webhook_service)
       webhook_service.should_receive(:include_user)
-      webhook_service.should_receive(:do_work)
       post :webhook, token: 12345, payload: payload_params
       expect(assigns(:user)).to eq user
     end
@@ -37,30 +36,22 @@ describe BlogPostsController do
       post :webhook, token: 12345, payload: invalid_params
       expect(response.status).to eq 422
     end
-
-    describe 'data mapping' do
-      it 'uses the NAME as the title'
-      it 'uses the parameterized NAME as the slug'
-      it 'uses the ID as the identifier'
-      it 'saves the content, content_html, content_html_raw'
-    end
-    context 'if a blog-post does not exist' do
-      it 'creates a blog-post'
-      it 'attributes the blog-post to the author'
-    end
-
-    context 'if a blog-post does exist' do
-      it 'updates the blog-post'
-    end
   end
 
   describe 'GET #index' do
-    it 'displays all the blog-posts'
+    it 'displays all the blog-posts' do
+      posts = FactoryGirl.create_list(:blog_post, 5)
+      get :index
+      expect( assigns(:blog_posts) ).to eq posts
+    end
   end
 
   describe 'GET #show' do
-    it 'finds the blog post by the local ID'
-
+    it 'finds the blog post by the local ID' do
+      post = FactoryGirl.create(:blog_post)
+      get :show, id: post.id
+      expect( assigns(:blog_post) ).to eq post
+    end
   end
   
 end
