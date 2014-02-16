@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :watched_items, dependent: :destroy
   has_many :watched_posts, through: :watched_items, source: :post
+  has_many :blog_posts, dependent: :destroy
   has_one :keychain, dependent: :destroy
 
   def watching?(post)
