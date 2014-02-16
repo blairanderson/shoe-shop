@@ -8,6 +8,7 @@ class CreateBlogPosts < ActiveRecord::Migration
       t.integer :user_id
       t.integer :identifier
       t.string :token
+      t.text :images
 
       t.timestamps
     end

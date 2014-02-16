@@ -1,4 +1,5 @@
 class BlogPostsController < ApplicationController
+  skip_before_filter :verify_authenticity_token, only: [:webhook]
   layout 'blog_application'
 
   def index
@@ -9,11 +10,10 @@ class BlogPostsController < ApplicationController
     @blog_post = BlogPost.where(id: params[:id]).first
   end
 
+  # eventually need to block things with an improper token
+  # params[:token] == Rails.config.webhook_token
   def webhook
-    # eventually need to block things with an improper token
-    # params[:token] == Rails.config.webhook_token
-
-    payload = params[:payload]
+    payload = params[:payload].with_indifferent_access
     @user = User.find_by_email(payload[:user][:email])
     if @user
       service = BlogPostWebHook.new(payload)

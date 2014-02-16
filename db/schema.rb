@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140216064140) do
     t.integer  "user_id"
     t.integer  "identifier"
     t.string   "token"
+    t.text     "images"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
