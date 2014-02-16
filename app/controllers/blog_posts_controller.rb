@@ -13,7 +13,7 @@ class BlogPostsController < ApplicationController
   # eventually need to block things with an improper token
   # params[:token] == Rails.config.webhook_token
   def webhook
-    payload = params[:payload].with_indifferent_access
+    payload = JSON.parse(params[:payload]).with_indifferent_access
     @user = User.find_by_email(payload[:user][:email])
     if @user
       service = BlogPostWebHook.new(payload)
@@ -23,5 +23,4 @@ class BlogPostsController < ApplicationController
       head :unprocessable_entity
     end
   end
-
 end

@@ -9,8 +9,17 @@ describe BlogPostsController do
       user: {email: user.email, id: 1525774},
       id: 185131,
       name: "Jordan Release Dates 2014",
-    }
+    }.to_json
   end
+
+  let(:invalid_params) do
+    {
+      user: {email: Faker::Internet.email, id: 1},
+      id: 'invalid',
+      name: "Jordan Release Dates 2014",
+    }.to_json
+  end
+
 
   describe 'POST #webhook' do
     it 'finds the admin author' do
@@ -22,9 +31,6 @@ describe BlogPostsController do
     end
 
     it 'ignores the POST request if the admin does not exist' do
-      invalid_params = payload_params.clone
-      invalid_params[:user][:email] = Faker::Internet.email
-      invalid_params[:user][:id] = "invalid"
       post :webhook, token: 12345, payload: invalid_params
       expect(response.status).to eq 422
     end
