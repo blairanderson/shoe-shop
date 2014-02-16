@@ -38,6 +38,11 @@ ShoeShop::Application.routes.draw do
   end
 
   resources :password_resets
+  resources :blog_posts, path: 'blog', only: [:show, :index] do
+    collection do
+      get 'webhook/:token' => 'blog_posts#webhook'
+    end
+  end
 
   match 'auth/twitter/callback', to: 'sessions#twitter_auth', via: [:get, :post]
 
