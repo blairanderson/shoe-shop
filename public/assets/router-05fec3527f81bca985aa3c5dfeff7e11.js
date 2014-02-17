@@ -1,0 +1,1 @@
+(function(){ShoeShop.Router.map(function(){return this.route("posts",{path:"/"})})}).call(this);
