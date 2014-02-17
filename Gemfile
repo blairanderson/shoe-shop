@@ -26,6 +26,8 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'unicorn'
 gem 'swiftype', '~> 1.0.1'
+gem 'ember-rails'
+gem 'ember-source', '1.3.0' # or the version you need
 
 group :production do 
   gem 'pg'

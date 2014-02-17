@@ -10,13 +10,14 @@
  *
  */
 
-@import 'bootstrap_and_overrides.css.scss';
-@import "variables.css.scss";
-@import "globals.css.scss";
-@import "general.css.scss";
-@import "navigation.css.scss";
-@import "input.css.scss";
-@import "responsive.css.scss";
+@import "bootstrap_and_overrides";
+@import "variables";
+@import "globals";
+@import "general";
+@import "navigation";
+@import "input";
+@import "responsive";
 @import "modal";
 @import "bootstrap-tour";
 @import "alerts";
+@import "blog/sidebar";
