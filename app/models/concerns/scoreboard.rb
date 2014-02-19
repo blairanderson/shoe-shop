@@ -2,10 +2,9 @@ class Scoreboard
   attr_reader :date, :upvotes, :downvotes
 
   def initialize(args = {})
-    post        = args[:post] || nil
-    @date       = post.created_at || Time.now
-    @upvotes    = post.cached_votes_up || 0
-    @downvotes  = post.cached_votes_down || 0
+    @date       = args[:created_at] || Time.now
+    @upvotes    = args[:votes_up]   || 0
+    @downvotes  = args[:votes_down] || 0
   end
 
   def result

@@ -1,8 +1,14 @@
 require 'spec_helper'
 
 describe Scoreboard do
-  let(:target_post) { OpenStruct.new(cached_votes_down: 0, cached_votes_up: 0, created_at: Time.now) }
-  let(:scoreboard) { Scoreboard.new(:post => target_post) }
+  let(:target_post) do
+    {
+      votes_down: 0,
+      votes_up: 0,
+      created_at: Time.now
+    }
+  end
+  let(:scoreboard) { Scoreboard.new(target_post) }
     
   it 'should be a kind of scoreboard' do
     scoreboard.should be_kind_of Scoreboard
@@ -10,19 +16,19 @@ describe Scoreboard do
   
   describe '#date' do
     it 'should return the posts created_at date' do
-      scoreboard.date.should eq target_post.created_at
+      scoreboard.date.should eq target_post[:created_at]
     end
   end
 
   describe '#upvotes' do
     it 'should return the total upvotes for the post' do
-      scoreboard.upvotes.should eq target_post.cached_votes_up
+      scoreboard.upvotes.should eq target_post[:votes_up]
     end
   end
 
   describe '#downvotes' do
     it 'should return the total downvotes for the post' do
-      scoreboard.downvotes.should eq target_post.cached_votes_down
+      scoreboard.downvotes.should eq target_post[:votes_down]
     end
   end
 
