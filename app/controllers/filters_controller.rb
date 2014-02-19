@@ -49,6 +49,7 @@ private
       'top' => 'top',
       'bottom' => 'bottom',
       'newest' => 'newest',
+      'score' => 'score',
       'oldest' => 'oldest'
     }
   end

@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :post do
-    title "Jordans and shit"
-    body Faker::Lorem.sentences(3).join
-    price 100
+    title { [Faker::Company.name, Faker::Commerce.product_name].join(', ') }
+    body {Faker::Lorem.sentences(5).join(', ')}
+    price {rand(1..1000)}
     size {Size.first || create(:size) }
     status_enum 0
     cached_votes_total {rand(1..1000)}

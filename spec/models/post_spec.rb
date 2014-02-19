@@ -7,7 +7,7 @@ describe Post do
     it { should validate_presence_of :body }
     it { should validate_presence_of :price }
     it { should validate_numericality_of :price}
-    it { should ensure_length_of(:title).is_at_most(50) }
+    it { should ensure_length_of(:title).is_at_most(80) }
   end
 
   describe 'associations' do 
@@ -45,6 +45,14 @@ describe Post do
     describe '#score' do 
       it 'should equal cached_votes_score' do 
         expect(post.score).to eq post.cached_votes_score
+      end
+    end
+
+    describe '#update_scoreboard' do
+      it 'should return a proper score' do
+        post.update_scoreboard
+        post.scoreboard.should be > 0
+        post.reload.scoreboard.should be > 0
       end
     end
 
