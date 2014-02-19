@@ -70,11 +70,15 @@ describe Scoreboard do
   end
 
   describe '#result' do
-    let(:new_high_ranking_post) { OpenStruct.new(cached_votes_down: 1, cached_votes_up: 300)}
-    let(:new_high_scoreboard) { Scoreboard.new(:post => new_high_ranking_post) }
+    let(:new_high_ranking_post) do 
+      {votes_down: 1, votes_up: 300}
+    end
+    let(:new_high_scoreboard) { Scoreboard.new(new_high_ranking_post) }
 
-    let(:old_high_ranking_post) { OpenStruct.new(created_at: 1.week.ago, cached_votes_down: 1, cached_votes_up: 300)}
-    let(:old_high_scoreboard) { Scoreboard.new(:post => old_high_ranking_post) }
+    let(:old_high_ranking_post) do
+      {created_at: 1.week.ago, votes_down: 1, votes_up: 300}
+    end
+    let(:old_high_scoreboard) { Scoreboard.new(old_high_ranking_post) }
 
     it 'new high score should be higher than an old high score' do
       new_high_scoreboard.result.should be > old_high_scoreboard.result
@@ -82,16 +86,20 @@ describe Scoreboard do
       old_high_scoreboard.result.should be > 20149
     end
 
-    let(:older_high_ranking_post) { OpenStruct.new(created_at: 15.months.ago, cached_votes_down: 2, cached_votes_up: 302)}
-    let(:older_high_scoreboard) { Scoreboard.new(:post => older_high_ranking_post) }
+    let(:older_high_ranking_post) do
+      {created_at: 15.months.ago, votes_down: 2, votes_up: 302}
+    end
+    let(:older_high_scoreboard) { Scoreboard.new(older_high_ranking_post) }
     it 'older high score should be lower than old high score' do
       old_high_scoreboard.result.should be > older_high_scoreboard.result
       old_high_scoreboard.result.should be > 20149
       older_high_scoreboard.result.should be > 19312
     end
 
-    let(:new_mid_ranking_post) { OpenStruct.new(cached_votes_up: 1000, cached_votes_down: 900)}
-    let(:new_mid_scoreboard) { Scoreboard.new(:post => new_mid_ranking_post) }
+    let(:new_mid_ranking_post) do
+      {votes_up: 1000, votes_down: 900}
+    end
+    let(:new_mid_scoreboard) { Scoreboard.new(new_mid_ranking_post) }
 
     it 'new high score should be higher than a mid score' do
       new_high_scoreboard.result.should be > new_mid_scoreboard.result
@@ -99,8 +107,10 @@ describe Scoreboard do
       new_mid_scoreboard.result.should be > 20189
     end
 
-    let(:new_low_ranking_post) { OpenStruct.new(cached_votes_down: 100, cached_votes_up: 3)}
-    let(:new_low_scoreboard) { Scoreboard.new(:post => new_low_ranking_post) }
+    let(:new_low_ranking_post) do
+      {votes_down: 100, votes_up: 3}
+    end
+    let(:new_low_scoreboard) { Scoreboard.new(new_low_ranking_post) }
 
     it 'new mid score should be higher than new low score' do
       new_mid_scoreboard.result.should be > new_low_scoreboard.result

@@ -3,12 +3,19 @@ class Post < ActiveRecord::Base
   acts_as_votable
   max_paginates_per 25
 
+  def update_scoreboard
+    board = {created_at: created_at,votes_up: cached_votes_up,votes_down: cached_votes_down}
+    result = Scoreboard.new(board).result
+    update scoreboard: result
+  end
+
   as_enum :status, [:draft, :for_sale, :sold, :deleted], 
   :whiny => false, :column => 'status_enum'
 
-  validates :title,       presence: true, length: { maximum: 50 }
+  validates :title,       presence: true, length: { maximum: 80 }
   validates :price,       presence: true, numericality: true
   validates :body,        presence: true
+  validates :scoreboard,  presence: true
   validates :status_enum, presence: true
 
   belongs_to :user
@@ -80,7 +87,6 @@ class Post < ActiveRecord::Base
       statuses.extract!(:for_sale, :sold)
     end
   end
-
 
   def send_notifications
     service = TCO.new

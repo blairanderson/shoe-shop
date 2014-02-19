@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140216064140) do
+ActiveRecord::Schema.define(version: 20140219012246) do
 
   create_table "blog_posts", force: true do |t|
     t.string   "title"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(version: 20140216064140) do
     t.integer  "impressions_count",  default: 0
     t.integer  "price"
     t.integer  "status_enum",        default: 1
+    t.integer  "scoreboard",         default: 0
   end
 
   add_index "posts", ["cached_votes_down"], name: "index_posts_on_cached_votes_down"
@@ -143,6 +144,7 @@ ActiveRecord::Schema.define(version: 20140216064140) do
   add_index "posts", ["cached_votes_total"], name: "index_posts_on_cached_votes_total"
   add_index "posts", ["cached_votes_up"], name: "index_posts_on_cached_votes_up"
   add_index "posts", ["price"], name: "index_posts_on_price"
+  add_index "posts", ["scoreboard"], name: "index_posts_on_scoreboard"
   add_index "posts", ["status_enum"], name: "index_posts_on_status_enum"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 

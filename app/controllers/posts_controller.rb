@@ -23,11 +23,13 @@ class PostsController < ApplicationController
 
   def upvote
     @post.liked_by current_user
+    @post.update_scoreboard
     render json: @post.to_json
   end
 
   def downvote
     @post.downvote_from current_user
+    @post.update_scoreboard
     render json: @post.to_json
   end
 
