@@ -1,0 +1,18 @@
+.blog-post-show {
+  background-color: #fdfdfd;
+  padding: 20px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.65);
+
+  .blog_post {
+
+    p {
+      font-size: 2em;
+      text-align: left;
+      line-height: 1.4em;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
