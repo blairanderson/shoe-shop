@@ -1,5 +1,4 @@
-class Admin::SizesController < ApplicationController
-  before_action :require_admin
+class Admin::SizesController < AdminController
 
   def index
     @sizes = Size.all

@@ -38,9 +38,10 @@ describe BlogPostsController do
 
   describe 'GET #index' do
     it 'displays all the blog-posts' do
-      posts = FactoryGirl.create_list(:blog_post, 5)
+      count = 5
+      posts = FactoryGirl.create_list(:blog_post, count)
       get :index
-      expect( assigns(:blog_posts) ).to eq posts
+      expect( assigns(:blog_posts).count ).to eq count
     end
   end
 

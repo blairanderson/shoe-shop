@@ -35,6 +35,7 @@ ShoeShop::Application.routes.draw do
     resources :sizes
     resources :posts
     resources :users
+    resources :blog_posts
   end
 
   resources :password_resets

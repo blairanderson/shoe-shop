@@ -1,0 +1,14 @@
+<div class="container">
+  <div clas="row-fluid">
+    <%= render @blog_posts %>
+  </div>
+  <div class="row-fluid">
+    <div class="span12">
+      <ul class="pager">
+        <li class="previous"><%= link_to_previous_page @blog_posts, "previous" %></li>
+        <li class="next"><%= link_to_next_page @blog_posts, "next" %></li>
+      </ul>
+      <p class="lead"><%= page_entries_info @blog_posts %></p>
+    </div>
+  </div>
+</div>
