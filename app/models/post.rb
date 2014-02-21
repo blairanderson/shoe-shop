@@ -64,7 +64,7 @@ class Post < ActiveRecord::Base
   scope :bottom,  ->  { order(cached_votes_score: :asc, created_at: :desc) }
   scope :oldest,  ->  { order(created_at: :asc) }
   scope :newest,  ->  { order(created_at: :desc) }
-  scope :random,  ->  { order(scoreboard: :asc, created_at: :desc) }
+  scope :random,  ->  { order(scoreboard: :desc, created_at: :desc) }
   
   scope :sml,   ->  { where(:size_id => [1,2,3,4,5,6,7]) } # 'nine-and-under'
   scope :med,   ->  { where(size_id: [8,9]) }# 'nine5-to-10'
