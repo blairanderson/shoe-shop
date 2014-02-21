@@ -3,7 +3,7 @@ class BlogPostsController < ApplicationController
   layout 'blog_application'
 
   def index
-    @blog_posts = BlogPost.order(created_at: :asc)
+    @blog_posts = BlogPost.order(created_at: :desc)
   end
 
   def show
