@@ -1,5 +1,9 @@
 .blog_post {
-  .thumbnail:hover {
-    border-color: #FF4700 ;
+  .thumbnail {
+    border: 1px solid transparent;
+    
+    &:hover {
+      border-color: #FF4700;
+    }
   }
 }
