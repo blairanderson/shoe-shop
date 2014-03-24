@@ -8,6 +8,23 @@ Current on `ruby '2.1.0'` as seen on the top of the gemfile
 ### Configuration
 Currently configured for heroku. Would be happy to merge cap scripts if someone submits a PR.
 
+these are the current configs required. 
+
+```bash
+ADMINB:                       <email#1@email.com>
+ADMINJ:                       <email#1@email.com>
+NEW_RELIC_APP_NAME:           <your app name>
+SENDGRIDPASSWORD:             <sendgrid pw>
+SENDGRIDUSERNAME:             <sengrid username>
+SENDGRID_PASSWORD:            <pw>
+TWITTER_ACCESS_TOKEN:         <access token>
+TWITTER_ACCESS_TOKEN_SECRET:  <token secret>
+TWITTER_CONSUMER_KEY:         <consumer key>
+TWITTER_CONSUMER_SECRET:      <consumer secret>
+
+```
+
+
 ### Database creation
 `$ rake db:create db:migrate`
 
