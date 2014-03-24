@@ -29,12 +29,12 @@ gem 'swiftype', '~> 1.0.1'
 gem 'ember-rails'
 gem 'ember-source', '1.3.0' # or the version you need
 
-group :production do 
+group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
 
-group :test, :development do 
+group :test, :development do
   gem 'figaro'
   gem 'sqlite3'
   gem 'faker'
@@ -42,13 +42,14 @@ group :test, :development do
   gem 'pry-rails'
 end
 
-group :development do 
+group :development do
   gem "bullet"
   gem 'better_errors'
   gem 'binding_of_caller'
 end
 
-group :test do 
+group :test do
+  gem 'simplecov', '~> 0.7.1', :require => false, :group => :test
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'capybara'
