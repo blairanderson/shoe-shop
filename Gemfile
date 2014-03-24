@@ -8,7 +8,6 @@ gem 'impressionist'
 # resque http://stackoverflow.com/a/11235919/1536309
 
 gem 'simple_form'
-gem 'newrelic_rpm'
 gem 'active_model_serializers'
 gem 'sorcery'
 gem 'simple_enum'
@@ -24,12 +23,13 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
-gem 'unicorn'
 gem 'swiftype', '~> 1.0.1'
 gem 'ember-rails'
 gem 'ember-source', '1.3.0' # or the version you need
 
 group :production do
+  gem 'newrelic_rpm'
+  gem 'unicorn'
   gem 'pg'
   gem 'rails_12factor'
 end
