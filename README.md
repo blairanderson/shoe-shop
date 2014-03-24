@@ -1,4 +1,4 @@
-[![Code Climate](https://codeclimate.com/github/blairanderson/shoe-shop.png)](https://codeclimate.com/github/blairanderson/shoe-shop)
+[![Code Climate](https://codeclimate.com/github/blairanderson/shoe-shop.png)](https://codeclimate.com/github/blairanderson/shoe-shop)[![Build Status](https://travis-ci.org/blairanderson/shoe-shop.svg?branch=master)](https://travis-ci.org/blairanderson/shoe-shop)
 
 ## Shoe Shop
 
