@@ -50,6 +50,7 @@ end
 
 group :test do
   gem 'simplecov', '~> 0.7.1', :require => false, :group => :test
+  gem 'coveralls', require: false
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'capybara'
