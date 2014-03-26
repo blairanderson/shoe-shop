@@ -1,4 +1,6 @@
-[![Code Climate](https://codeclimate.com/github/blairanderson/shoe-shop.png)](https://codeclimate.com/github/blairanderson/shoe-shop)[![Build Status](https://travis-ci.org/blairanderson/shoe-shop.svg?branch=master)](https://travis-ci.org/blairanderson/shoe-shop)
+[![Code Climate](https://codeclimate.com/github/blairanderson/shoe-shop.png)](https://codeclimate.com/github/blairanderson/shoe-shop)
+[![Build Status](https://travis-ci.org/blairanderson/shoe-shop.svg?branch=master)](https://travis-ci.org/blairanderson/shoe-shop)
+[![Coverage Status](https://coveralls.io/repos/blairanderson/shoe-shop/badge.png)](https://coveralls.io/r/blairanderson/shoe-shop)
 
 ## Shoe Shop
 
@@ -8,7 +10,7 @@ Current on `ruby '2.1.0'` as seen on the top of the gemfile
 ### Configuration
 Currently configured for heroku. Would be happy to merge cap scripts if someone submits a PR.
 
-these are the current configs required. 
+these are the current configs required.
 
 ```bash
 ADMINB:                       <email#1@email.com>
