@@ -1,14 +1,14 @@
 ShoeShop::Application.routes.draw do
-  root to: redirect('/pairs/top/all')
+  root to: redirect('/pairs/newest/all')
 
   resources :posts, path: "pairs" do
     member do
       post :callback
     end
-    resources :watched_items, path: "watch", only: [:create, :destroy] 
+    resources :watched_items, path: "watch", only: [:create, :destroy]
     resources :comments, shallow: true
     resources :images, shallow: true
-    member do 
+    member do
       get :upvote
       get :downvote
     end
@@ -18,7 +18,7 @@ ShoeShop::Application.routes.draw do
   post 'pairs/:sort/:filter', to: 'filters#toggle', as: 'toggle_filters'
 
   resources :users do
-    resources :watched_items, path: "watching", only: [:index] 
+    resources :watched_items, path: "watching", only: [:index]
   end
 
   resource :profile, only: [:show, :update]  do
@@ -26,7 +26,7 @@ ShoeShop::Application.routes.draw do
       get :watching, to: 'watched_items#index', as: :watching
     end
   end
-    
+
   resource :sessions, only: [:new, :create, :destroy]
 
   namespace :admin do
