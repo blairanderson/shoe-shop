@@ -14,6 +14,7 @@ gem 'simple_enum', '1.6.8'
 gem 'sendgrid', '1.2.0'
 gem 'kaminari', '0.15.0'
 gem 'nokogiri', '1.6.1'
+gem 'dalli'
 
 gem 'omniauth', '1.1.4'
 gem 'omniauth-twitter', '1.0.1'
