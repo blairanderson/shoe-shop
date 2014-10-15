@@ -17,38 +17,5 @@
 #= require tour-steps
 #= require post
 
-# class Parser
-#   constructor: (options) ->
-#     @url = options.url
-#     @root_name = options.root_name
-#
-#   get: ->
-#     $.get @url, (data) =>
-#       @data = data[@root_name]
-#
-# #   these defaults are demo data.
-#   defaults:
-#     url: 'https://www.filepicker.io/api/file/knRDjPNgSbCMGz694a0J'
-#     filename: 'hello.txt'
-#     mimetype: 'text/plain'
-#     isWriteable: true
-#     size: 100
-#
-#   read: (pair) ->
-#     filepicker.read @defaults, (data) =>
-#       # do stuff here
-#
-# class Runner
-#   go: ->
-#     @parser = new Parser(url: '/pairs.json', root_name: 'posts')
-#     @parser.get()
-#
-#
 $ ->
   filepicker.setKey('AoaxmLrr2Tj2EbZv0JS0Mz')
-#   window.pipe = new Runner()
-#   window.pipe.go().done =>
-#     data = pipe.parser.data
-#
-#     _.each data, (pair) =>
-#       pipe.read(pair)
