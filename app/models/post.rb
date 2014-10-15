@@ -39,6 +39,7 @@ class Post < ActiveRecord::Base
   def watch_the_post
     WatchedItem.where( post_id: self.id, user_id: self.user_id ).first_or_create
   end
+
   before_validation :set_default_enum
 
   def set_default_enum

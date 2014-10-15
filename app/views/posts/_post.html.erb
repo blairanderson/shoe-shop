@@ -28,12 +28,9 @@
 
   <div class="right-panel">
     <div class="votes">
-      <%= link_to '<i class="icon-arrow-up icon-white"></i>'.html_safe, upvote_post_path(post), data: remote_options, class: "label upvote"%>
+      <%= link_to '<i class="icon-thumbs-up icon-white"></i>'.html_safe, upvote_post_path(post), data: remote_options, class: "label upvote"%>
       <a class="score label"><%= post.score %></a>
-      <%= link_to '<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(post), data: remote_options, class: "label downvote" %>
-    </div>
-    <div class="watch">
-      <%= render 'watched_items/watched_item', post: post %>
+      <%= link_to '<i class="icon-thumbs-down icon-white"></i>'.html_safe, downvote_post_path(post), data: remote_options, class: "label downvote" %>
     </div>
   </div>
 </div>

@@ -13,7 +13,7 @@
         <tr>
           <td>
             <%= link_to upvote_post_path(@post), class: "label label-inverse upvote" do %>
-              <i class="icon-arrow-up icon-white"></i>
+              <i class="icon-thumbs-up icon-white"></i>
               <span class="visible-desktop">UPVOTE</span>
             <% end %>
           </td>
@@ -23,7 +23,7 @@
           <td>
             <%=link_to downvote_post_path(@post), class: "label downvote" do    %>
               <span class="visible-desktop">DOWNVOTE</span>
-              <i class="icon-arrow-down icon-white"></i>
+              <i class="icon-thumbs-down icon-white"></i>
             <% end %>  
           </td>
         </tr>
@@ -64,16 +64,18 @@
           <h4 class="list-group-item-heading">Comments</h4>
         </div>
         <%= render partial: "comments/comment", collection: @post.comments %>
-        <% if current_user %>
-          <div class="list-group-item">
+        <div class="list-group-item">
+          <% if current_user %>
             <h3 class="list-group-item-heading">Submit a Comment</h3>
             <%= simple_form_for [@post, @post.comments.build(post_id: @post.id)] do |f| %>
               <%= f.input :body, input_html: {rows: 6}, label: false %>
               <br>
               <%= f.submit :submit, class: 'btn btn-inverse' %>
             <% end %>
-          </div>
-        <% end %>        
+          <% else %>
+            <%= link_to "Login to Comment", login_path %>
+          <% end %>
+        </div>
       </div>
     </div>
     <div class="span6">
