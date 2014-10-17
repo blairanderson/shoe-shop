@@ -22,6 +22,9 @@
       window.intercomSettings = {
         name: "<%= current_user.username %>",
         email: "<%= current_user.email %>",
+        twitter: "<%= current_user.twitter %>",
+        posts_count: <%= current_user.posts.count %>,
+        score: <%= current_user.score %>,
         created_at: <%= current_user.created_at.to_i %>,
         app_id: "5h173au1"
       };
