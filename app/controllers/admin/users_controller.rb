@@ -2,6 +2,10 @@ class Admin::UsersController < AdminController
   before_action :set_user, only: [:update]
   def index
     @users = User.order('created_at DESC')
+    respond_to do |format|
+      format.html
+      format.csv { render text: @users.to_csv }
+    end
   end
 
   def update

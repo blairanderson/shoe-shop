@@ -1,18 +1,18 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
   acts_as_voter
-  scope :with_posts, ->  { includes(posts: [:size, :user]) }
+  scope :with_posts, -> { includes(posts: [:size, :user]) }
 
   validates_presence_of :username
-  validates_uniqueness_of :username , :case_sensitive => false
-  validates_length_of :username, :minimum => 5
+  validates_uniqueness_of :username, case_sensitive: false
+  validates_length_of :username, minimum: 5
   validates_format_of :username, with: /\A[a-z0-9_\-]*\z/i
-  
-  validates_length_of :password, :minimum => 5, :if => :password
+
+  validates_length_of :password, minimum: 5, if: :password
   validates_confirmation_of :password
 
   validates_presence_of :email
-  validates_uniqueness_of :email , :case_sensitive => false
+  validates_uniqueness_of :email, case_sensitive: false
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -20,6 +20,23 @@ class User < ActiveRecord::Base
   has_many :watched_posts, through: :watched_items, source: :post
   has_many :blog_posts, dependent: :destroy
   has_one :keychain, dependent: :destroy
+
+  def self.to_csv
+    CSV.generate do |csv|
+      # headers
+      csv << %w(name email twitter posts_count score created_at)
+      all.each do |user|
+        csv << [
+            user.username,
+            user.email,
+            user.twitter,
+            user.posts.count,
+            user.score,
+            user.created_at.to_i
+        ]
+      end
+    end
+  end
 
   def watching?(post)
     if watching(post)
