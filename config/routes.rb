@@ -1,6 +1,16 @@
 ShoeShop::Application.routes.draw do
   root to: redirect('/pairs/newest/all')
+  # ADMIN
+  namespace :admin do
+    root to: :dashboard
+    post 'users/:id' => 'users#reset_user_password', as: 'reset_user_password'
+    resources :sizes
+    resources :posts
+    resources :users
+    resources :blog_posts
+  end
 
+  # POSTS
   resources :posts, path: "pairs" do
     member do
       post :callback
@@ -17,6 +27,11 @@ ShoeShop::Application.routes.draw do
   get 'pairs/:sort/:filter/sold', to: 'filters#sold', as: 'sold_filters'
   post 'pairs/:sort/:filter', to: 'filters#toggle', as: 'toggle_filters'
 
+
+  # USERS
+  match 'auth/twitter/callback', to: 'sessions#twitter_auth', via: [:get, :post]
+
+  resource :sessions, only: [:new, :create, :destroy]
   resources :users do
     resources :watched_items, path: "watching", only: [:index]
   end
@@ -27,31 +42,17 @@ ShoeShop::Application.routes.draw do
     end
   end
 
-  resource :sessions, only: [:new, :create, :destroy]
-
-  namespace :admin do
-    root to: :dashboard
-    post 'users/:id' => 'users#reset_user_password', as: 'reset_user_password'
-    resources :sizes
-    resources :posts
-    resources :users
-    resources :blog_posts
-  end
-
   resources :password_resets
+
   resources :blog_posts, path: 'blog', only: [:show, :index] do
     collection do
       post 'webhook/:token' => 'blog_posts#webhook'
     end
   end
 
-  match 'auth/twitter/callback', to: 'sessions#twitter_auth', via: [:get, :post]
 
-  match '404' => 'errors#not_found', via: [:get, :post]
-  match '422' => 'errors#not_found', via: [:get, :post]
-  match '500' => 'errors#error', via: [:get, :post]
 
-  get 'sitemap', :to => 'pages#sitemap'
+  get 'sitemap', to: 'pages#sitemap'
   get 'login', to: 'sessions#new'
   get 'logout', to: 'sessions#destroy'
   get 'about', to: 'pages#about'
@@ -61,5 +62,8 @@ ShoeShop::Application.routes.draw do
   get 'facebook', to: redirect("https://facebook.com/solesout")
   get 'twitter', to: redirect("https://twitter.com/solesout")
 
+  match '404' => 'errors#not_found', via: [:get, :post]
+  match '422' => 'errors#not_found', via: [:get, :post]
+  match '500' => 'errors#error', via: [:get, :post]
   get ':missing', to: "errors#not_found"
 end

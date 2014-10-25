@@ -2,9 +2,9 @@ class Scoreboard
   attr_reader :date, :upvotes, :downvotes
 
   def initialize(args = {})
-    @date       = args[:created_at] || Time.now
-    @upvotes    = args[:votes_up]   || 0
-    @downvotes  = args[:votes_down] || 0
+    @date = args[:created_at]
+    @upvotes = args[:votes_up]
+    @downvotes = args[:votes_down]
   end
 
   def result
@@ -12,11 +12,11 @@ class Scoreboard
   end
 
   def calculator(upvotes, downvotes, created_date)
-    (displacement * sign.to_f) + ( epoch_seconds(created_date) / 45000 )
+    (displacement * sign.to_f) + (epoch_seconds(created_date) / 45000)
   end
 
   def displacement
-    Math.log( [difference.abs, 1].max , 10 )
+    Math.log([difference.abs, 1].max, 10)
   end
 
   def sign
@@ -29,7 +29,7 @@ class Scoreboard
     (upvotes - downvotes)
   end
 
-private
+  private
 
   def our_epoch
     @our_epoch ||= Time.local(1984, 12, 9, 7, 46, 43).to_time
