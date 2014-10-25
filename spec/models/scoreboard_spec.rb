@@ -5,7 +5,7 @@ describe Scoreboard do
     {
       votes_down: 0,
       votes_up: 0,
-      created_at: Time.now
+      created_at: Time.new(2013)
     }
   end
   let(:scoreboard) { Scoreboard.new(target_post) }
@@ -71,13 +71,14 @@ describe Scoreboard do
 
   describe '#result' do
     let(:new_high_ranking_post) do 
-      {votes_down: 1, votes_up: 300}
+      {created_at: Time.now, votes_down: 1, votes_up: 300}
     end
     let(:new_high_scoreboard) { Scoreboard.new(new_high_ranking_post) }
 
     let(:old_high_ranking_post) do
       {created_at: 1.week.ago, votes_down: 1, votes_up: 300}
     end
+
     let(:old_high_scoreboard) { Scoreboard.new(old_high_ranking_post) }
 
     it 'new high score should be higher than an old high score' do
@@ -89,7 +90,9 @@ describe Scoreboard do
     let(:older_high_ranking_post) do
       {created_at: 15.months.ago, votes_down: 2, votes_up: 302}
     end
+
     let(:older_high_scoreboard) { Scoreboard.new(older_high_ranking_post) }
+
     it 'older high score should be lower than old high score' do
       old_high_scoreboard.result.should be > older_high_scoreboard.result
       old_high_scoreboard.result.should be > 20149
@@ -97,7 +100,7 @@ describe Scoreboard do
     end
 
     let(:new_mid_ranking_post) do
-      {votes_up: 1000, votes_down: 900}
+      {created_at: Time.now, votes_up: 1000, votes_down: 900}
     end
     let(:new_mid_scoreboard) { Scoreboard.new(new_mid_ranking_post) }
 
@@ -108,7 +111,7 @@ describe Scoreboard do
     end
 
     let(:new_low_ranking_post) do
-      {votes_down: 100, votes_up: 3}
+      {created_at: Time.now, votes_down: 100, votes_up: 3}
     end
     let(:new_low_scoreboard) { Scoreboard.new(new_low_ranking_post) }
 
