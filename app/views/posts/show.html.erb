@@ -1,78 +1,8 @@
 <% content_for :title, post_title(@post).to_s %>
-<div class="well">
-  <div class="row-fluid">
-    <div class="span6">
-      <h2><%= @post.title %></h2>
-      <table class="table voting">
-        <tr>
-          <td>
-            <%= link_to upvote_post_path(@post), class: "label label-inverse upvote" do %>
-              <i class="icon-thumbs-up icon-white"></i>
-              <span class="visible-desktop">UPVOTE</span>
-            <% end %>
-          </td>
-          <td>
-            <strong>Score: </strong><%= @post.score %></span>
-          </td>
-          <td>
-            <%=link_to downvote_post_path(@post), class: "label downvote" do    %>
-              <span class="visible-desktop">DOWNVOTE</span>
-              <i class="icon-thumbs-down icon-white"></i>
-            <% end %>  
-          </td>
-        </tr>
-      </table>
-      <table class="table about-item">
-        <tr>
-          <td width="10p"><strong>Description</strong></td>
-          <td><%= @post.body %></td>
-        </tr>
-        <tr>
-          <td><strong>Score</strong></td>
-          <td><%= @post.cached_votes_score %></td>
-        </tr>
-        <tr>
-          <td><strong>Size</strong></td>
-          <td><%= @post.size.name %></td>
-        </tr>
-        <tr>
-          <td><strong>Owner</strong></td>
-          <td><%= link_to @post.user.username, user_path(@post.user), title: "see all the postings by #{@post.user.username}" %></td>
-        </tr>
-        <tr>
-          <td><strong>Price</strong></td>
-          <td><%= number_to_currency(@post.price, precision: 0) %></td>
-        </tr>
-        <tr>
-          <td>
-            <%= render partial: "posts/post/#{@post.status}", locals: {post: @post, user: @post.user} %>
-          </td>
-          <td>
-            <a href="https://twitter.com/share" data-url="http" data-counturl=" http" class="twitter-share-button" data-lang="en" data-count='none' data-text="<%= verbose_post_title @post %>">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-          </td>
-        </tr>
-      </table>
-      <div class="list-group">
-        <div class="list-group-item comments">
-          <span class="badge"><%= @post.comments.count %></span>
-          <h4 class="list-group-item-heading">Comments</h4>
-        </div>
-        <%= render partial: "comments/comment", collection: @post.comments %>
-        <div class="list-group-item">
-          <% if current_user %>
-            <h3 class="list-group-item-heading">Submit a Comment</h3>
-            <%= simple_form_for [@post, @post.comments.build(post_id: @post.id)] do |f| %>
-              <%= f.input :body, input_html: {rows: 6}, label: false %>
-              <br>
-              <%= f.submit :submit, class: 'btn btn-inverse' %>
-            <% end %>
-          <% else %>
-            <%= link_to "Login to Comment", login_path %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="span6">
+
+<div class="row-fluid">
+  <% if @post.images_count > 0 %>
+    <div class="span8 well">
       <ul class="thumbnails">
         <%= render partial: 'image', collection: @post.images, locals: {p_id: @post.user_id} %>
       </ul>
@@ -80,8 +10,88 @@
         <%= render partial: "post_owner_actions" %>
       </div>
     </div>
-  </div>
+  <% end %>
+  <%= content_tag :div, class: "well #{@post.images_count > 0 ? 'span4' : 'span12'}" do %>
+    <h2><%= @post.title %></h2>
+    <table class="table voting">
+      <tr>
+        <td>
+          <%= link_to upvote_post_path(@post), class: "label label-inverse upvote" do %>
+            <i class="icon-thumbs-up icon-white"></i>
+            <span class="visible-desktop">UPVOTE</span>
+          <% end %>
+        </td>
+        <td>
+          <strong>Score: </strong><%= @post.score %></span>
+        </td>
+        <td>
+          <%= link_to downvote_post_path(@post), class: "label downvote" do %>
+            <span class="visible-desktop">DOWNVOTE</span>
+            <i class="icon-thumbs-down icon-white"></i>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+    <table class="table about-item">
+      <tr>
+        <td width="10p"><strong>Description</strong></td>
+        <td><%= @post.body %></td>
+      </tr>
+      <tr>
+        <td><strong>Score</strong></td>
+        <td><%= @post.cached_votes_score %></td>
+      </tr>
+      <tr>
+        <td><strong>Size</strong></td>
+        <td><%= @post.size.name %></td>
+      </tr>
+      <tr>
+        <td><strong>Owner</strong></td>
+        <td><%= link_to @post.user.username, user_path(@post.user), title: "see all the postings by #{@post.user.username}" %></td>
+      </tr>
+      <tr>
+        <td><strong>Price</strong></td>
+        <td>
+          <span><%= number_to_currency(@post.price, precision: 0) %></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= render partial: "posts/post/#{@post.status}", locals: {post: @post, user: @post.user} %>
+        </td>
+        <td></td>
+      </tr>
+    </table>
+    <div class="list-group">
+      <div class="list-group-item comments">
+        <span class="badge"><%= @post.comments.count %></span>
+        <h4 class="list-group-item-heading">Comments</h4>
+      </div>
+      <%= render partial: "comments/comment", collection: @post.comments %>
+      <div class="list-group-item">
+        <% if current_user %>
+          <h3 class="list-group-item-heading">Submit a Comment</h3>
+          <%= simple_form_for [@post, @post.comments.build(post_id: @post.id)] do |f| %>
+            <%= f.input :body, input_html: {rows: 6}, label: false %>
+            <br>
+            <%= f.submit :submit, class: 'btn btn-inverse' %>
+          <% end %>
+        <% else %>
+          <%= link_to "Login to Comment", login_path %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
 </div>
-<!-- twitter card starts here -->
-<%= render partial: "twitter_card", locals: {post: @post}    %>
-<!-- twitter card ends here -->
+
+<!-- facebook meta -->
+<%= render partial: "elements/meta", object: {
+  title: "#{@post.title}, size: #{@post.size.name} #{number_to_currency(@post.price, precision: 0)}",
+  type: 'pair', info: @post.body, published_at: @post.created_at, popularity: @post.cached_votes_score,
+  id: @post.id,
+} %>
+<!--end facebook meta-->
+<!-- twitter meta -->
+<%= render partial: "twitter_card", locals: {post: @post} %>
+<!-- end twitter meta -->

@@ -8,27 +8,30 @@
 =========================================================================================
 */
 
-body{
-	font-size: 			14px;
-	font-family: 		sans-serif;
-	color: 				$color-1;
-	padding: 0px;
+body {
+  font-size: 14px;
+  font-family: sans-serif;
+  color: $color-1;
+  padding: 0px;
+  background-color: #ebeced;
 
-	*{text-shadow: 			0 0px 0 !important;}
+  * {
+    text-shadow: 0 0px 0 !important;
+  }
 }
 
-h1{ 
-	font-size: 3em;
-	font-weight: lighter;
+h1 {
+  font-size: 3em;
+  font-weight: lighter;
 }
 
-p{
-	font-size: 		1em;
-	text-align: 	center;
+p {
+  font-size: 1em;
+  text-align: center;
 }
 
-h2{
-	font-weight: 2em;
-	text-align: center;
-	font-weight: lighter;
+h2 {
+  text-align: center;
+  font-size: 2em;
+  font-weight: lighter;
 }

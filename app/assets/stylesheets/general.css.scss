@@ -7,165 +7,170 @@
 =========================================================================================
 */
 
-
 /* STYLING OF ITEM LIST */
-.list-group-item{
-	background-color: #e6e6e6;
-	margin: 10px;
-	overflow: hidden;
+.list-group-item {
+  background-color: #ffffff;
+  overflow: hidden;
 }
 
-.left-panel{
-	width: 80%;
-	float: left;
-	height: 100%;
+.left-panel {
+  width: 80%;
+  float: left;
+  height: 100%;
 }
 
-.right-panel{
-	width: 20%;
-	float: left;
-	height: 100%;
+.right-panel {
+  width: 20%;
+  float: left;
+  height: 100%;
 }
 
-.snapshot{
-	height: 100%;
-	width: 65px;
-	margin-right: 10px;
-	float: left;
+.snapshot {
+  height: 100%;
+  width: 65px;
+  margin-right: 10px;
+  float: left;
 }
 
-.title{
-	font-size: 1.2em;
-	font-weight: bold;
+.title {
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
-.watch{
-	margin-right: 10px;
-	float: right;
-}
-.watch .btn-watch, .watch .label-inverse{
-	margin-top: 2px;
-	font-weight: 100;
-	font-size: 0.7em;
-	text-align: center;
-
-	background-image: none;
+.watch {
+  margin-right: 10px;
+  float: right;
 }
 
-.title, .author{
-	float: left;
-	width: 70%;
-} // END STYLING OF ITEM LIST
+.watch .btn-watch, .watch .label-inverse {
+  margin-top: 2px;
+  font-weight: 100;
+  font-size: 0.7em;
+  text-align: center;
 
-
-ul{
-	margin: 0px;
+  background-image: none;
 }
 
-
-.votes{
-	width: 40px;
-	float: right;
-	padding: 1px;
-
-	margin-right: 5px;
-	a{
-		width: 100%;
-		text-align: center;
-
-	}
-	#score{
-		width: 100%;
-		text-align: center;
-		font-size: 1em;
-	}
-
-	.upvote{ background-color: $base-deep-blue; }
-	.downvote{ background-color: #E74C3C; }
-	.score { 
-		background-color: #e6e6e6;
-		color: #000;
-		width: 100%;
-		text-align: center; }
-
-	.score:hover{
-		color: black;
-	}
+.title, .author {
+  float: left;
+  width: 70%;
 }
 
-.nav-collapse .nav>li>a:hover, .nav-collapse .nav>li>a:focus, .nav-collapse .dropdown-menu a:hover, .nav-collapse .dropdown-menu a:focus{ background-color: #2C3E50; }
+// END STYLING OF ITEM LIST
 
-.checkbox{
-	padding: 5px;
-	margin-left: 30px;
+ul {
+  margin: 0px;
 }
 
-.status-update{
-	margin-top: 20px;
+.votes {
+  width: 40px;
+  float: right;
+  padding: 1px;
 
+  margin-right: 5px;
+  a {
+    width: 100%;
+    text-align: center;
+
+  }
+  #score {
+    width: 100%;
+    text-align: center;
+    font-size: 1em;
+  }
+
+  .upvote {
+    background-color: $base-deep-blue;
+  }
+  .downvote {
+    background-color: #E74C3C;
+  }
+  .score {
+    background-color: #e6e6e6;
+    color: #000;
+    width: 100%;
+    text-align: center;
+  }
+
+  .score:hover {
+    color: black;
+  }
 }
 
-.descriptors{
-	border: 1px solid #cccccc;
-	padding: 10px;
-	div{ margin-bottom: 10px; }
+.nav-collapse .nav > li > a:hover, .nav-collapse .nav > li > a:focus, .nav-collapse .dropdown-menu a:hover, .nav-collapse .dropdown-menu a:focus {
+  background-color: #2C3E50;
 }
 
-.well{
-	h1{
-		text-align: center;
-	}
-	background-color: #e6e6e6;
+.checkbox {
+  padding: 5px;
+  margin-left: 30px;
+}
+
+.status-update {
+  margin-top: 20px;
 
 }
 
-
-.lead{
-	font-size: inherit !important;
+.descriptors {
+  border: 1px solid #cccccc;
+  padding: 10px;
+  div {
+    margin-bottom: 10px;
+  }
 }
 
+.well {
+  h1 {
+    text-align: center;
+  }
+  background-color: #ffffff;
 
-
-dl{
-	text-align: center;
-	margin-bottom: 10px;
 }
 
-dd{
-	margin-bottom: 10px;
+.lead {
+  font-size: inherit !important;
 }
 
-
-.voting{
-	margin: 10px;
-	td{text-align: center;}
-	td tr{
-		width: 20px;
-	}
+dl {
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-.about-item{
-	margin: 10px;
-	width: 100%;
+dd {
+  margin-bottom: 10px;
 }
 
-
-table .upvote, table .downvote{
-	width: 100% !important;
-	padding: 10px;
-	box-sizing: border-box;
-}
-.upvote{
-	background-color: #2185c5 !important;
-}
-.downvote{
-	background-color: #E74C3C !important;
+.voting {
+  td {
+    text-align: center;
+  }
+  td tr {
+    width: 20px;
+  }
 }
 
-.edit-add{
-	background-image: none;
-	border:0px;
-	padding: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
+.about-item {
+  width: 100%;
+}
+
+table .upvote, table .downvote {
+  width: 100% !important;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.upvote {
+  background-color: #2185c5 !important;
+}
+
+.downvote {
+  background-color: #E74C3C !important;
+}
+
+.edit-add {
+  background-image: none;
+  border: 0px;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
