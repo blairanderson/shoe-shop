@@ -1,7 +1,6 @@
 <% content_for :title, post_title(@post).to_s %>
 
 <div class="row-fluid">
-  <% if @post.images_count > 0 %>
     <div class="span8 well">
       <ul class="thumbnails">
         <%= render partial: 'image', collection: @post.images, locals: {p_id: @post.user_id} %>
@@ -10,8 +9,9 @@
         <%= render partial: "post_owner_actions" %>
       </div>
     </div>
+  <% if @post.images_count > 0 %>
   <% end %>
-  <%= content_tag :div, class: "well #{@post.images_count > 0 ? 'span4' : 'span12'}" do %>
+  <%= content_tag :div, class: "well #{true ? 'span4' : 'span12'}" do %>
     <h2><%= @post.title %></h2>
     <table class="table voting">
       <tr>
