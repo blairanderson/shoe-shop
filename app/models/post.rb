@@ -9,8 +9,8 @@ class Post < ActiveRecord::Base
     update scoreboard: result
   end
 
-  as_enum :status, [:draft, :for_sale, :sold, :deleted], 
-  :whiny => false, :column => 'status_enum'
+  as_enum :status, [:draft, :for_sale, :sold, :deleted],
+          whiny: false, column: 'status_enum'
 
   validates :title,       presence: true, length: { maximum: 80 }
   validates :price,       presence: true, numericality: true
@@ -19,11 +19,11 @@ class Post < ActiveRecord::Base
   validates :status_enum, presence: true
 
   belongs_to :user
-  validates_associated :user, :if => :user_id
+  validates_associated :user, if: :user_id
 
   belongs_to :size
   validates_presence_of :size
-  validates_associated :size, :if => :size_id
+  validates_associated :size, if: :size_id
 
   has_one :paypal_callback
   has_many :images, dependent: :destroy
@@ -31,13 +31,13 @@ class Post < ActiveRecord::Base
   has_many :watched_items, dependent: :destroy
   has_many :watchers, through: :watched_items, source: :user
 
-  alias_attribute :score, :cached_votes_score 
-  alias_attribute :view_count, :impressions_count 
+  alias_attribute :score, :cached_votes_score
+  alias_attribute :view_count, :impressions_count
 
   after_save :watch_the_post
 
   def watch_the_post
-    WatchedItem.where( post_id: self.id, user_id: self.user_id ).first_or_create
+    WatchedItem.where(post_id: self.id, user_id: self.user_id).first_or_create
   end
 
   before_validation :set_default_enum
@@ -66,11 +66,11 @@ class Post < ActiveRecord::Base
   scope :oldest,  ->  { order(created_at: :asc) }
   scope :newest,  ->  { order(created_at: :desc) }
   scope :random,  ->  { order(scoreboard: :desc, created_at: :desc) }
-  
-  scope :sml,   ->  { where(:size_id => [1,2,3,4,5,6,7]) } # 'nine-and-under'
+
+  scope :sml,   ->  { where(size_id: [1, 2, 3, 4, 5, 6, 7]) } # 'nine-and-under'
   scope :med,   ->  { where(size_id: [8,9]) }# 'nine5-to-10'
   scope :lrg,   ->  { where(size_id: [10,11]) }# 'ten5-to-eleven'
-  scope :xl,    ->  { where(size_id: [12,13,14,15,16,17,18,19]) } # 'eleven5_plus' 
+  scope :xl,    ->  { where(size_id: [12,13,14,15,16,17,18,19]) } # 'eleven5_plus'
 
   def to_param
     "#{id} #{title}".parameterize
@@ -79,14 +79,14 @@ class Post < ActiveRecord::Base
   def valid_statuses
     statuses = Post.statuses.dup
     case status
-    when :draft
-      statuses.extract!(:for_sale, :deleted)
-    when :deleted
-      statuses.extract!(:deleted)
-    when :sold
-      statuses.extract!(:sold, :for_sale)
-    when :for_sale
-      statuses.extract!(:for_sale, :sold)
+      when :draft
+        statuses.extract!(:for_sale, :deleted)
+      when :deleted
+        statuses.extract!(:deleted)
+      when :sold
+        statuses.extract!(:sold, :for_sale)
+      when :for_sale
+        statuses.extract!(:for_sale, :sold)
     end
   end
 
