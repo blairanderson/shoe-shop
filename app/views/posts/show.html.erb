@@ -1,10 +1,4 @@
 <% content_for :title, post_title(@post).to_s %>
-<%= tag :meta, property: 'st:title', content: "#{@post.title}, size: #{@post.size.name} #{number_to_currency(@post.price, precision: 0)}" %>
-<%= tag :meta, property: 'st:type', content: 'pair' %>
-<%= tag :meta, property: 'st:info', content: @post.body %>
-<%= tag :meta, property: 'st:published_at', content: @post.created_at %>
-<%= tag :meta, property: 'st:popularity', content: @post.cached_votes_score %>
-<%= tag :meta, property: 'st:id', content: @post.id %>
 <div class="well">
   <div class="row-fluid">
     <div class="span6">
