@@ -42,15 +42,13 @@ ShoeShop::Application.routes.draw do
     end
   end
 
-  resources :password_resets
+  resources :password_resets, only: [:create, :edit, :update]
 
   resources :blog_posts, path: 'blog', only: [:show, :index] do
     collection do
       post 'webhook/:token' => 'blog_posts#webhook'
     end
   end
-
-
 
   get 'sitemap', to: 'pages#sitemap'
   get 'login', to: 'sessions#new'
