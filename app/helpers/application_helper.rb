@@ -21,7 +21,7 @@ module ApplicationHelper
   end
 
   def white_logo
-    image_tag("solesout-small.png", size: "100")
+    image_tag("solesout-small.png", class: "img-responsive")
   end
 
   def blog_helper_url

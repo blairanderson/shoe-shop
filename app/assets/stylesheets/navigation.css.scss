@@ -7,81 +7,36 @@
 =========================================================================================
 */
 
-#main-nav{
-	// All contents apart from the logo.
-	margin-top: 20px;
+
+#logo {
+  width: 130px;
+  position: fixed;
+  top: 0;
+  left: 20px;
 }
 
-.navbar-inner{
-	background-color: 	$color-1;	
-	background-image: 	none;
-
-	border: 0px;
-	border-radius: 0px;
+.navbar-nav > li > a {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  line-height: 80px;
 }
 
-#logo img{
-	padding: 		10px;
-	margin-right: 	30px;
-	margin-left: 	20px;
+@media (max-width: 767px) {
+  .navbar-nav > li > a {
+    line-height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }
 
-.header-nav li a{
-	background-color: $color-2;
-	color: 	$color-3 !important;
-
-	margin-left: 	5px;
-	width:  60px;
-	text-align: center;
+.create li a {
+  width: 100px;
+  background-color: $color-4 !important;
 }
 
-
-#user_submit{
-	background-color: $color-4 !important;
-	background-image: none;
-	border: 0px !important;
-	padding-left: 30px;
-	padding-right: 30px;
-}
-
-.header-user, .header-pass, .header-submit{
-	height: 40px !important;
-	border-radius: 0px !important;
-	margin: 0px !important;
-	border: 0px !important;
-	padding: 0px !important;
-	-webkit-box-shadow: 0 0px 0 !important;
-	box-shadow: 0 0px 0 !important;
-	-moz-box-shadow: 0 0px 0 !important;
-	padding-left: 15px !important;
-	padding-right: 15px !important;
-}
-
-.header-nav li a:hover{
-	background-color: #253443;
-}
-
-
-#right-nav li a{
-	width: 100px;
-}
-
-
-.log{
-	background-color: $color-4 !important;
-}
-.log:hover{
-	background-color: #253443;
-}
-
-.create li a{
-	width: 100px;
-	background-color: $color-4 !important;
-}
-
-.button-collapse{
-	margin-top: 20px !important;
-	border-radius: 0px;
-	background-image: none !important;
-	background-color: $color-2 !important;
+.button-collapse {
+  margin-top: 20px !important;
+  border-radius: 0px;
+  background-image: none !important;
+  background-color: $color-2 !important;
 }

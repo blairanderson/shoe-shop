@@ -1,3 +1,18 @@
+<div class="nav-collapse col1">
+  <ul class="nav header-nav" id="left-nav">
+    <li><%= link_to "Top", filters_path(:top, :all)  %></li>
+    <li><%= link_to "Bottom", filters_path(:bottom, :all) %></li>
+    <li><%= link_to "Old", filters_path(:oldest, :all) %></li>
+    <li><%= link_to "New", filters_path(:newest, :all) %></li>
+  </ul>
+</div>
+
+<%= simple_form_for :search, method: :get, url: posts_path, html: {class: "navbar-form navbar-left"} do |f| %>
+  <div class="form-group">
+    <%= f.search_field :query, placeholder: "search... BETA", class: "form-control" %>
+  </div>
+<% end %>
+
 <%= header "#{@valid_filters[@filter.to_s].upcase} | #{@sort.upcase}" %>
 <div class="navbar">
   <ul class="nav nav-pills">

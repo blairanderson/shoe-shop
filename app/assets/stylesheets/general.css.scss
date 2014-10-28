@@ -8,14 +8,6 @@
 */
 
 /* STYLING OF ITEM LIST */
-.list-group-item {
-  background-color: #ffffff;
-  overflow: hidden;
-}
-
-ul {
-  margin: 0px;
-}
 
 .title, .author {
   font-size: 13px;
@@ -29,18 +21,6 @@ ul {
   color: rgb(73, 79, 89);
 }
 
-.nav-collapse .nav > li > a:hover, .nav-collapse .nav > li > a:focus, .nav-collapse .dropdown-menu a:hover, .nav-collapse .dropdown-menu a:focus {
-  background-color: #2C3E50;
-}
-
-.checkbox {
-  padding: 5px;
-  margin-left: 30px;
-}
-
-.status-update {
-  margin-top: 20px;
-}
 
 .descriptors {
   border: 1px solid #cccccc;
@@ -70,14 +50,6 @@ dd {
   margin-bottom: 10px;
 }
 
-.voting {
-  td {
-    text-align: center;
-  }
-  td tr {
-    width: 20px;
-  }
-}
 
 .about-item {
   width: 100%;
