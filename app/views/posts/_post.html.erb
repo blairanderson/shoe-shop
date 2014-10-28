@@ -1,36 +1,25 @@
-<%= cache(post) do %>
-  <div class="list-group-item" id="post-<%= post_counter %>">
-    <div class="left-panel">
+<div class="col-xs-12 col-sm-3" style="
+padding-left: 10px;
+  padding-right: 10px;">
+  <% if post.sold? %>
+    <%= image_tag("sold-out-stamp-large.png", size: "100", style: "position:absolute;left:0;top:20px;") %>
+  <% end %>
 
-      <div class="snapshot">
-        <% if post.sold? %>
-          <%= image_tag("sold-out-stamp-large.png", size: "100", style: "position:absolute;left:0;top:20px;") %>
-        <% end %>
+  <%= link_to post do %>
 
-        <%= link_to post do %>
-          <% if post.images_count > 0 %>
-            <%= image_tag post.images.first.thumbnail, class: 'img-rounded' %>
-          <% else %>
-            <%= image_tag "http://placehold.it/100x100", class: 'img-rounded' %>
-          <% end %>
-        <% end %>
-      </div>
+    <% if post.images_count > 0 %>
+      <%= image_tag post.images.first.url_size(250), class: 'img-responsive' %>
+    <% else %>
+      <%= image_tag "http://placehold.it/250x250", class: 'img-responsive' %>
+    <% end %>
+  <% end %>
 
-      <%= div_for post, class: 'title' do %>
-        <%= link_to post_title(post), post %>
-      <% end %>
-
-      <%= div_for post.user, class: 'author' do |user| %>
-        <%= link_to "#{user.username} (#{user.score})", user_path(post.user), id: "author-#{try(:post_counter)}" %>
-      <% end %>
-    </div>
-
-    <div class="right-panel">
-      <div class="votes">
-        <%= link_to '<i class="icon-thumbs-up icon-white"></i>'.html_safe, upvote_post_path(post), data: remote_options, class: "label upvote" %>
-        <a class="score label"><%= post.score %></a>
-        <%= link_to '<i class="icon-thumbs-down icon-white"></i>'.html_safe, downvote_post_path(post), data: remote_options, class: "label downvote" %>
-      </div>
-    </div>
+  <div>
+    <span class="title"><%= truncate(post.title, length: 40) %></span>
   </div>
-<% end %>
+
+  <div>
+    <%= number_to_currency(post.price, precision: 0) %> -
+    <%= link_to post.user.username, user_path(post.user), class: 'author' %>
+  </div>
+</div>
