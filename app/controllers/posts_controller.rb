@@ -4,9 +4,14 @@ class PostsController < ApplicationController
   before_action :require_post_ownership, only: [:edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token, only: [:callback]
 
+  after_action :impression, only: [:show]
   def show
     @images = @post.images
     @profile = ProfilePresenter.new(@post.user)
+  end
+
+  def impression
+    @post.increment!(:impressions_count)
   end
 
   def index

@@ -1,6 +1,7 @@
 <% content_for :title, post_title(@post).to_s %>
 
 <div class="row-fluid">
+  <% if @post.images_count > 0 %>
     <div class="span8 well">
       <ul class="thumbnails">
         <%= render partial: 'image', collection: @post.images, locals: {p_id: @post.user_id} %>
@@ -9,49 +10,28 @@
         <%= render partial: 'post_owner_actions' %>
       </div>
     </div>
-  <% if @post.images_count > 0 %>
   <% end %>
-  <%= content_tag :div, class: "well #{true ? 'span4' : 'span12'}" do %>
+  <%= content_tag :div, class: "well #{@post.images_count > 0 ? 'span4' : 'span12'}" do %>
+    <p><strong>Price:</strong><%= number_to_currency(@post.price, precision: 0) %></p>
     <h2><%= @post.title %></h2>
-    <table class="table voting">
-      <tr>
-        <td>
-          <%= link_to upvote_post_path(@post), class: "label label-inverse upvote" do %>
-            <i class="icon-thumbs-up icon-white"></i>
-            <span class="visible-desktop">UPVOTE</span>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to downvote_post_path(@post), class: "label downvote" do %>
-            <span class="visible-desktop">DOWNVOTE</span>
-            <i class="icon-thumbs-down icon-white"></i>
-          <% end %>
-        </td>
-      </tr>
-    </table>
     <table class="table about-item">
-      <tr>
-        <td width="10p"><strong>Description</strong></td>
-        <td><%= @post.body %></td>
-      </tr>
-      <tr>
-        <td><strong>Score</strong></td>
-        <td><%= @post.cached_votes_score %></td>
-      </tr>
       <tr>
         <td><strong>Size</strong></td>
         <td><%= @post.size.name %></td>
       </tr>
       <tr>
-        <td><strong>Owner</strong></td>
+        <td><strong>Seller</strong></td>
         <td><%= link_to @post.user.username, user_path(@post.user), title: "see all the postings by #{@post.user.username}" %></td>
       </tr>
       <tr>
-        <td><strong>Price</strong></td>
-        <td>
-          <span><%= number_to_currency(@post.price, precision: 0) %></span>
-        </td>
+        <td width="10p"><strong>Description</strong></td>
+        <td><%= @post.body %></td>
       </tr>
+      <tr>
+        <td><strong>Views</strong></td>
+        <td><%= @post.impressions_count %></td>
+      </tr>
+
       <tr>
         <td>
           <%= render partial: "posts/post/#{@post.status}", locals: {post: @post, user: @post.user} %>
