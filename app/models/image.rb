@@ -5,10 +5,6 @@ class Image < ActiveRecord::Base
   validates_presence_of :post_id
   validates_presence_of :url
 
-  def thumbnail
-    url_size(100)
-  end
-
   def url_size(number=600, rotate="exif", fit="crop")
     url + "/convert?rotate=#{rotate}&w=#{number}&h=#{number}&fit=#{fit}"
   end
