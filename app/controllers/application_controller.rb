@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
     current_user && @user && current_user.id == @user.id    
   end
 
+  def mobile_device?
+    request.user_agent =~ /Mobile|webOS/
+  end
+  helper_method :mobile_device?
+
   def include_popups
     @notifications = []
     @notifications << "alert"  if alert

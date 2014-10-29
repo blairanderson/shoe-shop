@@ -2,7 +2,7 @@
   <div class="col-xs-12 col-sm-2">
     <%= render "filter_nav" %>
   </div>
-  <div class="col-xs-12 col-sm-10">
+  <div class="col-xs-12 col-sm-10" style="padding-top: 20px;">
     <% @posts.in_groups_of(4, false) do |row_of_posts| %>
       <div class="row">
 
