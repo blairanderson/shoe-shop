@@ -22,3 +22,18 @@ $color-1:			rgb(52,82,111); // Dark blue
 $color-2:			rgb(46,73,99); // Darker blue
 $color-3:			#ecf0f1; // Off white
 $color-4: 			#253443; // Even darker Blue
+$color-5:			rgb(225,40,46); // RED
+
+$brand-primary-blue: $color-1;
+$brand-primary-color: $color-3;
+$brand-primary-red: $color-5;
+
+$navbar-height: 80px;
+$navbar-margin-bottom: 20px;
+$navbar-border-radius: 0px;
+
+$navbar-default-bg: $brand-primary-blue;
+$navbar-default-border: darken($navbar-default-bg, 5%);
+$navbar-default-link-color: $brand-primary-color;
+$navbar-default-link-hover-color: lighten($navbar-default-link-color, 20%);
+$navbar-default-link-hover-bg: $brand-primary-red;
