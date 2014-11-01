@@ -55,7 +55,7 @@ class Post < ActiveRecord::Base
 
   scope :with_images, -> { where.not(images_count: 0) }
   scope :drafted, -> { where(status_enum: Post.draft) }
-  scope :active, -> { where(status_enum: Post.for_sale).with_images }
+  scope :active, -> { where(status_enum: Post.for_sale) }
   scope :inactive, -> { where(status_enum: Post.sold) }
   scope :removed, -> { where(status_enum: Post.deleted) }
 

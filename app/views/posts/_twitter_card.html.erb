@@ -3,12 +3,10 @@
 <meta name="twitter:creator" content="@solesout">
 <meta name="twitter:title" content="<%= post_title post %>">
 <meta name="twitter:description" content="<%= post.body %>">
-<% if post.images_count > 0 %>
+<% if post.images.count > 0 %>
   <% raw_image_url = raw(post.images.first.url_size(250)) %>
   <meta name="twitter:image:src" content="<%= raw_image_url %>">
   <meta name="og:image" content="<%= raw_image_url %>" />
-<% else %>
-  <meta name="twitter:image:src" content="http://placehold.it/250/250">
 <% end %>
 <meta name="twitter:data1" content="<%= number_to_currency(post.price, precision: 0) %>">
 <meta name="twitter:label1" content="PRICE">
