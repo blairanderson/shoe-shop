@@ -10,31 +10,26 @@
     </div>
   <% end %>
   <%= content_tag :div, class: "col-xs-12 well #{@post.images_count > 0 ? 'col-sm-4' : 'col-sm-12'}" do %>
+
     <p><strong>Price:</strong><%= number_to_currency(@post.price, precision: 0) %></p>
     <h2><%= @post.title %></h2>
+    <dl>
+      <dt>Size</dt>
+      <dd><%= @post.size.name %></dd>
+      <dt>Seller</dt>
+      <dd><%= link_to @post.user.username, user_path(@post.user), title: "see all the postings by #{@post.user.username}" %></dd>
+      <dt>Description</dt>
+      <dd><%= @post.body %></dd>
+      <dt>Views</dt>
+      <dd><%= @post.impressions_count %></dd>
+      <dt></dt>
+      <dd></dd>
+    </dl>
     <table class="table about-item">
-      <tr>
-        <td><strong>Size</strong></td>
-        <td><%= @post.size.name %></td>
-      </tr>
-      <tr>
-        <td><strong>Seller</strong></td>
-        <td><%= link_to @post.user.username, user_path(@post.user), title: "see all the postings by #{@post.user.username}" %></td>
-      </tr>
-      <tr>
-        <td width="10p"><strong>Description</strong></td>
-        <td><%= @post.body %></td>
-      </tr>
-      <tr>
-        <td><strong>Views</strong></td>
-        <td><%= @post.impressions_count %></td>
-      </tr>
-
       <tr>
         <td>
           <%= render partial: "posts/post/#{@post.status}", locals: {post: @post, user: @post.user} %>
         </td>
-        <td></td>
       </tr>
     </table>
     <div class="list-group">
