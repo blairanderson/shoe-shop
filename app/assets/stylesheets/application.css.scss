@@ -13,14 +13,22 @@
 @import "variables";
 @import "bootstrap-sprockets";
 @import "bootstrap_and_overrides";
-@import "globals";
-@import "general";
-@import "navigation";
-@import "input";
-@import "responsive";
-@import "modal";
-@import "bootstrap-tour";
-@import "alerts";
-@import "blog/sidebar";
-@import "blog/show";
-@import "blog/index";
+
+@media (max-width: $screen-sm) {
+  @import "ratchet";
+}
+@media (min-width: $screen-md) {
+  @import "globals";
+  @import "general";
+  @import "navigation";
+  @import "input";
+  @import "responsive";
+  @import "modal";
+  @import "bootstrap-tour";
+  @import "alerts";
+  @import "blog/sidebar";
+  @import "blog/show";
+  @import "blog/index";
+}
+
+

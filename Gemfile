@@ -28,6 +28,7 @@ gem 'jquery-rails'
 gem 'paloma'
 gem 'ember-rails'
 gem 'ember-source', '1.3.0' # or the version you need
+gem 'ratchet-sass'
 
 group :production do
   gem 'newrelic_rpm'

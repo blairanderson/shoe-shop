@@ -13,6 +13,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require paloma
+#= require ratchet
 #= require bootstrap
 #= require bootstrap-tour
 #= require tour-steps
