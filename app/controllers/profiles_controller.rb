@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
   before_action :require_login
 
   def show
-    @user = User.with_posts.where(id: current_user.id).first
+    @user = current_user
   end
 
   def update
