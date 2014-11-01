@@ -1,31 +1,18 @@
 <% if mobile_device? %>
-  <div class="segmented-control">
-    <a class="control-item active" href="#sort-menu">
-      Sort
-    </a>
-    <a class="control-item" href="#filter-menu">
-      Filter
-    </a>
-  </div>
-  <div class="card">
-    <span id="sort-menu" class="control-content">
-      <nav class="bar bar-standard">
-        <div class="segmented-control">
-          <% @valid_sorts.each do |sort, title| %>
-            <%= link_to title, filters_path(sort.to_sym, @filter), class: "control-item #{current_page?(filters_path(sort.to_sym, @filter)) ? "active" : ""}" %>
-          <% end %>
-        </div>
-      </nav>
-    </span>
-    <span id="filter-menu" class="control-content">
-      <nav class="bar bar-standard">
-        <div class="segmented-control">
-          <% @valid_filters.each do |filter, title| %>
-            <%= link_to title, filters_path(@sort, filter), class: "control-item #{current_page?(filters_path(@sort.to_sym, filter)) ? "active" : ""}" %>
-          <% end %>
-        </div>
-      </nav>
-    </span>
+  <button type="button" class="hidden-desktop collapsed btn btn-default btn-block" data-toggle="collapse" data-target="#filter-nav">
+    Toggle filters
+  </button>
+  <div class="collapse navbar-collapse" id="filter-nav">
+    <ul class="nav nav-pills nav-stacked">
+      <% @valid_sorts.each do |sort, title| %>
+        <li><%= link_to title, filters_path(sort.to_sym, @filter), class: "btn btn-sm #{current_page?(filters_path(sort.to_sym, @filter)) ? "btn-danger" : "btn-default"} btn-block" %></li>
+      <% end %>
+    </ul>
+    <ul class="nav nav-pills nav-stacked">
+      <% @valid_filters.each do |filter, title| %>
+        <li><%= link_to title, filters_path(@sort, filter), class: "btn btn-sm #{current_page?(filters_path(@sort, filter)) ? "btn-info" : "btn-default"} btn-block" %></li>
+      <% end %>
+    </ul>
   </div>
 <% else %>
   <h2>Sort</h2>
@@ -34,15 +21,21 @@
       <%= link_to title, filters_path(sort.to_sym, @filter), class: "btn btn-sm #{current_page?(filters_path(sort.to_sym, @filter)) ? "btn-danger" : "btn-default"} btn-block" %>
     <% end %>
   </div>
-
   <!--this head is a title helper-->
   <%= header "#{@valid_filters[@filter.to_s].upcase} | #{@sort.upcase}" %>
 
   <h2>Filter</h2>
   <div class="btn-group-vertical" style="display: block;">
     <% @valid_filters.each do |filter, title| %>
-      <%= link_to title, filters_path(@sort, filter), class: "btn btn-sm #{current_page?(filters_path(@sort, filter)) ? "btn-danger" : "btn-default"} btn-block" %>
+      <%= link_to title, filters_path(@sort, filter), class: "btn btn-sm #{current_page?(filters_path(@sort, filter)) ? "btn-info" : "btn-default"} btn-block" %>
     <% end %>
   </div>
 
 <% end %>
+
+
+
+
+
+
+
