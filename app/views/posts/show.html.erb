@@ -65,7 +65,10 @@
 <!-- facebook meta -->
 <%= render partial: "elements/meta", object: {
   title: "#{@post.title}, size: #{@post.size.name} #{number_to_currency(@post.price, precision: 0)}",
-  type: 'pair', info: @post.body, published_at: @post.created_at, popularity: @post.cached_votes_score,
+  type: 'pair',
+  info: @post.body,
+  published_at: @post.created_at,
+  popularity: @post.cached_votes_score,
   id: @post.id,
 } %>
 <!--end facebook meta-->
