@@ -2,7 +2,7 @@
 
 <div class="row-fluid">
   <% if @post.images_count > 0 %>
-    <div class="span8 well">
+    <div class="col-sm-8 col-xs-12 well">
       <ul class="thumbnails">
         <%= render partial: 'image', collection: @post.images, locals: {p_id: @post.user_id} %>
       </ul>
@@ -11,7 +11,7 @@
       </div>
     </div>
   <% end %>
-  <%= content_tag :div, class: "well #{@post.images_count > 0 ? 'span4' : 'span12'}" do %>
+  <%= content_tag :div, class: "col-xs-12 well #{@post.images_count > 0 ? 'col-sm-4' : 'col-sm-12'}" do %>
     <p><strong>Price:</strong><%= number_to_currency(@post.price, precision: 0) %></p>
     <h2><%= @post.title %></h2>
     <table class="table about-item">

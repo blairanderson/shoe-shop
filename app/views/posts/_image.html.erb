@@ -1,7 +1,7 @@
 <div class="row-fluid">
   <li class="thumbnail-photo">
     <%= link_to image, class: "thumbnail" do %>
-      <%= image_tag image.url_size(600), class: "img-rounded" %>
+      <%= image_tag image.url_size(600), class: "img-rounded img-responsive" %>
     <% end %>
     <% if current_user && p_id == current_user.id %>
       <%= link_to "delete?", image_path(image), method: :delete, class: "btn btn-danger btn-block" %>
