@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'posting' do
   let(:valid_user) { FactoryGirl.create(:user) }
-  let!(:post) { FactoryGirl.create(:post, user: valid_user) }
+  let(:post) { FactoryGirl.create(:post, :for_sale, user: valid_user) }
 
   def login(user, password = "password")
     visit logout_path
@@ -52,19 +52,45 @@ describe 'posting' do
       expect( current_path ).to eq new_sessions_path
       expect( page ).to have_content "You are not authorized"
     end
+
+    it 'should not see posts without images' do
+      Post.destroy_all
+      visit root_path
+      expect( page ).to have_content "No posts found"
+
+      and_by "creating a post with an image" do
+        Post.destroy_all
+        expect(Post.count).to eq 0
+
+        @pair_of_shoes = FactoryGirl.create(:post, :for_sale)
+        visit root_path
+
+        expect( page ).to have_content "Displaying 1 post"
+        expect( Post.count ).to eq 1
+      end
+
+      and_by "removing the image, should remove the post" do
+        Post.first.images.destroy_all
+        visit root_path
+        expect( page ).to have_content "No posts found"
+        expect( Post.count ).to eq 1
+      end
+    end
   end
 
 
   context 'an authenticated user' do
-    describe 'should be able to edit their posts' do
-
+    describe 'editing images should be able to' do
+      it 'add an image to one of their posts'
+      it 'remove an image from one of their posts'
+      it 'admin can remove images from posts'
     end
 
     describe 'changing post status' do
       it 'should be able to view a post with status' do
         login(valid_user)
         visit post_path(post)
-        expect(post.status_enum).to eq 0
+        expect(post.status_enum).to eq 1
         Post.statuses.each do |_k,v|
           post.update(status_enum: v)
           visit post_path(post)

@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :post do
+    user
     title { [Faker::Company.name, Faker::Commerce.product_name].join(', ') }
     body {Faker::Lorem.sentences(5).join(', ')}
     price {rand(1..1000)}
@@ -14,15 +15,18 @@ FactoryGirl.define do
     impressions_count  {rand(1..1000)}
  
     trait :for_sale do
-      status_enum 1
+      after(:create) do |instance|
+        instance.images << create_list(:image, 2)
+        instance.update(status_enum: Post.statuses[:for_sale])
+      end
     end
     
     trait :sold do
-      status_enum 2
+      status_enum Post.statuses[:sold]
     end
     
     trait :deleted do
-      status_enum 3
+      status_enum Post.statuses[:deleted]
     end
   end
 end

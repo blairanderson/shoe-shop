@@ -5,9 +5,22 @@ describe Post do
     it { should validate_presence_of :title }
     it { should validate_presence_of :scoreboard }
     it { should validate_presence_of :body }
+    it { should validate_presence_of :user_id }
     it { should validate_presence_of :price }
     it { should validate_numericality_of :price}
     it { should ensure_length_of(:title).is_at_most(80) }
+    describe 'with zero images' do
+      describe 'status set to :for_sale' do
+        let(:post) { FactoryGirl.create(:post) }
+        it 'should be invalid' do
+          expect(post).to be_valid
+
+          post.for_sale!
+          expect(post).to be_invalid
+          expect(post.errors.get(:images_count)).to include("Must have images to sell these shoes.")
+        end
+      end
+    end
   end
 
   describe 'associations' do 
@@ -22,10 +35,11 @@ describe Post do
 
   describe 'scopes' do 
     describe '.active' do
-      it 'should only return posts where visible is true' do 
-        FactoryGirl.create_list(:post, 5, status: :for_sale)
+      it 'should only return posts where visible is true' do
+        5.times { FactoryGirl.create(:post, :for_sale) }
         Post.active.each do |post|
           expect(post.status).to eq :for_sale
+          expect(post.images_count).to be > 0
         end
       end
     end
