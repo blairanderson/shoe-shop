@@ -28,7 +28,14 @@ class ImagesController < ApplicationController
 
   def destroy
     @image.destroy
-    redirect_to post_path(@image.post), notice: "Photo Deleted"
+    messages = "Photo Deleted"
+    post = @image.post
+    post.reload
+    if post.images_count < 1
+      post.update(status_enum: Post.statuses[:draft])
+      messages += ", Status flipped to Draft. Must have images to be active"
+    end
+    redirect_to post_path(post), notice: messages
   end
 
   private
@@ -47,7 +54,7 @@ class ImagesController < ApplicationController
     end
 
     def require_image_ownership
-      unless current_user && current_user.id == @image.post.user_id
+      unless (current_user && current_user.id == @image.post.user_id) || current_admin
         redirect_to new_sessions_path, notice: "You are not authorized"
       end
     end

@@ -4,10 +4,10 @@ class ApplicationController < ActionController::Base
 
   before_action :include_popups
 
-  helper_method :current_admin, :current_owner
+  helper_method :current_admin, :post_owner?
 
-  def current_owner
-    current_user && @user && current_user.id == @user.id    
+  def post_owner?
+    current_user && @post && current_user.id == @post.user_id
   end
 
   def mobile_device?
