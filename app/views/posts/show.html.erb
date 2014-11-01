@@ -3,9 +3,7 @@
 <div class="row-fluid">
   <% if @post.images_count > 0 %>
     <div class="col-sm-8 col-xs-12 well">
-      <ul class="thumbnails">
         <%= render partial: 'image', collection: @post.images, locals: {p_id: @post.user_id} %>
-      </ul>
       <div>
         <%= render partial: 'post_owner_actions' %>
       </div>
