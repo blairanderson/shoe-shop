@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :image do
-    url { Faker::Internet.url + ".jpg" }
+    url { "http://www.fillmurray.com/200/300.jpg" }
     post { Post.first || create(:post) }
   end
 end
