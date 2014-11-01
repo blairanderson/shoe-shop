@@ -1,18 +1,32 @@
-<li class="list-group-item">
-  <%= image_tag("sold-out-stamp-large.png",size:"100", style: "position:absolute;left:0;top:20px;") if post.sold?  %>
-  <%= link_to post do %>
-    <% if post.images_count > 0 %>
-      <%= image_tag post.images.first.url_size(65) , class: 'img-rounded' %>
-    <% else %>
-      <%= image_tag "http://placehold.it/65x65", class: 'img-rounded' %>
+<div class="panel <%= panel[:class] %>">
+  <div class="panel-heading">
+    <h2><%= panel[:heading] %></h2>
+  </div>
+  <ul class="list-group">
+    <% posts.each do |post| %>
+      <li class="list-group-item">
+        <%= image_tag("sold-out-stamp-large.png", size: "100", style: "position:absolute;left:0;top:20px;") if post.sold? %>
+        <%= link_to post do %>
+          <% if post.images_count > 0 %>
+            <%= image_tag post.images.first.url_size(65), class: 'img-rounded' %>
+          <% else %>
+            <%= image_tag "http://placehold.it/65x65", class: 'img-rounded' %>
+          <% end %>
+        <% end %>
+        <%= content_tag :span do %>
+          <%= link_to '<i class="icon-arrow-up icon-white"></i>'.html_safe, upvote_post_path(post), class: "label label-inverse" %>
+          [<%= post.score %>]
+          <%= link_to '<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(post), class: "label" %>
+        <% end %>
+        <%= link_to post_title(post), post %>
+        Listed by: <%= link_to "#{post.user.username} (#{post.user.score})", user_path(post.user) %>
+        <%= render partial: "watched_items/watched_item", locals: {post: post} %>
+      </li>
     <% end %>
-  <% end %>
-  <%= content_tag :span do  %>
-    <%= link_to '<i class="icon-arrow-up icon-white"></i>'.html_safe, upvote_post_path(post), class: "label label-inverse" %>
-    [<%= post.score %>]
-    <%= link_to '<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(post), class: "label" %>
-  <% end %>
-  <%= link_to post_title(post), post %>
-  Listed by: <%= link_to "#{post.user.username} (#{post.user.score})", user_path(post.user) %>
-  <%= render partial: "watched_items/watched_item", locals: {post: post} %>
-</li>
+  </ul>
+</div>
+
+
+
+
+
