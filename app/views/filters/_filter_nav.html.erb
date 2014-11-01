@@ -1,16 +1,41 @@
-<%= header "#{@valid_filters[@filter.to_s].upcase} | #{@sort.upcase}" %>
-<div class="navbar">
-  <ul class="nav nav-pills">
-    <% @valid_filters.each do |filter, title| %>
-      <li class="sort-pill"><%= link_to title, filters_path(@sort, filter) %></li>
-    <% end %>
-    <li>
-      <%= form_tag toggle_filters_path(@sort, @filter), class: "navbar-form", id: "toggle_sold" do %>
-        <%= label_tag(:sold_listings, class: "checkbox") do %>
-          <%= check_box_tag :sold_listings, :sold, (@posts_filter == :inactive), onclick: "$('#toggle_sold').submit();" %>
-          Sold Listings
-        <% end %>
+<% if mobile_device? %>
+  <button type="button" class="hidden-desktop collapsed btn btn-default btn-block" data-toggle="collapse" data-target="#filter-nav">
+    Toggle filters
+  </button>
+  <div class="collapse navbar-collapse" id="filter-nav">
+    <ul class="nav nav-pills nav-stacked">
+      <% @valid_sorts.each do |sort, title| %>
+        <li><%= link_to title, filters_path(sort.to_sym, @filter), class: "btn btn-sm #{current_page?(filters_path(sort.to_sym, @filter)) ? "btn-danger" : "btn-default"} btn-block" %></li>
       <% end %>
-    </li>
-  </ul>
-</div>
+    </ul>
+    <ul class="nav nav-pills nav-stacked">
+      <% @valid_filters.each do |filter, title| %>
+        <li><%= link_to title, filters_path(@sort, filter), class: "btn btn-sm #{current_page?(filters_path(@sort, filter)) ? "btn-info" : "btn-default"} btn-block" %></li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <h2>Sort</h2>
+  <div class="btn-group-vertical" style="display: block;">
+    <% @valid_sorts.each do |sort, title| %>
+      <%= link_to title, filters_path(sort.to_sym, @filter), class: "btn btn-sm #{current_page?(filters_path(sort.to_sym, @filter)) ? "btn-danger" : "btn-default"} btn-block" %>
+    <% end %>
+  </div>
+  <!--this head is a title helper-->
+  <%= header "#{@valid_filters[@filter.to_s].upcase} | #{@sort.upcase}" %>
+
+  <h2>Filter</h2>
+  <div class="btn-group-vertical" style="display: block;">
+    <% @valid_filters.each do |filter, title| %>
+      <%= link_to title, filters_path(@sort, filter), class: "btn btn-sm #{current_page?(filters_path(@sort, filter)) ? "btn-info" : "btn-default"} btn-block" %>
+    <% end %>
+  </div>
+
+<% end %>
+
+
+
+
+
+
+

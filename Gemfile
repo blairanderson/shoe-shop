@@ -19,14 +19,16 @@ gem 'dalli'
 gem 'omniauth', '1.1.4'
 gem 'omniauth-twitter', '1.0.1'
 gem 'twitter', '~> 5.3.0'
-gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'sass-rails', '~> 4.0.0'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
-gem 'swiftype', '~> 1.0.1'
+gem 'paloma'
 gem 'ember-rails'
 gem 'ember-source', '1.3.0' # or the version you need
+gem 'ratchet-sass'
 
 group :production do
   gem 'newrelic_rpm'

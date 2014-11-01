@@ -12,6 +12,8 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require paloma
+#= require bootstrap
 #= require bootstrap-tour
 #= require tour-steps
 #= require post

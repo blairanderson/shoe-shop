@@ -15,10 +15,4 @@ describe Image do
     end
   end
 
-  describe '#thumbnail' do
-    it 'should crop to 120' do
-      target = image.url + "/convert?rotate=exif&w=100&h=100&fit=crop"
-      expect(image.thumbnail).to eq target
-    end
-  end
 end

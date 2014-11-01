@@ -1,7 +1,7 @@
 <%= simple_form_for(@post) do |f| %>
   <%= f.input :title %>
-  <%= f.association :size, collection: Size.all, prompt: "Choose a Size" %>
   <%= f.input :price, as: :tel %>
+  <%= f.association :size, collection: Size.sort(name: :desc).all, prompt: "Choose a Size" %>
   <%= f.input :body %>
-  <%= f.submit :submit, class: "btn btn-inverse" %>
+  <%= f.button :submit, class: "btn btn-inverse" %>
 <% end %>
