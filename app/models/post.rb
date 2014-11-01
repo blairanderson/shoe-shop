@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   is_impressionable counter_cache: true
   acts_as_votable
-  max_paginates_per 25
+  max_paginates_per 28
 
   def update_scoreboard
     board = {created_at: created_at,votes_up: cached_votes_up,votes_down: cached_votes_down}
