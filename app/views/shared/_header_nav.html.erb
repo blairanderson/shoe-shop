@@ -13,14 +13,14 @@
       <% end %>
     </div>
 
-    <%= simple_form_for :search, method: :get, url: posts_path, html: {class: "navbar-form navbar-left"} do |f| %>
-      <div class="form-group">
-        <%= f.search_field :query, placeholder: "search... BETA", class: "form-control" %>
-      </div>
-    <% end %>
-
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="current-user-nav">
+
+      <%= simple_form_for :search, method: :get, url: posts_path, html: {class: "navbar-form navbar-left"} do |f| %>
+        <div class="form-group">
+          <%= f.search_field :query, placeholder: "search... BETA", class: "form-control" %>
+        </div>
+      <% end %>
       <ul class="nav navbar-nav navbar-right">
 
         <% if current_user %>
