@@ -1,11 +1,18 @@
 <% if post_owner? %>
-  <%= link_to "Edit Post", edit_post_path(@post), class: "btn btn-inverse" %>
-  <%= link_to "Add Image", new_post_image_path(@post), class: "btn btn-inverse", id: "submit_photo" %>
-  <%= link_to t('post.delete'),
-              post_path(@post, post: {status_enum: Post.statuses[:deleted]}),
-              method: :patch,
-              data: {confirm: "Please confirm you want to stop listing these on SolesOut"},
-              class: "btn btn-danger pull-right" %>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= link_to "Edit Post", edit_post_path(@post), class: "btn btn-default" %>
+      <%= link_to "Add Image", new_post_image_path(@post), class: "btn btn-default", id: "trigger-filepicker" %>
+      <%= link_to t('post.delete'),
+                  post_path(@post, post: {status_enum: Post.statuses[:deleted]}),
+                  method: :patch,
+                  data: {confirm: "Please confirm you want to stop listing these on SolesOut"},
+                  class: "btn btn-danger pull-right" %>
+
+    </div>
+
+  </div>
+
 
   <div class="status-update">
     <strong>Current Status:</strong>
@@ -16,8 +23,7 @@
   </div>
 
   <script type="text/javascript">
-    $(document).on('click', 'a#submit_photo', function (e) {
-      e.preventDefault();
+    var pick = function () {
       filepicker.pick(function (FPFile) {
         console.log(JSON.stringify(FPFile));
         $.ajax({
@@ -30,7 +36,16 @@
         });
         return false;
       });
+    };
+    $(document).on('click', 'a#trigger-filepicker', function (e) {
+      e.preventDefault();
+      pick()
     });
+    $(document).ready(function (e) {
+      if (!$('.post-image').length) {
+        pick()
+      }
+    })
   </script>
 <% end %>
 

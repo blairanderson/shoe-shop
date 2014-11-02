@@ -77,12 +77,12 @@ describe Post do
 
       it 'when "for_sale" it should return :for_sale and :sold' do 
         post.status = :for_sale
-        expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:for_sale, :sold)
+        expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:draft, :sold)
       end
 
       it 'when "sold" it should return :sold and :for_sale' do
         post.status = :sold
-        expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:sold, :for_sale)
+        expect(post.valid_statuses).to eq Post.statuses.dup.extract!(:draft, :for_sale)
       end
 
       it 'when "deleted" it should return :deleted' do

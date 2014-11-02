@@ -1,17 +1,15 @@
 <% content_for :title, post_title(@post).to_s %>
 
 <div class="row-fluid">
-  <div>
-    <%= render partial: 'post_owner_actions' %>
-  </div>
   <% if @post.images.count > 0 %>
     <div class="col-sm-8 col-xs-12 well">
-        <%= render partial: 'image', collection: @post.images, locals: {p_id: @post.user_id} %>
-
+        <%= render partial: 'image', collection: @post.images %>
     </div>
   <% end %>
-  <%= content_tag :div, class: "col-xs-12 well #{@post.images_count > 0 ? 'col-sm-4' : 'col-sm-12'}" do %>
-
+  <%= content_tag :div, class: 'col-xs-12 col-sm-4 well' do %>
+    <div>
+      <%= render partial: 'post_owner_actions' %>
+    </div>
     <p><strong>Price:</strong><%= number_to_currency(@post.price, precision: 0) %></p>
     <h2><%= @post.title %></h2>
     <dl>

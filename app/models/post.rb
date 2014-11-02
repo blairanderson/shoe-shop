@@ -89,9 +89,9 @@ class Post < ActiveRecord::Base
       when :deleted
         statuses.extract!(:deleted)
       when :sold
-        statuses.extract!(:sold, :for_sale)
+        statuses.extract!(:draft, :for_sale)
       when :for_sale
-        statuses.extract!(:for_sale, :sold)
+        statuses.extract!(:draft, :sold)
     end
   end
 

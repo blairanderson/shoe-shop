@@ -1,11 +1,10 @@
 <div class="row">
-  <%= link_to image, class: "thumbnail" do %>
-    <%= image_tag image.url_size(900), class: "img-rounded img-responsive" %>
+  <%= link_to image do %>
+    <%= image_tag image.url_size(900), class: 'img-rounded img-responsive post-image' %>
   <% end %>
   <% if post_owner?  %>
-    <%= link_to "delete?", image_path(image), method: :delete,data: {confirm: "Are you Sure?"}, class: "btn btn-danger btn-block" %>
-  <% end %>
-  <% if current_admin %>
-    <%= link_to "admin delete?", image_path(image), method: :delete,data: {confirm: "Are you Sure?"}, class: "btn btn-danger btn-block" %>
+    <%= link_to 'delete?', image_path(image), method: :delete,data: {confirm: 'Are you Sure?'}, class: "btn btn-danger btn-block" %>
+  <% elsif current_admin %>
+    <%= link_to 'admin delete?', image_path(image), method: :delete,data: {confirm: 'Are you Sure?'}, class: "btn btn-danger btn-block" %>
   <% end %>
 </div>
