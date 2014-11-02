@@ -5,9 +5,10 @@ class PostsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:callback]
 
   after_action :impression, only: [:show]
+
   def show
     @images = @post.images
-    @profile = ProfilePresenter.new(@post.user)
+    @post.update(status_enum: Post.statuses[:draft]) if @post.images.count < 1
   end
 
   def impression
@@ -46,11 +47,11 @@ class PostsController < ApplicationController
 
   def callback_params
     params.permit(
-      :payment_date, :payment_type, :payment_status, :payer_status, :payer_id, :payer_email, :payment_fee, :payment_gross,
-      :handling_amount, :shipping, :first_name, :last_name ,
-      :address_name, :address_status, :address_street, :address_city, :address_state, :address_zip, :address_country_code, :address_country,
-      :transaction_subject, :receiver_email, :receiver_id, :business, :protection_eligibility,
-      :verify_sign, :ipn_track_id, :txn_id, :txn_type, :residence_country)
+        :payment_date, :payment_type, :payment_status, :payer_status, :payer_id, :payer_email, :payment_fee, :payment_gross,
+        :handling_amount, :shipping, :first_name, :last_name,
+        :address_name, :address_status, :address_street, :address_city, :address_state, :address_zip, :address_country_code, :address_country,
+        :transaction_subject, :receiver_email, :receiver_id, :business, :protection_eligibility,
+        :verify_sign, :ipn_track_id, :txn_id, :txn_type, :residence_country)
   end
 
   def create
@@ -81,7 +82,7 @@ class PostsController < ApplicationController
     redirect_to posts_url, notice: 'Post was successfully destroyed.'
   end
 
-private
+  private
   def set_post
     @post = Post.find(params[:id])
   end

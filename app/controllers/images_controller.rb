@@ -28,14 +28,7 @@ class ImagesController < ApplicationController
 
   def destroy
     @image.destroy
-    messages = "Photo Deleted"
-    post = @image.post
-    post.reload
-    if post.images_count < 1
-      post.update(status_enum: Post.statuses[:draft])
-      messages += ", Status flipped to Draft. Must have images to be active"
-    end
-    redirect_to post_path(post), notice: messages
+    redirect_to post_path(@image.post), notice: "Photo Deleted"
   end
 
   private

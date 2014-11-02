@@ -68,13 +68,6 @@ describe 'posting' do
         expect( page ).to have_content "Displaying 1 post"
         expect( Post.count ).to eq 1
       end
-
-      and_by "removing the image, should remove the post" do
-        Post.first.images.destroy_all
-        visit root_path
-        expect( page ).to have_content "No posts found"
-        expect( Post.count ).to eq 1
-      end
     end
   end
 
