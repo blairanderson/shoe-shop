@@ -1,19 +1,36 @@
 <% if post_owner? %>
   <%= link_to "Edit Post", edit_post_path(@post), class: "btn btn-inverse" %>
+  <%= link_to "Add Image", new_post_image_path(@post), class: "btn btn-inverse", id: "submit_photo" %>
+  <%= link_to t('post.delete'),
+              post_path(@post, post: {status_enum: Post.statuses[:deleted]}),
+              method: :patch,
+              data: {confirm: "Please confirm you want to stop listing these on SolesOut"},
+              class: "btn btn-danger pull-right" %>
 
-  <%= render partial: 'shared/filepicker' %>
-
-  <%= link_to post_path(@post, post: {status_enum: Post.statuses[:deleted]}), method: :patch, data: {confirm: "Please confirm you want to stop listing these on SolesOut"}, class: "btn edit-add btn-danger pull-right" do %>
-    <%= t('post.delete') %>
-  <% end %>
-  
   <div class="status-update">
     <strong>Current Status:</strong>
     <%= simple_form_for @post do |f| %>
-      <%= f.input :status_enum, collection: @post.valid_statuses, label_method: lambda {|key| key[0].to_s.titleize }, prompt: @post.status, required: false, label:false  %>
+      <%= f.input :status_enum, collection: @post.valid_statuses, label_method: lambda { |key| key[0].to_s.titleize }, prompt: @post.status, required: false, label: false %>
       <%= f.submit class: "btn btn-inverse" %>
     <% end %>
   </div>
-  
+
+  <script type="text/javascript">
+    $(document).on('click', 'a#submit_photo', function (e) {
+      e.preventDefault();
+      filepicker.pick(function (FPFile) {
+        console.log(JSON.stringify(FPFile));
+        $.ajax({
+          type: "POST",
+          url: '<%= post_images_path(@post) %>',
+          data: { image: { url: FPFile.url } },
+          dataType: "JSON"
+        }).success(function (json) {
+          window.location.reload();
+        });
+        return false;
+      });
+    });
+  </script>
 <% end %>
 
