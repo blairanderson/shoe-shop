@@ -2,15 +2,15 @@ $(document).on "ajax:success", "a.upvote", (e, data, status, xhr) ->
   score = data.cached_votes_score
   $(this).parent().find('a.score').text(score)
   $item = $(this).parents('.list-group-item')
-  # $item.toggle('highlight')
-  # $item.toggle('highlight')
+# $item.toggle('highlight')
+# $item.toggle('highlight')
 
 $(document).on "ajax:success", "a.downvote", (e, data, status, xhr) ->
   score = data.cached_votes_score
   $(this).parent().find('a.score').text(score)
   $item = $(this).parents('.list-group-item')
-  # $item.toggle('highlight')
-  # $item.toggle('highlight')
+# $item.toggle('highlight')
+# $item.toggle('highlight')
 
 
 PostsController = Paloma.controller('Posts');
@@ -31,4 +31,16 @@ PostsController.prototype.new = ->
     update_title()
   $(document).on 'change', '#post_size_id', (e) ->
     update_title()
+
+
+PostsController.prototype.show = ->
+  delay = 500
+  remove = ->
+    $('style#paypal-button').remove()
+    $('button.paypal-button').text("Buy Now with Paypal")
+    delay = delay * 2.5
+    setTimeout(remove, delay)
+
+  $(document).ready ->
+    remove()
 

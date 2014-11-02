@@ -24,7 +24,7 @@ private
 
   def prepare_default_filter
     @posts_filter = session[:posts_filter] || :active
-    @posts_relation = Post.send(@posts_filter)
+    @posts_relation = Post.active.send(@posts_filter)
   end
 
   def filter_params

@@ -31,8 +31,6 @@
     *[data-role=next],
     *[data-role=end]{
       cursor: pointer;
-      @extend .icon-white;
-      @extend .icon-fast-forward;
       &.disabled {
         cursor: default;
       }

@@ -21,35 +21,46 @@
   color: rgb(73, 79, 89);
 }
 
-
-.descriptors {
-  border: 1px solid #cccccc;
-  padding: 10px;
-  div {
-    margin-bottom: 10px;
-  }
-}
-
 .well {
-  h1 {
-    text-align: center;
-  }
   background-color: #ffffff;
 }
 
-.lead {
-  font-size: inherit !important;
+button.paypal-button {
+  box-shadow: rgb(117, 173, 94) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.0980392) 0px 1px 1px 0px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  display: block;
+  height: 35px;
+  min-height: 0px;
+  text-shadow: rgba(0, 0, 0, 0.2) 0px -1px 0px;
+  vertical-align: middle;
+  width: 230px;
+  perspective-origin: 115px 17.5px;
+  transform-origin: 115px 17.5px;
+  background: rgb(192, 192, 192) linear-gradient(rgb(117, 173, 94), rgb(99, 155, 78)) repeat scroll 0% 0% / auto padding-box border-box;
+  border: 1px solid rgb(88, 132, 70);
+  border-radius: 3px ;
+  font: normal normal bold normal 14px/28px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  outline: rgb(255, 255, 255) none 0px;
+  padding: 0px 13px;
 }
 
 
-.about-item {
-  width: 100%;
+span.price {
+  color: rgb(56, 61, 72);
+  height: 25px;
+  width: 230px;
+  perspective-origin: 115px 17px;
+  transform-origin: 115px 17px;
+  border: 0px none rgb(56, 61, 72);
+  font: normal normal bold normal 20px/normal 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  list-style: none outside none;
+  outline: rgb(56, 61, 72) none 0px;
+  padding: 3px 0px 6px;
 }
 
-.edit-add {
-  background-image: none;
-  border: 0px;
-  padding: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-}
+
+
+
+
+
