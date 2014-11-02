@@ -3,7 +3,9 @@ class FiltersController < ApplicationController
   before_action :prepare_default_filter, only: [:index]
 
   def index
-    @posts = @posts_relation.filter(@filter).sort(@sort).includes(:user, :size, :images).page(params[:page])
+    status = session[:post_status_filter] || :active
+    @posts = Post.send(status)
+            .filter(@filter).sort(@sort).includes(:user, :size, :images).page(params[:page])
   end
 
   def sold
@@ -22,10 +24,6 @@ class FiltersController < ApplicationController
 
 private
 
-  def prepare_default_filter
-    @posts_filter = session[:posts_filter] || :active
-    @posts_relation = Post.active.send(@posts_filter)
-  end
 
   def filter_params
     params.permit(:filter, :sort)[:filter]

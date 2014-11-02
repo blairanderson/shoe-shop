@@ -1,6 +1,6 @@
 <% content_for :title, post_title(@post).to_s %>
 
-<div class="row">
+<div class="row-fluid">
   <div class="col-sm-8 col-xs-12 well">
     <div class="col-xs-12">
       <h2><%= @post.title %></h2>
@@ -32,12 +32,13 @@
         <%= render partial: 'post_owner_actions' %>
         <ul>
           <li>Seller: <%= link_to @post.user.username, user_path(@post.user) %></li>
-          <li>Views: <%= @post.impressions_count %></li>
+          <% if @post.impressions_count > 15 %>
+            <li>Views: <%= @post.impressions_count %></li>
+          <% end %>
           <li>Status: <%= @post.status %></li>
         </ul>
       </div>
     </div>
-
 
 
     <div class="col-xs-12">
@@ -51,11 +52,13 @@
           <div class="list-group-item">
             <% if current_user %>
               <h3 class="list-group-item-heading">Submit a Comment</h3>
+
               <%= simple_form_for [@post, @post.comments.build(post_id: @post.id)] do |f| %>
                 <%= f.input :body, input_html: {rows: 6}, label: false %>
                 <br>
                 <%= f.submit :submit, class: 'btn btn-inverse' %>
               <% end %>
+
             <% else %>
               <%= link_to "Login to Comment", login_path %>
             <% end %>
