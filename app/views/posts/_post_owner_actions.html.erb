@@ -1,8 +1,5 @@
-<% if current_user && current_user.id == @post.user_id %>
-  <%= link_to edit_post_path(@post), class: "btn btn-inverse edit-add" do %>
-    <i class="icon-edit icon-white"></i>
-    Edit Post
-  <% end %>
+<% if post_owner? %>
+  <%= link_to "Edit Post", edit_post_path(@post), class: "btn btn-inverse" %>
 
   <%= render partial: 'shared/filepicker' %>
 

@@ -2,7 +2,7 @@
   <div class="left-panel">
 
     <div class="snapshot">
-      <% if post.images_count > 0 %>
+      <% if post.images.count > 0 %>
         <%= image_tag post.images.first.url_size(100) , class: 'img-rounded' %>
       <% else %>
         <%= image_tag "http://placehold.it/100x100", class: 'img-rounded' %>
