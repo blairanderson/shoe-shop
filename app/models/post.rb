@@ -41,7 +41,7 @@ class Post < ActiveRecord::Base
 
   def set_default_enum
     if status.nil?
-      self.status = :for_sale
+      self.status = :draft
     end
   end
 
@@ -96,7 +96,9 @@ class Post < ActiveRecord::Base
   end
 
   def send_notifications
-    service = TCO.new
-    service.post_update(self)
+    if Rails.env.production?
+      service = TCO.new
+      service.post_update(self)
+    end
   end
 end

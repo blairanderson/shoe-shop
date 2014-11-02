@@ -28,13 +28,11 @@ class PostsController < ApplicationController
 
   def upvote
     @post.liked_by current_user
-    @post.update_scoreboard
     render json: @post.to_json
   end
 
   def downvote
     @post.downvote_from current_user
-    @post.update_scoreboard
     render json: @post.to_json
   end
 
@@ -57,11 +55,10 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-
+    @post.status_enum = 0
     if @post.save
-      @post.liked_by current_user
       @post.send_notifications
-      redirect_to @post, notice: 'Post was successfully created. Add images for more upvotes!'
+      redirect_to post_path(@post), notice: 'Post was successfully created. Add Images!'
     else
       render action: 'new'
     end

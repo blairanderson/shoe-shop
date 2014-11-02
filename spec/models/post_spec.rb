@@ -36,10 +36,9 @@ describe Post do
   describe 'scopes' do 
     describe '.active' do
       it 'should only return posts where visible is true' do
-        5.times { FactoryGirl.create(:post, :for_sale) }
+        FactoryGirl.create_list!(:post, 5, :for_sale)
         Post.active.each do |post|
           expect(post.status).to eq :for_sale
-          expect(post.images_count).to be > 0
         end
       end
     end

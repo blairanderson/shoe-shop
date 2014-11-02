@@ -19,7 +19,8 @@ update_title = ->
   $expected_title = $("#expected-post-title")
   price = $('#post_price').val()
   title = $('#post_title').val()
-  size = $('#post_size_id').val()
+  size = window.SIZES[$('#post_size_id').val()]
+
   $expected_title.text("#{title} (size: #{size}) $#{price} SHIPPED")
 
 

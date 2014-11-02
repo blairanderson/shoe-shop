@@ -1,7 +1,16 @@
+<% sizes = Size.all %>
 <%= simple_form_for(@post) do |f| %>
   <%= f.input :title %>
   <%= f.input :price, as: :tel %>
-  <%= f.association :size, collection: Size.order(name: :desc).load, prompt: "Choose a Size" %>
+  <%= f.association :size, collection: sizes, prompt: "Choose a Size" %>
   <%= f.input :body %>
   <%= f.button :submit, class: "btn btn-inverse" %>
 <% end %>
+
+
+<script>
+  window.SIZES = {};
+  <% sizes.each do |size| %>
+    window.SIZES["<%= size.id %>"] = "<%= size.name %>"
+  <% end %>
+</script>
