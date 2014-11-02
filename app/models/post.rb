@@ -82,17 +82,7 @@ class Post < ActiveRecord::Base
   end
 
   def valid_statuses
-    statuses = Post.statuses.dup
-    case status
-      when :draft
-        statuses.extract!(:for_sale, :deleted)
-      when :deleted
-        statuses.extract!(:deleted)
-      when :sold
-        statuses.extract!(:draft, :for_sale)
-      when :for_sale
-        statuses.extract!(:draft, :sold)
-    end
+    Post.statuses.dup
   end
 
   def send_notifications

@@ -8,16 +8,20 @@
                   method: :patch,
                   data: {confirm: "Please confirm you want to stop listing these on SolesOut"},
                   class: "btn btn-danger pull-right" %>
-
     </div>
-
   </div>
 
 
   <div class="status-update">
     <strong>Current Status:</strong>
     <%= simple_form_for @post do |f| %>
-      <%= f.input :status_enum, collection: @post.valid_statuses, label_method: lambda { |key| key[0].to_s.titleize }, prompt: @post.status, required: false, label: false %>
+      <%= f.input :status_enum,
+                  collection: @post.valid_statuses,
+                  label_method: lambda { |key| key[0].to_s.titleize },
+                  prompt: @post.status,
+                  required: false,
+                  label: false
+      %>
       <%= f.submit class: "btn btn-inverse" %>
     <% end %>
   </div>
@@ -25,7 +29,9 @@
   <script type="text/javascript">
     var pick = function () {
       filepicker.pick(function (FPFile) {
+
         console.log(JSON.stringify(FPFile));
+
         $.ajax({
           type: "POST",
           url: '<%= post_images_path(@post) %>',
@@ -33,19 +39,35 @@
           dataType: "JSON"
         }).success(function (json) {
           window.location.reload();
+
         });
+
         return false;
+
       });
     };
     $(document).on('click', 'a#trigger-filepicker', function (e) {
       e.preventDefault();
       pick()
     });
-    $(document).ready(function (e) {
+
+    $(document).ready(function () {
       if (!$('.post-image').length) {
         pick()
+      } else {
+        var status = "<%= @post.status %>";
+        if (status === "draft") {
+          window.location.href = window.location.origin + window.location.pathname + "#sell-these-shoes"
+        }
       }
-    })
+
+
+    });
   </script>
 <% end %>
 
+<%= render partial: 'elements/modal', locals: {
+  modal_id: "sell-these-shoes",
+  modal_header: "Sell These Shoes!",
+  modal_content: "Great looking kicks. Activate the listing!"
+} %>

@@ -13,14 +13,8 @@
             <%= image_tag "http://placehold.it/65x65", class: 'img-rounded' %>
           <% end %>
         <% end %>
-        <%= content_tag :span do %>
-          <%= link_to '<i class="icon-arrow-up icon-white"></i>'.html_safe, upvote_post_path(post), class: "label label-inverse" %>
-          [<%= post.score %>]
-          <%= link_to '<i class="icon-arrow-down icon-white"></i>'.html_safe, downvote_post_path(post), class: "label" %>
-        <% end %>
         <%= link_to post_title(post), post %>
         Listed by: <%= link_to "#{post.user.username} (#{post.user.score})", user_path(post.user) %>
-        <%= render partial: "watched_items/watched_item", locals: {post: post} %>
       </li>
     <% end %>
   </ul>

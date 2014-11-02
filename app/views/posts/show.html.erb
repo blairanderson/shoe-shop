@@ -1,15 +1,13 @@
 <% content_for :title, post_title(@post).to_s %>
 
-<div class="row-fluid">
-  <% if @post.images.count > 0 %>
-    <div class="col-sm-8 col-xs-12 well">
-        <%= render partial: 'image', collection: @post.images %>
-    </div>
-  <% end %>
-  <%= content_tag :div, class: 'col-xs-12 col-sm-4 well' do %>
-    <div>
-      <%= render partial: 'post_owner_actions' %>
-    </div>
+<div class="row">
+  <div class="col-sm-8 col-xs-12 well">
+    <% if @post.images.count > 0 %>
+      <%= render partial: 'image', collection: @post.images %>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-sm-4 well">
+
     <p><strong>Price:</strong><%= number_to_currency(@post.price, precision: 0) %></p>
     <h2><%= @post.title %></h2>
     <dl>
@@ -24,6 +22,7 @@
       <dt>Status</dt>
       <dd><%= @post.status %></dd>
     </dl>
+    <%= render partial: 'post_owner_actions' %>
     <table class="table about-item">
       <tr>
         <td>
@@ -50,8 +49,7 @@
         <% end %>
       </div>
     </div>
-  <% end %>
-
+  </div>
 </div>
 
 <!-- facebook meta -->

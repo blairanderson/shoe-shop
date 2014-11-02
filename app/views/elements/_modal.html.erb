@@ -1,0 +1,20 @@
+<section class="semantic-content" id="<%= modal_id %>" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+  <div class="modal-inner">
+    <header id="modal-label">
+      <h1><%= modal_header %></h1>
+    </header>
+    <div class="modal-content">
+      <h2><%= modal_content %></h2>
+      <% if @post %>
+        <%= link_to "Activate Listing",
+                    post_path(@post, post: {status_enum: Post.statuses[:for_sale]}),
+                    method: :patch,
+                    class: "btn btn-primary btn-large" %>
+      <% end %>
+    </div>
+    <footer>
+      <a href="#!" title="Close this modal" data-close="Close" data-dismiss="modal">Close</a>
+    </footer>
+  </div>
+  <a href="#!" class="modal-close" title="Close this modal" data-close="Close" data-dismiss="modal">×</a>
+</section>

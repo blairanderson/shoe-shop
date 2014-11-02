@@ -43,7 +43,9 @@
   </div>
   <ul class="list-group">
     <% @user.posts.removed.each do |p| %>
-      <li class="list-group-item"><%= post_title p %></li>
+      <li class="list-group-item">
+        <%= post_title p %>
+      </li>
     <% end %>
   </ul>
 </div>
