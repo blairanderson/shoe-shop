@@ -11,11 +11,11 @@ ShoeShop::Application.routes.draw do
   end
 
   # POSTS
-  resources :posts, path: "pairs" do
+  resources :posts, path: 'pairs' do
     member do
       post :callback
     end
-    resources :watched_items, path: "watch", only: [:create, :destroy]
+    resources :watched_items, path: 'watch', only: [:create, :destroy]
     resources :comments, shallow: true
     resources :images, shallow: true
     member do
@@ -33,7 +33,7 @@ ShoeShop::Application.routes.draw do
 
   resource :sessions, only: [:new, :create, :destroy]
   resources :users do
-    resources :watched_items, path: "watching", only: [:index]
+    resources :watched_items, path: 'watching', only: [:index]
   end
 
   resource :profile, only: [:show, :update]  do
@@ -57,11 +57,12 @@ ShoeShop::Application.routes.draw do
   get 'contact', to: 'pages#contact'
   get 'tos', to: 'pages#tos'
   get 'privacy_policy', to: 'pages#privacy_policy'
-  get 'facebook', to: redirect("https://facebook.com/solesout")
-  get 'twitter', to: redirect("https://twitter.com/solesout")
+  get 'stats', to: 'pages#stats'
+  get 'facebook', to: redirect('https://facebook.com/solesout')
+  get 'twitter', to: redirect('https://twitter.com/solesout')
 
   match '404' => 'errors#not_found', via: [:get, :post]
   match '422' => 'errors#not_found', via: [:get, :post]
   match '500' => 'errors#error', via: [:get, :post]
-  get ':missing', to: "errors#not_found"
+  get ':missing', to: 'errors#not_found'
 end

@@ -1,0 +1,7 @@
+<% cache("statistics/#{Date.today.to_s}") do %>
+  <% @stats.each do |label, count| %>
+    <p class="alert">
+      <%= label.to_s.titleize %>: <%= count %>
+    </p>
+  <% end %>
+<% end %>

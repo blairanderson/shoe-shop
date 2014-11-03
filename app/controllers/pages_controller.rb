@@ -4,4 +4,8 @@ class PagesController < ApplicationController
     @users = User.all
     @comments = Comment.all
   end
+
+  def stats
+    @stats = Statistics.load
+  end
 end
