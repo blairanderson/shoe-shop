@@ -4,7 +4,7 @@ class Statistics
     {
         posts: stats.posts,
         images: stats.images,
-        user: stats.users,
+        users: stats.users,
         twitter_users: stats.twitter_users,
         dollars_active: stats.dollars_active,
         dollars_sold: stats.dollars_sold

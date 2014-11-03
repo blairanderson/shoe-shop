@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="google-site-verification" content="q6v9pd9XSk1f_V1QSOisUMSGDGY72yHlun_gMKr7_uw"/>
   <%= robots %>
-  <%= stylesheet_link_tag "application", media: "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
 </head>
@@ -20,12 +20,16 @@
 <%= yield %>
 
 <div class='container'>
-  <div class="row-fluid">
-    <div class="span12">
+  <div class="row">
+    <div class="col-xs-12">
       <!-- footer starts here -->
       <footer class="footer">
-        <%= render partial: "shared/footer" %>
-        <%= render partial: "shared/admin_footer" if current_admin %>
+        <%= render partial: 'shared/footer' %>
+        <% if current_admin %>
+          <p class="alert">
+            <%= link_to 'Admin Dashboard', admin_root_path %>
+          </p>
+        <% end %>
       </footer>
       <!-- footer end here -->
     </div>
