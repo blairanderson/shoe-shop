@@ -6,3 +6,20 @@
 img.post-image {
   margin: auto;
 }
+
+img.post-index-image {
+  min-width: 180px;
+  min-height: 180px;
+}
+
+img.transparent {
+  opacity: 0;
+}
+
+img.visible {
+  opacity: 1;
+  -moz-transition: opacity 1s; /* Firefox 4 */
+  -webkit-transition: opacity 1s; /* Safari and Chrome */
+  -o-transition: opacity 1s;
+  transition: opacity 1s;
+}
