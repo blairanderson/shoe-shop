@@ -17,6 +17,4 @@
 #= require bootstrap-tour
 #= require tour-steps
 #= require post
-
-$ ->
-  filepicker.setKey('AoaxmLrr2Tj2EbZv0JS0Mz')
+#= require filter

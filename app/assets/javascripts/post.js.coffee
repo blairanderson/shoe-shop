@@ -41,6 +41,5 @@ PostsController.prototype.show = ->
     delay = delay * 2.5
     setTimeout(remove, delay)
 
-  $(document).ready ->
+  $ ->
     remove()
-
