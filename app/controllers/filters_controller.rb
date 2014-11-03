@@ -1,11 +1,9 @@
 class FiltersController < ApplicationController
   before_action :validate_filter, :validate_sort
-  before_action :prepare_default_filter, only: [:index]
 
   def index
     status = session[:post_status_filter] || :active
-    @posts = Post.send(status)
-            .filter(@filter).sort(@sort).includes(:user, :size, :images).page(params[:page])
+    @posts = Post.send(status).filter(@filter).sort(@sort).includes(:user, :size, :images).page(params[:page])
   end
 
   def sold
