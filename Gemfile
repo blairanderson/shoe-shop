@@ -6,7 +6,7 @@ gem 'rails', '4.0.0'
 gem 'acts_as_votable', '~> 0.6.0' #https://github.com/ryanto/acts_as_votable
 gem 'impressionist'
 # resque http://stackoverflow.com/a/11235919/1536309
-
+gem 'pg'
 gem 'simple_form', '~> 3.0.1'
 gem 'active_model_serializers', '0.8.1'
 gem 'sorcery', '0.8.5'
@@ -33,13 +33,11 @@ gem 'ratchet-sass'
 group :production do
   gem 'newrelic_rpm'
   gem 'unicorn'
-  gem 'pg'
   gem 'rails_12factor'
 end
 
 group :test, :development do
   gem 'figaro'
-  gem 'sqlite3'
   gem 'faker'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'pry-rails'
