@@ -83,7 +83,6 @@ class Post < ActiveRecord::Base
   end
 
   def send_notifications
-    binding.pry
     if for_sale? and Rails.env.production?
       service = TCO.new
       service.post_update(self)
