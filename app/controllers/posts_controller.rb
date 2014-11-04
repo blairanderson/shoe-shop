@@ -33,16 +33,6 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def upvote
-    @post.liked_by current_user
-    render json: @post.to_json
-  end
-
-  def downvote
-    @post.downvote_from current_user
-    render json: @post.to_json
-  end
-
   def callback
     @paypay = @post.build_paypal_callback(callback_params)
     @paypay.response = callback_params

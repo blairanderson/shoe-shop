@@ -18,8 +18,6 @@ describe User do
   describe 'associations' do 
     it { should have_many(:posts).dependent(:destroy) }
     it { should have_many(:comments).dependent(:destroy) }
-    it { should have_many(:watched_items).dependent(:destroy) }
-    it { should have_many(:watched_posts).through(:watched_items) }
     it { should have_one(:keychain).dependent(:destroy) }
     it { should have_many(:blog_posts).dependent(:destroy) }
   end

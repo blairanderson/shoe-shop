@@ -29,8 +29,6 @@ describe Post do
     it { should have_one :paypal_callback }
     it { should have_many(:images).dependent(:destroy)}
     it { should have_many(:comments).dependent(:destroy)}
-    it { should have_many(:watched_items).dependent(:destroy) }
-    it { should have_many(:watchers).through(:watched_items)}
   end
 
   describe 'scopes' do 
