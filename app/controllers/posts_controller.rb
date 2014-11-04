@@ -75,6 +75,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
+      @post.send_notifications
       redirect_to @post, notice: 'Post was successfully updated.'
     else
       render action: 'edit'

@@ -6,8 +6,6 @@ class Post < ActiveRecord::Base
   alias_attribute :score, :cached_votes_score
   alias_attribute :view_count, :impressions_count
 
-  after_update :send_notifications, if: :for_sale?
-
   before_validation :set_default_enum
 
   as_enum :status, [:draft, :for_sale, :sold, :deleted],
@@ -85,7 +83,8 @@ class Post < ActiveRecord::Base
   end
 
   def send_notifications
-    if Rails.env.production?
+    binding.pry
+    if for_sale? and Rails.env.production?
       service = TCO.new
       service.post_update(self)
     end
