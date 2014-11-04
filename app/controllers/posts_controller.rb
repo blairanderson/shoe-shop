@@ -8,6 +8,7 @@ class PostsController < ApplicationController
 
   def show
     @images = @post.images
+    # Flip the post to a draft if it doesn't have images
     @post.update(status_enum: Post.statuses[:draft]) if @post.images.count < 1
   end
 
@@ -16,11 +17,16 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Search.for(params[:search]).page(params[:page])
-    respond_to do |format|
-      format.html { @posts }
-      format.json { render json: @posts }
+    if params[:search] && params[:search][:query].present?
+      @posts = Search.for(params[:search][:query])
+      respond_to do |format|
+        format.html { @posts }
+        format.json { render json: @posts }
+      end
+    else
+      redirect_to root_path
     end
+
   end
 
   def new

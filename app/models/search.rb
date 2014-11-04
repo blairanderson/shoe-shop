@@ -1,12 +1,12 @@
 class Search
-  def self.for(search)
-    search.present? ? find_products( search[:query] ) : all_posts
+  def self.for(query)
+    find_products( query )
   end
 
   def self.find_products(query)
     posts = all_posts
     posts = posts.where("title ILIKE ?", "%#{query}%") if query.present?
-    posts
+    posts.includes(:user, :size, :images).take(28)
   end
 
   def self.all_posts

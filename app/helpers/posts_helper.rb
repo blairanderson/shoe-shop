@@ -9,11 +9,7 @@ module PostsHelper
   end
 
   def search_query
-    if params && params[:search] && params[:search][:query]
-      "Search: #{params[:search][:query]}"
-    else
-      "Search"
-    end
+    params[:search] ? params[:search][:query] : nil
   end
 
   def remote_options

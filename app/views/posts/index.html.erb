@@ -1,15 +1,19 @@
-<% content_for :title, search_query  %>
-<div class="container">
-  <div clas="row-fluid">
-    <%= render partial: "posts/post", collection: @posts %>
-  </div>
-  <div class="row-fluid">
-    <div class="span12">
-      <ul class="pager">
-        <li class="previous"><%= link_to_previous_page @posts, "previous" %></li>
-        <li class="next"><%= link_to_next_page @posts, "next" %></li>
-      </ul>
-      <p class="lead"><%= page_entries_info @posts %></p>
-    </div>
+<% content_for :title, "Search #{search_query}" %>
+
+<div class="container" style="background-color: white">
+  <div class="col-xs-12" style="padding-top: 20px;">
+    <% if search_query %>
+      <h2>Searching: "<%= search_query %>"</h2>
+    <% end %>
+
+    <% @posts.in_groups_of(4, false) do |row_of_posts| %>
+      <div class="row">
+
+        <% row_of_posts.each do |post| %>
+          <%= render partial: "posts/post", object: post %>
+        <% end %>
+
+      </div>
+    <% end %>
   </div>
 </div>
