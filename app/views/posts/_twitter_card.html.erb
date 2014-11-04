@@ -1,24 +1,34 @@
-<meta name="twitter:card" content="product">
-<meta name="twitter:site" content="@solesout">
-<meta name="twitter:creator" content="@solesout">
-<meta name="twitter:title" content="<%= post_title post %>">
-<meta name="twitter:description" content="<%= post.body %>">
-<% if post.images.count > 0 %>
-  <% raw_image_url = raw(post.images.first.url_size(250)) %>
-  <meta name="twitter:image:src" content="<%= raw_image_url %>">
-  <meta name="og:image" content="<%= raw_image_url %>" />
+<% if post.images.count > 1 %>
+  <meta name="twitter:card" content="gallery">
+  <meta name="twitter:site" content="@solesout">
+  <% if post.user.twitter.present? %>
+    <meta name="twitter:creator" content="@<%= post.user.twitter %>">
+  <% else %>
+    <meta name="twitter:creator" content="@solesout">
+  <% end %>
+  <meta name="twitter:title" content="<%= post_title post %>">
+  <meta name="twitter:description" content="<%= post.body %>">
+  <% if post.images.count > 0 %>
+    <% post.images.each_with_index do |image, index| %>
+      <%= tag :meta,
+              content: raw(image.url_size(250)),
+              name: "twitter:image#{index}"
+      %>
+    <% end %>
+  <% end %>
+<% else %>
+  <meta name="twitter:card" content="product">
+  <meta name="twitter:site" content="@solesout">
+  <meta name="twitter:creator" content="@solesout">
+  <meta name="twitter:title" content="<%= post_title post %>">
+  <meta name="twitter:description" content="<%= post.body %>">
+  <% if post.images.count > 0 %>
+    <meta name="twitter:image:src" content="<%= raw(post.images.first.url_size(250)) %>">
+  <% end %>
+  <meta name="twitter:data1" content="<%= number_to_currency(post.price, precision: 0) %>">
+  <meta name="twitter:label1" content="PRICE">
+  <meta name="twitter:data2" content="<%= post.size.name %>">
+  <meta name="twitter:label2" content="SIZE">
+  <meta name="twitter:domain" content="<%= post_url(post) %>">
+
 <% end %>
-<meta name="twitter:data1" content="<%= number_to_currency(post.price, precision: 0) %>">
-<meta name="twitter:label1" content="PRICE">
-<meta name="twitter:data2" content="<%= post.size.name %>">
-<meta name="twitter:label2" content="SIZE">
-<meta name="twitter:domain" content="<%= post_url(post)%>">
-<meta name="twitter:app:name:iphone" content="">
-<meta name="twitter:app:name:ipad" content="">
-<meta name="twitter:app:name:googleplay" content="">
-<meta name="twitter:app:url:iphone" content="">
-<meta name="twitter:app:url:ipad" content="">
-<meta name="twitter:app:url:googleplay" content="">
-<meta name="twitter:app:id:iphone" content="">
-<meta name="twitter:app:id:ipad" content="">
-<meta name="twitter:app:id:googleplay" content="">
