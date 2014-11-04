@@ -51,7 +51,7 @@ end
 
 group :test do
   gem 'simplecov', '~> 0.7.1', :require => false
-  gem 'coveralls', require: false
+  gem 'codeclimate-test-reporter', require: nil
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'capybara'
