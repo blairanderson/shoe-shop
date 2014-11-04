@@ -8,6 +8,7 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
 
 SimpleCov.start do
   add_filter "spec/"
+  add_filter "controllers/"
   add_filter "config/"
   add_filter "app/views"
   add_group "Models", "app/models"
