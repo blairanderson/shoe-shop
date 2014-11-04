@@ -14,6 +14,10 @@ img.post-index-image {
 
 img.transparent {
   opacity: 0;
+  -moz-transition: opacity 1s; /* Firefox 4 */
+  -webkit-transition: opacity 1s; /* Safari and Chrome */
+  -o-transition: opacity 1s;
+  transition: opacity 1s;
 }
 
 img.visible {

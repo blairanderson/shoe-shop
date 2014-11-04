@@ -6,9 +6,11 @@
   <%= link_to post do %>
     <% if post.images.count > 0 %>
       <% if mobile_device? %>
-        <%= image_tag post.images.first.url_size(370), class: 'transparent img-responsive img-rounded'%>
+        <%= image_tag post.images.first.url_size(370), class: 'img-responsive img-rounded'%>
       <% else %>
-        <%= image_tag post.images.first.url_size(215), class: 'post-index-image transparent img-responsive' %>
+        <%= image_tag post.images.first.url_size(215),
+                      onload: 'this.style.opacity=1',
+                      class: 'img-responsive transparent post-index-image ' %>
       <% end %>
     <% end %>
   <% end %>
