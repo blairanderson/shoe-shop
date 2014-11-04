@@ -12,6 +12,19 @@ $(document).on "ajax:success", "a.downvote", (e, data, status, xhr) ->
 # $item.toggle('highlight')
 # $item.toggle('highlight')
 
+$ ->
+  fadeIn = (el) ->
+    $(el).removeClass('transparent').addClass('visible')
+
+  fadeInImages = ->
+    $('img.transparent').each (i, el) ->
+      fadeIn(el)
+
+  setTimeout(fadeInImages,2500)
+
+  $('img.transparent').on 'load', ->
+    fadeIn(this)
+
 
 PostsController = Paloma.controller('Posts');
 
