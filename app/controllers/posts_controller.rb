@@ -58,7 +58,6 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     @post.status_enum = 0
     if @post.save
-      @post.send_notifications
       redirect_to post_path(@post), notice: 'Post was successfully created. Add Images!'
     else
       render action: 'new'
@@ -70,7 +69,6 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      @post.send_notifications
       redirect_to @post, notice: 'Post was successfully updated.'
     else
       render action: 'edit'

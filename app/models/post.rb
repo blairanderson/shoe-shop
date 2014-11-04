@@ -6,6 +6,8 @@ class Post < ActiveRecord::Base
   alias_attribute :score, :cached_votes_score
   alias_attribute :view_count, :impressions_count
 
+  after_update :send_notifications, if: :for_sale?
+
   before_validation :set_default_enum
 
   as_enum :status, [:draft, :for_sale, :sold, :deleted],
@@ -22,9 +24,6 @@ class Post < ActiveRecord::Base
   def for_sale_images_count
     errors.add(:images_count, "Must have images to sell these shoes.") if images.count == 0
   end
-
-
-
 
   belongs_to :user
   validates_associated :user, if: :user_id
