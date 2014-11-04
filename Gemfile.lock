@@ -27,8 +27,6 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
-    acts_as_votable (0.6.0)
-      rails (>= 3.2.11)
     addressable (2.3.5)
     arel (4.0.1)
     atomic (1.1.14)
@@ -120,11 +118,7 @@ GEM
       http_parser.rb
     http_parser.rb (0.6.0)
     httpauth (0.2.0)
-    httpclient (2.3.4.1)
     i18n (0.6.9)
-    impressionist (1.4.13)
-      httpclient (~> 2.2)
-      nokogiri (>= 1.5.0)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -207,7 +201,6 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.12.0)
     rake (10.1.1)
-    ratchet-sass (2.0.2)
     rb-fsevent (0.9.3)
     rb-inotify (0.9.3)
       ffi (>= 0.5.0)
@@ -296,7 +289,6 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (= 0.8.1)
-  acts_as_votable (~> 0.6.0)
   autoprefixer-rails
   better_errors
   binding_of_caller
@@ -314,7 +306,6 @@ DEPENDENCIES
   figaro
   guard
   guard-rspec
-  impressionist
   jquery-rails
   kaminari (= 0.15.0)
   launchy
@@ -327,7 +318,6 @@ DEPENDENCIES
   pry-rails
   rails (= 4.0.0)
   rails_12factor
-  ratchet-sass
   rb-fsevent
   rspec-rails
   sass-rails (~> 4.0.0)
