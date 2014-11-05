@@ -7,7 +7,6 @@
   <%= robots %>
   <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"%>
   <%= stylesheet_link_tag "application", media: "all" %>
-  <%= javascript_include_tag "sidebar" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -18,11 +17,8 @@
 <% end %>
 <div class='container'>
   <div class="row-fluid">
-    <div class="span9">
+    <div class="span12">
       <%= yield %>
-    </div>
-    <div class="span3">
-      <div id="sidebar"></div>
     </div>
   </div>
   <div class="row-fluid">
@@ -30,7 +26,6 @@
       <!-- footer starts here -->
       <footer class="footer">
         <%= render partial: "shared/footer" %>
-        <%= render partial: "shared/admin_footer" if current_admin %>
       </footer>
       <!-- footer end here -->
     </div>
