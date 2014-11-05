@@ -1,6 +1,4 @@
 class Post < ActiveRecord::Base
-  is_impressionable counter_cache: true
-  acts_as_votable
   max_paginates_per 28
 
   alias_attribute :score, :cached_votes_score
@@ -33,8 +31,6 @@ class Post < ActiveRecord::Base
   has_one :paypal_callback
   has_many :images, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :watched_items, dependent: :destroy
-  has_many :watchers, through: :watched_items, source: :user
 
   def set_default_enum
     if status.nil?

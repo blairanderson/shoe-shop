@@ -34,12 +34,10 @@ class ImagesController < ApplicationController
   private
     def set_image
       @image = Image.find(params[:id])
-      #impressionist(@image)
     end
 
     def set_post
       @post = Post.find(params[:post_id])
-      #impressionist(@post)
     end
 
     def image_params

@@ -6,17 +6,17 @@ class Comment < ActiveRecord::Base
   validates_presence_of :post_id
   validates_presence_of :user_id
 
-  after_save :watch_the_post
-  def watch_the_post
-    WatchedItem.where( {post_id: self.post_id,user_id: self.user_id} ).first_or_create
-  end
+  after_save :send_notifications
 
-  after_save :send_notifications 
   def send_notifications
-    service = TCO.new
-    post = self.post
-    post.watchers.where.not(twitter: nil).each do |to|
-      service.comment_update( to, post, self) unless to.id == self.user_id
+    if Rails.env.production?
+      if self.post.user.twitter.present?
+        if self.user_id != post.user_id
+          service = TCO.new
+          service.comment_update(post.user, post, self)
+        end
+      end
     end
   end
+
 end

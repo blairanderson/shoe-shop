@@ -1,9 +1,0 @@
-<span class="">
-  <% if current_user && current_user.watching?(post) %>
-    <%= link_to "Unwatch", post_watched_item_path(post, current_user.watching(post)), method: :delete, class: "btn btn-mini" %>
-  <% else %>
-
-    <%= link_to "Watch", post_watched_items_path(post), method: :post, class: "btn btn-inverse btn-watch btn-mini" %>
-
-  <% end %>
-</span>

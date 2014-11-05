@@ -15,13 +15,8 @@ ShoeShop::Application.routes.draw do
     member do
       post :callback
     end
-    resources :watched_items, path: 'watch', only: [:create, :destroy]
     resources :comments, shallow: true
     resources :images, shallow: true
-    member do
-      get :upvote
-      get :downvote
-    end
   end
   get 'pairs/:sort/:filter', to: 'filters#index', as: 'filters'
   get 'pairs/:sort/:filter/sold', to: 'filters#sold', as: 'sold_filters'
@@ -32,15 +27,8 @@ ShoeShop::Application.routes.draw do
   match 'auth/twitter/callback', to: 'sessions#twitter_auth', via: [:get, :post]
 
   resource :sessions, only: [:new, :create, :destroy]
-  resources :users do
-    resources :watched_items, path: 'watching', only: [:index]
-  end
-
-  resource :profile, only: [:show, :update]  do
-    collection do
-      get :watching, to: 'watched_items#index', as: :watching
-    end
-  end
+  resources :users
+  resource :profile, only: [:show, :update]
 
   resources :password_resets, only: [:create, :edit, :update]
 

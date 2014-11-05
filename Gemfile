@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 
 # gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-gem 'acts_as_votable', '~> 0.6.0' #https://github.com/ryanto/acts_as_votable
-gem 'impressionist'
 # resque http://stackoverflow.com/a/11235919/1536309
 gem 'pg'
 gem 'simple_form', '~> 3.0.1'
@@ -28,7 +26,6 @@ gem 'jquery-rails'
 gem 'paloma'
 gem 'ember-rails'
 gem 'ember-source', '1.3.0' # or the version you need
-gem 'ratchet-sass'
 
 group :production do
   gem 'newrelic_rpm'
