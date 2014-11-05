@@ -38,10 +38,7 @@ ShoeShop::Application.configure do
   end
 
   # EMBER CONFIG
-  config.ember.variant = :development # - Used to determine which Ember variant to use. Valid options: :development, :production.
-  config.ember.app_name = "ShoeShop" # - Used to specify a default application name for all generators.
   # config.ember.ember_path = ""# - Used to specify a default custom root path for all generators.
-  config.handlebars.precompile  = true# - Used to enable or disable precompilation. Default value: true.
   # config.handlebars.templates_root  = '' # - Set the root path (under app/assets/javascripts) for templates to be looked up in. Default value: "templates".
   # config.handlebars.templates_path_separator # - The path separator to use for templates. Default value: '/'.
   # config.handlebars.output_type #

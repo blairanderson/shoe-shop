@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 
 # gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-# resque http://stackoverflow.com/a/11235919/1536309
 gem 'pg'
 gem 'simple_form', '~> 3.0.1'
 gem 'active_model_serializers', '0.8.1'
@@ -24,8 +23,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'paloma'
-gem 'ember-rails'
-gem 'ember-source', '1.3.0' # or the version you need
 
 group :production do
   gem 'newrelic_rpm'
