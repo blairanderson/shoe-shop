@@ -11,22 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219012246) do
+ActiveRecord::Schema.define(version: 20141105033245) do
 
-  create_table "blog_posts", force: true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.text     "content_html"
-    t.text     "content_html_raw"
-    t.integer  "user_id"
-    t.integer  "identifier"
-    t.string   "token"
-    t.text     "images"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "blog_posts", ["identifier"], name: "index_blog_posts_on_identifier"
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "comments", force: true do |t|
     t.integer  "user_id",    null: false
@@ -36,8 +24,8 @@ ActiveRecord::Schema.define(version: 20140219012246) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["post_id"], name: "index_comments_on_post_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "images", force: true do |t|
     t.string   "url"
@@ -47,32 +35,7 @@ ActiveRecord::Schema.define(version: 20140219012246) do
     t.integer  "impressions_count", default: 0
   end
 
-  add_index "images", ["post_id"], name: "index_images_on_post_id"
-
-  create_table "impressions", force: true do |t|
-    t.string   "impressionable_type"
-    t.integer  "impressionable_id"
-    t.integer  "user_id"
-    t.string   "controller_name"
-    t.string   "action_name"
-    t.string   "view_name"
-    t.string   "request_hash"
-    t.string   "ip_address"
-    t.string   "session_hash"
-    t.text     "message"
-    t.text     "referrer"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "impressions", ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index"
-  add_index "impressions", ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index"
-  add_index "impressions", ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index"
-  add_index "impressions", ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index"
-  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index"
-  add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
-  add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
-  add_index "impressions", ["user_id"], name: "index_impressions_on_user_id"
+  add_index "images", ["post_id"], name: "index_images_on_post_id", using: :btree
 
   create_table "keychains", force: true do |t|
     t.string   "api_secret"
@@ -139,14 +102,14 @@ ActiveRecord::Schema.define(version: 20140219012246) do
     t.integer  "scoreboard",         default: 0
   end
 
-  add_index "posts", ["cached_votes_down"], name: "index_posts_on_cached_votes_down"
-  add_index "posts", ["cached_votes_score"], name: "index_posts_on_cached_votes_score"
-  add_index "posts", ["cached_votes_total"], name: "index_posts_on_cached_votes_total"
-  add_index "posts", ["cached_votes_up"], name: "index_posts_on_cached_votes_up"
-  add_index "posts", ["price"], name: "index_posts_on_price"
-  add_index "posts", ["scoreboard"], name: "index_posts_on_scoreboard"
-  add_index "posts", ["status_enum"], name: "index_posts_on_status_enum"
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+  add_index "posts", ["cached_votes_down"], name: "index_posts_on_cached_votes_down", using: :btree
+  add_index "posts", ["cached_votes_score"], name: "index_posts_on_cached_votes_score", using: :btree
+  add_index "posts", ["cached_votes_total"], name: "index_posts_on_cached_votes_total", using: :btree
+  add_index "posts", ["cached_votes_up"], name: "index_posts_on_cached_votes_up", using: :btree
+  add_index "posts", ["price"], name: "index_posts_on_price", using: :btree
+  add_index "posts", ["scoreboard"], name: "index_posts_on_scoreboard", using: :btree
+  add_index "posts", ["status_enum"], name: "index_posts_on_status_enum", where: "(status_enum = 1)", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "sizes", force: true do |t|
     t.string   "name"
@@ -174,32 +137,8 @@ ActiveRecord::Schema.define(version: 20140219012246) do
     t.string   "twitter"
   end
 
-  add_index "users", ["activation_token"], name: "index_users_on_activation_token"
-  add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token"
-
-  create_table "votes", force: true do |t|
-    t.integer  "votable_id"
-    t.string   "votable_type"
-    t.integer  "voter_id"
-    t.string   "voter_type"
-    t.boolean  "vote_flag"
-    t.string   "vote_scope"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
-  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
-
-  create_table "watched_items", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "post_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "watched_items", ["post_id"], name: "index_watched_items_on_post_id"
-  add_index "watched_items", ["user_id"], name: "index_watched_items_on_user_id"
+  add_index "users", ["activation_token"], name: "index_users_on_activation_token", using: :btree
+  add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
 
 end
