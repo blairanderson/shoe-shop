@@ -1,13 +1,39 @@
-<hr>
-<ul class="nav nav-pills">
-  <li><%= link_to "About", about_path %></li>
-  <li><%= link_to "Contact", contact_path %></li>
-  <li><%= link_to "Twitter", twitter_path %></li>
-  <li><%= link_to "Stats", stats_path %></li>
+<div class='container'>
+  <div class="row">
+    <div class="col-xs-12">
+      <!-- footer starts here -->
+      <footer class="footer">
+        <hr/>
+        <ul class="nav nav-pills">
+          <li><%= link_to "About", about_path %></li>
+          <li><%= link_to "Contact", contact_path %></li>
+          <li><%= link_to "Twitter", twitter_path %></li>
+          <li><%= link_to "Stats", stats_path %></li>
 
-  <li class="pull-right">
-    <a href="https://twitter.com/solesout" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @twitter</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-  </li>
+          <li class="pull-right">
+            <a href="https://twitter.com/solesout" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow
+              @twitter</a>
+            <script>!function (d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+              if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = p + '://platform.twitter.com/widgets.js';
+                fjs.parentNode.insertBefore(js, fjs);
+              }
+            }(document, 'script', 'twitter-wjs');</script>
+          </li>
 
-</ul>
+        </ul>
+
+        <% if current_admin %>
+          <p class="alert alert-warning">
+            <%= link_to 'Admin Dashboard', admin_root_path %>
+          </p>
+        <% end %>
+      </footer>
+      <hr/>
+      <!-- footer end here -->
+    </div>
+  </div>
+</div>

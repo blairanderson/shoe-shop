@@ -1,51 +1,52 @@
-<%= render 'edit_email' %>
-<%= render 'edit_password' %>
-<%= header "Shoes and Pairs for #{@user.username}" %>
-<div class="row-fluid">
-  <h4>USERNAME: <strong><%= @user.username %></strong></h4>
-  <% if @user.twitter.present? %>
-    <h4>TWITTER: <%= @user.twitter %> - <%= link_to 'Update', auth_path(:twitter) %></h4>
-  <% else %>
-    <h4><%= link_to t('twitter.link'), auth_path(:twitter) %></h4>
-  <% end %>
-  <h4>EMAIL: <%= @user.email %> - <%= link_to t('user.update.email'), '#edit-email' %></h4>
-  <h4><%= link_to t('user.update.password'), '#edit-password' %></h4>
-</div>
-
-
-<%= render partial: 'users/post', locals: {
-  posts: @user.posts.active,
-  panel: {
-    heading: "Active Posts",
-    class: "panel-primary"
-  }
-} %>
-<hr>
-<%= render partial: 'users/post', locals: {
-  posts: @user.posts.drafted,
-  panel: {
-    heading: "Draft Posts",
-    class: "panel-info"
-  }
-} %>
-<hr>
-<%= render partial: 'users/post', locals: {
-  posts: @user.posts.inactive,
-  panel: {
-    heading: "Pairs Sold",
-    class: "panel-success"
-  }
-} %>
-<hr>
-<div class="panel panel-danger">
-  <div class="panel-heading">
-    <h2>Deleted Pairs</h2>
-  </div>
-  <ul class="list-group">
-    <% @user.posts.removed.each do |p| %>
-      <li class="list-group-item">
-        <%= post_title p %>
-      </li>
+<div class="container">
+  <div class="col-xs-12 col-sm-4">
+    <% if @user.twitter.present? %>
+      <h4>TWITTER: <%= @user.twitter %></h4>
+    <% else %>
+      <h4><%= link_to t('twitter.link'), auth_path(:twitter) %></h4>
     <% end %>
-  </ul>
+    <h4>USERNAME: <strong><%= @user.username %></strong></h4>
+    <h4>EMAIL: <%= @user.email %></h4>
+    <h4><%= link_to t('user.update.password'), edit_user_registration_path %></h4>
+
+  </div>
+
+  <div class="col-xs-12 col-sm-8">
+    <%= render partial: 'users/post', locals: {
+      posts: @user.posts.active,
+      panel: {
+        heading: "Active Posts",
+        class: "panel-primary"
+      }
+    } %>
+    <hr>
+    <%= render partial: 'users/post', locals: {
+      posts: @user.posts.drafted,
+      panel: {
+        heading: "Draft Posts",
+        class: "panel-info"
+      }
+    } %>
+    <hr>
+    <%= render partial: 'users/post', locals: {
+      posts: @user.posts.inactive,
+      panel: {
+        heading: "Pairs Sold",
+        class: "panel-success"
+      }
+    } %>
+    <hr>
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <h2>Deleted Pairs</h2>
+      </div>
+      <ul class="list-group">
+        <% @user.posts.removed.each do |p| %>
+          <li class="list-group-item">
+            <%= post_title p %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>

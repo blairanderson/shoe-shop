@@ -1,10 +1,9 @@
 class ApplicationController < ActionController::Base
+  before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
   rescue_from CurrentOwnerError, with: :user_not_authorized
 
-  before_action :include_popups
-
-  helper_method :current_admin, :post_owner?
+  helper_method :current_admin, :post_owner?, :mobile_device?
 
   def post_owner?
     current_user && @post && current_user.id == @post.user_id
@@ -13,31 +12,25 @@ class ApplicationController < ActionController::Base
   def mobile_device?
     request.user_agent =~ /Mobile|webOS/
   end
-  helper_method :mobile_device?
 
-  def include_popups
-    @notifications = []
-    @notifications << "alert"  if alert
-    @notifications << "notice" if notice
-    if current_user && current_user.keychain.nil?
-      @notifications << "twitter"
-    end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation, :remember_me) }
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
   end
 
-  def redirect_path
-    session[:return_to_url] || login_path
-  end
 
-  def require_login
-    if !logged_in?
-      session[:return_to_url] = request.url if request.get?
-      redirect_to login_path, notice: "Login or Create Account"
-      return
-    end
-  end
+  # TODO create a NOTICE for people to use twitter
+  # before_action :include_popups
+  # def include_popups
+  #   @notifications = []
+  #   if current_user && current_user.keychain.nil?
+  #     @notifications << "twitter"
+  #   end
+  # end
 
   def require_post_ownership
-    unless current_user && current_user.id == @post.user_id
+    unless post_owner?
       redirect_to new_sessions_path, notice: "You are not authorized"
     end
   end
@@ -70,7 +63,7 @@ class ApplicationController < ActionController::Base
     current_user == adminj || current_user == adminb
   end
 
-private
+  private
   def adminj
     User.where(email: ENV['ADMINJ']).first
   end

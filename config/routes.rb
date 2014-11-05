@@ -1,5 +1,16 @@
 ShoeShop::Application.routes.draw do
+  devise_for :users, path_names: {
+      sign_in: "login",
+      sign_out: "logout",
+      sign_up: "register"
+  }
+  devise_scope :user do
+    get :signup, to: "devise/registrations#new"
+    get :login, to: "devise/sessions#new"
+    match :logout, to: "devise/sessions#destroy", via: [:get, :delete]
+  end
   root to: redirect('/pairs/newest/all')
+
   # ADMIN
   namespace :admin do
     root to: :dashboard
@@ -26,15 +37,10 @@ ShoeShop::Application.routes.draw do
   # USERS
   match 'auth/twitter/callback', to: 'sessions#twitter_auth', via: [:get, :post]
 
-  resource :sessions, only: [:new, :create, :destroy]
-  resources :users
+  resources :users, only: [:show]
   resource :profile, only: [:show, :update]
 
-  resources :password_resets, only: [:create, :edit, :update]
-
   get 'sitemap', to: 'pages#sitemap'
-  get 'login', to: 'sessions#new'
-  get 'logout', to: 'sessions#destroy'
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
   get 'tos', to: 'pages#tos'

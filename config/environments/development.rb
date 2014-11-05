@@ -15,6 +15,7 @@ ShoeShop::Application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -36,6 +37,7 @@ ShoeShop::Application.configure do
     Bullet.rails_logger = true
     Bullet.add_footer = false
   end
+
 
   # EMBER CONFIG
   # config.ember.ember_path = ""# - Used to specify a default custom root path for all generators.

@@ -13,5 +13,6 @@ en:
     update: 
       email: "Update Your Email"
       password: "Update Your Password"
+      username: "Update Username"
   post:
     delete: "Delete Listing/Stop Selling"
