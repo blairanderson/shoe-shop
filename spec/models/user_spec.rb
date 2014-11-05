@@ -19,6 +19,5 @@ describe User do
     it { should have_many(:posts).dependent(:destroy) }
     it { should have_many(:comments).dependent(:destroy) }
     it { should have_one(:keychain).dependent(:destroy) }
-    it { should have_many(:blog_posts).dependent(:destroy) }
   end
 end

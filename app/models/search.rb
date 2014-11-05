@@ -6,7 +6,7 @@ class Search
   def self.find_products(query)
     posts = all_posts
     posts = posts.where("title ILIKE ?", "%#{query}%") if query.present?
-    posts.includes(:user, :size, :images).take(28)
+    posts.includes(:user, :images).take(28)
   end
 
   def self.all_posts

@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :blog_posts, dependent: :destroy
   has_one :keychain, dependent: :destroy
 
   def self.to_csv
