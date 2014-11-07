@@ -1,4 +1,4 @@
-ruby '2.1.1'
+ruby '2.1'
 source 'https://rubygems.org'
 
 # gem 'rails', github: 'rails/rails'
@@ -41,6 +41,7 @@ group :development do
   gem 'bullet'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'letter_opener'
 end
 
 group :test do
