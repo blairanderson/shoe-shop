@@ -8,7 +8,7 @@ describe 'posting' do
     visit logout_path
     visit login_path
     expect(page).to have_field "username"
-    fill_in "username", with: user.username
+    fill_in "login", with: user.username
     expect(page).to have_field "password"
     fill_in "password", with: password
     within('#new_user') do

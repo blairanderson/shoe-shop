@@ -12,10 +12,10 @@ describe 'User Auth' do
 
   describe 'valid credentials' do 
     it 'user can login on home screen' do 
-      expect( page ).to have_field "username"
+      expect( page ).to have_field "login"
       expect( page ).to have_field "password"
 
-      fill_in "username", with: valid_user.username
+      fill_in "login", with: valid_user.username
       fill_in "password", with: password
       within('#new_user') do 
         find('input[type="submit"]').click
@@ -26,7 +26,7 @@ describe 'User Auth' do
 
   describe 'invalid credentials' do 
     it 'user cannot login' do 
-      fill_in "username", with: valid_user.username
+      fill_in "login", with: valid_user.username
       fill_in "password", with: password + "654"
       
       within('#new_user') do 

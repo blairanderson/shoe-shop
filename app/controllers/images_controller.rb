@@ -1,19 +1,9 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:show, :destroy]
-  before_action :set_post, only: [:new, :create, :index]
-  before_action :require_post_ownership, only: [:new]
+  before_action :set_post, only: [:create]
+  before_action :set_image, only: [:destroy]
+  before_action :require_post_ownership, only: [:create]
   before_action :require_image_ownership, only: [:destroy]
   
-  def index
-    @images = @post.images
-  end
-
-  def show
-  end
-
-  def new
-    @image = Image.new
-  end
 
   def create
     @image = @post.images.build(image_params)
