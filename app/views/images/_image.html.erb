@@ -1,7 +1,7 @@
 <%= content_tag :meta, property: 'st:image', content: image.url_size(100) do; end %>
 <div class="row-fluid">
   <li class="span12 thumbnail-photo">
-    <%= link_to image, class: "thumbnail" do %>
+    <%= tag :span, class: "thumbnail" do %>
       <%= image_tag image.url_size(600), class: "img-rounded" %>
     <% end %>
     <% if current_user && p_id == current_user.id %>
