@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-12">
       <%= link_to "Edit Post", edit_post_path(@post), class: "btn btn-default" %>
-      <%= link_to "Add Image", new_post_image_path(@post), class: "btn btn-default", id: "trigger-filepicker" %>
+      <a id="trigger-filepicker" class="btn btn-default" href="#filepicker">Add Image</a>
       <%= link_to t('post.delete'),
                   post_path(@post, post: {status_enum: Post.statuses[:deleted]}),
                   method: :patch,
