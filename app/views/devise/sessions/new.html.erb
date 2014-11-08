@@ -8,7 +8,7 @@
 
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-group">
-        <%= f.input :login, required: true, autofocus: true, input_html: {class: "form-control"} %>
+        <%= f.input :login, label: "Email or Username", required: true, autofocus: true, input_html: {class: "form-control"} %>
         <%= f.input :password, required: true, input_html: {class: "form-control"} %>
         <div class="checkbox">
           <label>
