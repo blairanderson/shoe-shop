@@ -16,3 +16,4 @@
 #= require bootstrap
 #= require post
 #= require filter
+#= require jquery.yolobar
