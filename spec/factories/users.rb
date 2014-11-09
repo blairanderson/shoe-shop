@@ -6,6 +6,12 @@ FactoryGirl.define do
     sequence(:email)    { |n| "email+#{n}.#{Faker::Internet.email}" }
     password 'password'
     confirmed_at { Time.now }
+
+    trait :with_posts do
+      after(:create) do |user|
+        user.posts <<  create_list(:post, 2, :for_sale)
+      end
+    end
   end
 
   factory :admin, class: User do

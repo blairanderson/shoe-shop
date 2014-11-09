@@ -6,7 +6,6 @@ describe 'User Auth' do
   let(:email) { "example@example.com" }
   before :each do
     valid_user = FactoryGirl.create(:user, username: username, password: password, email: email)
-
     expect(valid_user).to be_valid
     expect(valid_user).to be_confirmed
     visit login_path

@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      where(conditions).where(["lower(username) = :value OR lower(email) = :value", {:value => login.downcase}]).first
     else
       where(conditions).first
     end
@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_one :keychain, dependent: :destroy
 
-  scope :with_posts, -> { includes(posts: [:size, :user]) }
+  scope :with_posts, -> { joins(:posts).having("count(posts) > 0") }
 
   def self.to_csv
     CSV.generate do |csv|

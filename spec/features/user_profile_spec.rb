@@ -8,14 +8,7 @@ describe "UsersFeatures" do
     FactoryGirl.create(:post, :sold ,user: @user)
     FactoryGirl.create(:post, :deleted ,user: @user)
     visit login_path
-    expect(page).to have_field "user_login"
-    expect(page).to have_field "user_password"
-
-    fill_in "user_login", with: @user.username
-    fill_in "user_password", with: 'password'
-    within '#new_user' do
-      page.find('input[type="submit"]').click
-    end
+    login_user(@user)
   end
   
   it 'can manage their account' do

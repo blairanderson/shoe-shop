@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 private
 
   def set_user
-    @user = User.with_posts.where(id: params[:id]).first
+    @user = User.find(params[:id])
     unless @user
       redirect_to '/pairs/top/all', notice: "User Does Not Exist"
       return
