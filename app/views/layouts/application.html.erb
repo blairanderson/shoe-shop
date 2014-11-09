@@ -12,6 +12,21 @@
 </head>
 <body>
 <%= render partial: 'shared/header_nav' %>
+<% if alert %>
+  <script>
+    $(document).ready(function () {
+      showYolobar("<%= alert %>", "error", {})
+    })
+  </script>
+<% end %>
+<% if notice %>
+  <script>
+    $(document).ready(function () {
+      showYolobar("<%= notice %>", "notice", {})
+    })
+  </script>
+<% end %>
+
 <%= yield %>
 <%= render partial: 'shared/footer' %>
 <%= render partial: 'layouts/analytics' %>

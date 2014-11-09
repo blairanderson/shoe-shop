@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/blairanderson/yolobar.git
-  revision: e6cb20e8f3d18d9f28b4fa04a844f8bee61d63b4
+  revision: 6f6d3944aa71270804c4a3b58881e0e541a33b2b
   specs:
     yolobar (1.0.0)
 

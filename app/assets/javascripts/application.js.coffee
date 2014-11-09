@@ -16,4 +16,5 @@
 #= require bootstrap
 #= require post
 #= require filter
+#= require devise_registrations
 #= require jquery.yolobar

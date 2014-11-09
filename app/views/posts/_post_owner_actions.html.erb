@@ -1,78 +1,75 @@
-<% if post_owner? %>
-  <div class="row">
-    <div class="col-xs-12">
-      <%= link_to "Edit Post", edit_post_path(@post), class: "btn btn-default" %>
-      <a id="trigger-filepicker" class="btn btn-default" href="#filepicker">Add Image</a>
-      <%= link_to t('post.delete'),
-                  post_path(@post, post: {status_enum: Post.statuses[:deleted]}),
-                  method: :patch,
-                  data: {confirm: "Please confirm you want to stop listing these on SolesOut"},
-                  class: "btn btn-danger pull-right" %>
-    </div>
-  </div>
+<a id="trigger-filepicker" class="btn btn-warning btn-block edit-post-action" href="#filepicker">Add Image</a>
 
-
-  <div class="status-update">
-    <strong>Current Status:</strong>
-    <%= simple_form_for @post do |f| %>
-      <%= f.input :status_enum,
-                  collection: @post.valid_statuses,
-                  label_method: lambda { |key| key[0].to_s.titleize },
-                  prompt: @post.status,
-                  required: false,
-                  label: false
-      %>
-      <%= f.submit "Change Status", class: "btn btn-inverse" %>
-    <% end %>
-  </div>
-  <!-- filepicker starts here -->
-  <script type="text/javascript">
-    (function(a){if(window.filepicker){return}var b=a.createElement("script");b.type="text/javascript";b.async=!0;b.src=("https:"===a.location.protocol?"https:":"http:")+"//api.filepicker.io/v1/filepicker.js";var c=a.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c);var d={};d._queue=[];var e="pick,pickMultiple,pickAndStore,read,write,writeUrl,export,convert,store,storeUrl,remove,stat,setKey,constructWidget,makeDropPane".split(",");var f=function(a,b){return function(){b.push([a,arguments])}};for(var g=0;g<e.length;g++){d[e[g]]=f(e[g],d._queue)}window.filepicker=d})(document);
-  </script>
-  <!-- filepicker ends here -->
-  <script type="text/javascript">
-    filepicker.setKey('AoaxmLrr2Tj2EbZv0JS0Mz')
-    var pick = function () {
-      filepicker.pick(function (FPFile) {
-
-        console.log(JSON.stringify(FPFile));
-
-        $.ajax({
-          type: "POST",
-          url: '<%= post_images_path(@post) %>',
-          data: { image: { url: FPFile.url } },
-          dataType: "JSON"
-        }).success(function (json) {
-          window.location.reload();
-
-        });
-
-        return false;
-
-      });
-    };
-    $(document).on('click', 'a#trigger-filepicker', function (e) {
-      e.preventDefault();
-      pick()
-    });
-
-    $(document).ready(function () {
-      if (!$('.post-image').length) {
-        pick()
-      } else {
-        var status = "<%= @post.status %>";
-        if (status === "draft") {
-          window.location.href = window.location.origin + window.location.pathname + "#sell-these-shoes"
-        }
-      }
-
-
-    });
-  </script>
+<% if @post.draft? && @post.images_count>0 %>
+  <%= link_to "Activate the Listing!",
+              post_path(@post, post: {status_enum: Post.statuses[:for_sale]}),
+              method: :patch,
+              class: "btn edit-post-action btn-primary btn-block" %>
 <% end %>
 
-<%= render partial: 'elements/modal', locals: {
-  modal_id: "sell-these-shoes",
-  modal_header: "Sell These Shoes!",
-  modal_content: "Great looking kicks. Activate the listing!"
-} %>
+<% if @post.for_sale? %>
+  <%= link_to t('post.delete'),
+              post_path(@post, post: {status_enum: Post.statuses[:deleted]}),
+              method: :patch,
+              data: {confirm: "Please confirm you want to stop listing these on SolesOut"},
+              class: "btn edit-post-action btn-danger btn-block" %>
+<% end %>
+
+<!-- filepicker starts here -->
+<script type="text/javascript">
+  (function (a) {
+    if (window.filepicker) {
+      return
+    }
+    var b = a.createElement("script");
+    b.type = "text/javascript";
+    b.async = !0;
+    b.src = ("https:" === a.location.protocol ? "https:" : "http:") + "//api.filepicker.io/v1/filepicker.js";
+    var c = a.getElementsByTagName("script")[0];
+    c.parentNode.insertBefore(b, c);
+    var d = {};
+    d._queue = [];
+    var e = "pick,pickMultiple,pickAndStore,read,write,writeUrl,export,convert,store,storeUrl,remove,stat,setKey,constructWidget,makeDropPane".split(",");
+    var f = function (a, b) {
+      return function () {
+        b.push([a, arguments])
+      }
+    };
+    for (var g = 0; g < e.length; g++) {
+      d[e[g]] = f(e[g], d._queue)
+    }
+    window.filepicker = d
+  })(document);
+</script>
+<!-- filepicker ends here -->
+<script type="text/javascript">
+  filepicker.setKey('AoaxmLrr2Tj2EbZv0JS0Mz')
+  var pick = function () {
+    filepicker.pick(function (FPFile) {
+
+      console.log(JSON.stringify(FPFile));
+
+      $.ajax({
+        type: "POST",
+        url: '<%= post_images_path(@post) %>',
+        data: { image: { url: FPFile.url } },
+        dataType: "JSON"
+      }).success(function (json) {
+        window.location.reload();
+      });
+
+      return false;
+
+    });
+  };
+  $(document).on('click', 'a#trigger-filepicker', function (e) {
+    e.preventDefault();
+    pick()
+  });
+
+  $(document).ready(function () {
+    if (!$('.post-image').length) {
+      pick()
+    }
+  });
+</script>

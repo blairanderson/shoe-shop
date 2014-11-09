@@ -8,11 +8,11 @@ describe "UsersFeatures" do
     FactoryGirl.create(:post, :sold ,user: @user)
     FactoryGirl.create(:post, :deleted ,user: @user)
     visit login_path
-    expect(page).to have_field "username"
-    expect(page).to have_field "password"
+    expect(page).to have_field "user_login"
+    expect(page).to have_field "user_password"
 
-    fill_in "username", with: @user.username
-    fill_in "password", with: 'password'
+    fill_in "user_login", with: @user.username
+    fill_in "user_password", with: 'password'
     within '#new_user' do
       page.find('input[type="submit"]').click
     end
@@ -27,16 +27,10 @@ describe "UsersFeatures" do
       expect(page).to have_content @user.username
     end
 
-    and_by "clicking 'update email'" do
-      visit profile_path
-      click_link t('user.update.email')
-      expect(page).to have_content t('user.update.email')
-    end
-    
     and_by "clicking 'update password'" do
       visit profile_path
       click_link t('user.update.password')
-      expect(page).to have_content t('user.update.password')
+      expect(page).to have_content "Edit User"
     end
   end
 end

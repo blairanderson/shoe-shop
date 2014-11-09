@@ -54,7 +54,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     @post.status_enum = 0
     if @post.save
-      redirect_to post_path(@post), notice: 'Post was successfully created. Add Images!'
+      redirect_to edit_post_path(@post.id), notice: 'Post was successfully created. Add Images!'
     else
       render action: 'new'
     end

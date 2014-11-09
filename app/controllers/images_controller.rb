@@ -10,15 +10,14 @@ class ImagesController < ApplicationController
 
     if @image.save
       respond_to do |format|
-        format.json { render :json => @image, :status => :created, :location => @image }
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
+        format.json { render :json => @image, :status => :created }
       end
     end
   end
 
   def destroy
     @image.destroy
-    redirect_to post_path(@image.post), notice: "Photo Deleted"
+    redirect_to edit_post_path(@image.post_id), notice: "Photo Deleted"
   end
 
   private
