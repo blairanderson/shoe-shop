@@ -53,8 +53,5 @@ group :test do
   gem 'capybara'
   gem 'shoulda-matchers', '2.2.0'
 
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'rb-fsevent'  # guard dependency
   gem 'launchy'
 end
