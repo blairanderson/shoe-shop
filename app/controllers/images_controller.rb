@@ -1,34 +1,23 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:show, :destroy]
-  before_action :set_post, only: [:new, :create, :index]
-  before_action :require_post_ownership, only: [:new]
+  before_action :set_post, only: [:create]
+  before_action :set_image, only: [:destroy]
+  before_action :require_post_ownership, only: [:create]
   before_action :require_image_ownership, only: [:destroy]
   
-  def index
-    @images = @post.images
-  end
-
-  def show
-  end
-
-  def new
-    @image = Image.new
-  end
 
   def create
     @image = @post.images.build(image_params)
 
     if @image.save
       respond_to do |format|
-        format.json { render :json => @image, :status => :created, :location => @image }
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
+        format.json { render :json => @image, :status => :created }
       end
     end
   end
 
   def destroy
     @image.destroy
-    redirect_to post_path(@image.post), notice: "Photo Deleted"
+    redirect_to edit_post_path(@image.post_id), notice: "Photo Deleted"
   end
 
   private

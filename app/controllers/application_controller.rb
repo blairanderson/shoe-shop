@@ -1,50 +1,45 @@
 class ApplicationController < ActionController::Base
+  before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
   rescue_from CurrentOwnerError, with: :user_not_authorized
 
-  before_action :include_popups
-
-  helper_method :current_admin, :post_owner?
+  helper_method :current_admin, :post_owner?, :mobile_device?
 
   def post_owner?
     current_user && @post && current_user.id == @post.user_id
   end
 
+  def comment_owner?
+    current_user && @comment && current_user.id == @comment.user_id
+  end
+
+  def image_owner?
+    current_user && @image && current_user.id == @image.post.user_id
+  end
+
   def mobile_device?
     request.user_agent =~ /Mobile|webOS/
   end
-  helper_method :mobile_device?
 
-  def include_popups
-    @notifications = []
-    @notifications << "alert"  if alert
-    @notifications << "notice" if notice
-    if current_user && current_user.keychain.nil?
-      @notifications << "twitter"
-    end
-  end
 
-  def redirect_path
-    session[:return_to_url] || login_path
-  end
-
-  def require_login
-    if !logged_in?
-      session[:return_to_url] = request.url if request.get?
-      redirect_to login_path, notice: "Login or Create Account"
+  def require_comment_ownership
+    unless comment_owner?
+      redirect_to root_path, notice: "You are not authorized"
       return
     end
   end
 
   def require_post_ownership
-    unless current_user && current_user.id == @post.user_id
-      redirect_to new_sessions_path, notice: "You are not authorized"
+    unless post_owner?
+      redirect_to root_path, notice: "You are not authorized"
+      return
     end
   end
 
-  def require_comment_ownership
-    unless current_user && current_user.id == @comment.user_id
-      redirect_to new_sessions_path, notice: "You are not authorized"
+  def require_image_ownership
+    unless image_owner?
+      redirect_to root_path, notice: "You are not authorized"
+      return
     end
   end
 
@@ -60,7 +55,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin
-    unless logged_in? && admin_user?
+    unless current_user && admin_user?
       redirect_to root_path, notice: "Unauthorized Access"
       return
     end
@@ -70,7 +65,13 @@ class ApplicationController < ActionController::Base
     current_user == adminj || current_user == adminb
   end
 
-private
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation, :remember_me) }
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
+  end
+
+  private
   def adminj
     User.where(email: ENV['ADMINJ']).first
   end

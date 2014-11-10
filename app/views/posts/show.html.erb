@@ -1,17 +1,22 @@
 <% content_for :title, post_title(@post).to_s %>
 
-
 <div class="col-sm-8 col-xs-12">
   <div class="col-xs-12">
     <h2><%= @post.title %></h2>
-    <% if @post.images.count > 0 %>
+    <% if @post.images_count > 0 %>
       <%= render partial: 'image', collection: @post.images %>
     <% end %>
   </div>
 </div>
 <div class="col-xs-12 col-sm-4">
   <h2>
-    <small>Shoes</small>
+    <small>
+      Shoes
+      <% if post_owner? %>
+        <em>(<%= link_to "Edit Details", edit_post_path(@post.id) %>)</em>
+      <% end %>
+
+    </small>
   </h2>
   <div class="well">
     <p>
@@ -26,15 +31,14 @@
       <%= render partial: "posts/post/#{@post.status}", locals: {post: @post, user: @post.user} %>
     </div>
   </div>
-  <h3><small>Seller</small></h3>
+  <h3>
+    <small>Seller</small>
+  </h3>
   <div class="well">
-    <%= render partial: 'post_owner_actions' %>
     <ul class="list-unstyled">
       <li>Username: <%= link_to @post.user.username, user_path(@post.user) %></li>
-      <% if @post.impressions_count > 15 %>
-        <li>Views: <%= @post.impressions_count %></li>
-      <% end %>
-      <li>Status: <%= @post.status %></li>
+      <li>Views: <%= @post.impressions_count %></li>
+      <li>Status: <%= @post.status.to_s.titleize %></li>
     </ul>
   </div>
   <div class="well">
@@ -68,7 +72,7 @@
   type: 'pair',
   info: @post.body,
   published_at: @post.created_at,
-  popularity: @post.cached_votes_score,
+  popularity: @post.view_count,
   id: @post.id,
 } %>
 <!--end facebook meta-->

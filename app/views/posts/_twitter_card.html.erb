@@ -1,4 +1,4 @@
-<% if post.images.count > 1 %>
+<% if post.images_count > 1 %>
   <meta name="twitter:card" content="gallery">
   <meta name="twitter:site" content="@solesout">
   <% if post.user.twitter.present? %>
@@ -8,7 +8,7 @@
   <% end %>
   <meta name="twitter:title" content="<%= post_title post %>">
   <meta name="twitter:description" content="<%= post.body %>">
-  <% if post.images.count > 0 %>
+  <% if post.images_count > 0 %>
     <% post.images.each_with_index do |image, index| %>
       <%= tag :meta,
               content: raw(image.url_size(250)),
@@ -22,7 +22,7 @@
   <meta name="twitter:creator" content="@solesout">
   <meta name="twitter:title" content="<%= post_title post %>">
   <meta name="twitter:description" content="<%= post.body %>">
-  <% if post.images.count > 0 %>
+  <% if post.images_count > 0 %>
     <meta name="twitter:image:src" content="<%= raw(post.images.first.url_size(250)) %>">
   <% end %>
   <meta name="twitter:data1" content="<%= number_to_currency(post.price, precision: 0) %>">
@@ -30,5 +30,4 @@
   <meta name="twitter:data2" content="<%= post.size.name %>">
   <meta name="twitter:label2" content="SIZE">
   <meta name="twitter:domain" content="<%= post_url(post) %>">
-
 <% end %>

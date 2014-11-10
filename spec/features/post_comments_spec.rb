@@ -8,9 +8,7 @@ describe 'Commenting on a Post' do
 
     before :each do 
       visit root_path
-      login_user_post(another_user)
-      visit root_path
-      expect(page).to have_content "Login successful."
+      login_user(another_user)
     end
 
     it 'should be able to submit a comment' do

@@ -4,18 +4,6 @@ describe 'posting' do
   let(:valid_user) { FactoryGirl.create(:user) }
   let(:post) { FactoryGirl.create(:post, :for_sale, user: valid_user) }
 
-  def login(user, password = "password")
-    visit logout_path
-    visit login_path
-    expect(page).to have_field "username"
-    fill_in "username", with: user.username
-    expect(page).to have_field "password"
-    fill_in "password", with: password
-    within('#new_user') do
-      find('input[type="submit"]').click
-    end
-  end
-
   def create_valid_post
     visit new_post_path
     expect(current_path).to eq new_post_path
@@ -31,7 +19,6 @@ describe 'posting' do
 
     expect(page).to have_field 'post_body'
     fill_in 'post_body', with: "These are the slickest jordans around"
-    Post.any_instance.stub(:send_notifications).and_return(true)
     page.find("[type='submit']").click
   end
 
@@ -45,12 +32,11 @@ describe 'posting' do
       expect( post.user.id ).to eq valid_user.id
 
       next_valid_user = FactoryGirl.create(:user)
-      login(next_valid_user)
+      login_user(next_valid_user)
       expect(page).to have_content "Logout"
 
       visit edit_post_path(post)
-      expect( current_path ).to eq new_sessions_path
-      expect( page ).to have_content "You are not authorized"
+      expect( current_path ).to eq "/pairs/newest/all"
     end
 
     it 'should not see posts without images' do
@@ -59,12 +45,8 @@ describe 'posting' do
       expect( page ).to have_content "No posts found"
 
       and_by "creating a post with an image" do
-        Post.destroy_all
-        expect(Post.count).to eq 0
-
-        @pair_of_shoes = FactoryGirl.create(:post, :for_sale)
+        FactoryGirl.create(:post, :for_sale)
         visit root_path
-
         expect( page ).to have_content "Displaying 1 post"
         expect( Post.count ).to eq 1
       end
@@ -73,15 +55,13 @@ describe 'posting' do
 
 
   context 'an authenticated user' do
-    describe 'editing images should be able to' do
-      it 'add an image to one of their posts'
-      it 'remove an image from one of their posts'
-      it 'admin can remove images from posts'
+
+    before :each do
+      login_user(valid_user)
     end
 
     describe 'changing post status' do
       it 'should be able to view a post with status' do
-        login(valid_user)
         visit post_path(post)
         expect(post.status_enum).to eq 1
         Post.statuses.each do |_k,v|
@@ -90,6 +70,11 @@ describe 'posting' do
           expect(page).to have_content(post.title)
         end
       end
+    end
+    describe 'editing images should be able to' do
+      it 'add an image to one of their posts'
+      it 'remove an image from one of their posts'
+      it 'admin can remove images from posts'
     end
   end
 
@@ -106,8 +91,8 @@ describe 'posting' do
       end
 
       it 'the registration page' do
-        visit new_user_path
-        expect(current_path).to eq new_user_path
+        visit new_user_registration_path
+        expect(current_path).to eq new_user_registration_path
       end
 
       it 'the about page' do
@@ -123,18 +108,6 @@ describe 'posting' do
       it 'the Privacy Policy' do
         visit privacy_policy_path
         expect(current_path).to eq privacy_policy_path
-      end
-    end
-
-    describe 'should be returned to the home page' do
-      let(:post) { FactoryGirl.create(:post) }
-      it 'after trying to create a post' do
-        visit new_post_path
-        expect(current_path).to eq login_path
-      end
-      it 'after trying to visit the edit page' do
-        visit edit_post_path(post)
-        expect(current_path).to eq login_path
       end
     end
   end

@@ -1,21 +1,29 @@
 class User < ActiveRecord::Base
-  authenticates_with_sorcery!
-  scope :with_posts, -> { includes(posts: [:size, :user]) }
+  # Include default devise modules. Others available are:
+  #  :lockable, :timeoutable and :omniauthable, :trackable,
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :confirmable,
+         :validatable, :authentication_keys => [:login]
 
-  validates_presence_of :username
-  validates_uniqueness_of :username, case_sensitive: false
-  validates_length_of :username, minimum: 5
-  validates_format_of :username, with: /\A[a-z0-9_\-]*\z/i
+  # Virtual attribute for authenticating by either username or email
+  # This is in addition to a real persisted field like 'username'
+  attr_accessor :login
+  validates :username, uniqueness: {case_sensitive: false}
 
-  validates_length_of :password, minimum: 5, if: :password
-  validates_confirmation_of :password
-
-  validates_presence_of :email
-  validates_uniqueness_of :email, case_sensitive: false
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["lower(username) = :value OR lower(email) = :value", {:value => login.downcase}]).first
+    else
+      where(conditions).first
+    end
+  end
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_one :keychain, dependent: :destroy
+
+  scope :with_posts, -> { joins(:posts).having("count(posts) > 0") }
 
   def self.to_csv
     CSV.generate do |csv|

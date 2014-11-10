@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :require_current_owner, only: [:edit, :update]
 
 
@@ -36,12 +36,8 @@ class UsersController < ApplicationController
 
 private
 
-  def require_current_owner
-    Authorization.before(self)
-  end
-
   def set_user
-    @user = User.with_posts.where(id: params[:id]).first
+    @user = User.find(params[:id])
     unless @user
       redirect_to '/pairs/top/all', notice: "User Does Not Exist"
       return

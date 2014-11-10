@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
-  before_action :require_login
+  before_action :authenticate_user!
   before_action :set_post, only: [:create]
   before_action :set_comment, only: [:edit, :update]
-
+  before_action :require_comment_ownership, only: [:edit, :update]
 
   def create
     validate_comment
@@ -22,12 +22,18 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to post_path(@comment.post), notice: "updated"
     else
-      flash.notice = "Please Try Again:)"
+      flash[:notice] = "Please Try Again:)"
       render :edit
     end
   end
 
 private
+
+  def require_comment_ownership
+    unless current_user && current_user.id == @comment.user_id
+      redirect_to root_path, notice: "You are not authorized"
+    end
+  end
 
   def set_comment
     @comment = Comment.find(params[:id])

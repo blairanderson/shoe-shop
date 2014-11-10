@@ -8,8 +8,8 @@ describe CommentsController do
   
   describe 'POST create' do
     it 'should build a comment for a user and a post' do
-      controller.current_user = commenting_user
-      valid_params = { post_id: pair.to_param , comment:{body: Faker::Lorem.sentences(5).join}}
+      sign_in :user, commenting_user
+      valid_params = { post_id: pair.to_param , comment:{ body: Faker::Lorem.sentences(5).join}}
 
       post :create, valid_params
       
@@ -23,9 +23,11 @@ describe CommentsController do
 
   describe 'GET edit' do 
     it 'should be visible to the comment owner' do 
-      controller.current_user = pair.user
+      sign_in :user, pair.user
       comment = pair.comments.create(body: Faker::Lorem.sentences(5).join, user_id: pair.user.id)
+
       get :edit, id: comment.id
+
       expect(response).to be_success
       expect(response).to render_template :edit
       expect( assigns(:comment) ).to eq comment

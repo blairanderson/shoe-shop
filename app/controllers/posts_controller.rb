@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, except: [:new, :create, :index]
-  before_action :require_login, except: [:show, :index, :callback]
+  before_action :authenticate_user!, except: [:show, :index, :callback]
   before_action :require_post_ownership, only: [:edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token, only: [:callback]
 
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     @post.status_enum = 0
     if @post.save
-      redirect_to post_path(@post), notice: 'Post was successfully created. Add Images!'
+      redirect_to edit_post_path(@post.id), notice: 'Post was successfully created. Add Images!'
     else
       render action: 'new'
     end

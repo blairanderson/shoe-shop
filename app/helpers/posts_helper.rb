@@ -13,10 +13,19 @@ module PostsHelper
   end
 
   def remote_options
-    if logged_in?
+    if current_user
       {remote: true, disable_with: 'x'}
     else 
       {}
     end
+  end
+
+  def status_to_class(status)
+    {
+        for_sale: "success",
+        draft: "info",
+        sold: "danger disabled",
+        deleted: "danger"
+    }[status]
   end
 end

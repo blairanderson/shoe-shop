@@ -1,51 +1,47 @@
-<%= render 'edit_email' %>
-<%= render 'edit_password' %>
-<%= header "Shoes and Pairs for #{@user.username}" %>
-<div class="row-fluid">
-  <h4>USERNAME: <strong><%= @user.username %></strong></h4>
-  <% if @user.twitter.present? %>
-    <h4>TWITTER: <%= @user.twitter %> - <%= link_to 'Update', auth_path(:twitter) %></h4>
-  <% else %>
-    <h4><%= link_to t('twitter.link'), auth_path(:twitter) %></h4>
-  <% end %>
-  <h4>EMAIL: <%= @user.email %> - <%= link_to t('user.update.email'), '#edit-email' %></h4>
-  <h4><%= link_to t('user.update.password'), '#edit-password' %></h4>
-</div>
+<div class="container well">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+          <tr>
+            <th>Size</th>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Price</th>
+            <th>View Count</th>
+            <th>Created date</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @user.posts.order(status_enum: :asc).each do |post| %>
+            <tr class="<%= status_to_class(post.status) %>">
+              <td><%= post.size.name %></td>
+              <td><%= image_tag post.images.first.try(:url_size, 100) %></td>
+              <td><%= link_to post.title, post %></td>
+              <td><%= post.status.to_s.titleize %></td>
+              <td><%= link_to number_to_currency(post.price), post %></td>
+              <td><%= post.impressions_count %></td>
+              <td><%= time_ago_in_words post.created_at %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-2">
+      <% if @user.twitter.present? %>
+        <p>TWITTER: <%= @user.twitter %></p>
+      <% else %>
+        <p><%= link_to t('twitter.link'), auth_path(:twitter) %></p>
+      <% end %>
+      <p>USERNAME: <strong><%= @user.username %></strong></p>
 
+      <p>EMAIL: <%= @user.email %></p>
 
-<%= render partial: 'users/post', locals: {
-  posts: @user.posts.active,
-  panel: {
-    heading: "Active Posts",
-    class: "panel-primary"
-  }
-} %>
-<hr>
-<%= render partial: 'users/post', locals: {
-  posts: @user.posts.drafted,
-  panel: {
-    heading: "Draft Posts",
-    class: "panel-info"
-  }
-} %>
-<hr>
-<%= render partial: 'users/post', locals: {
-  posts: @user.posts.inactive,
-  panel: {
-    heading: "Pairs Sold",
-    class: "panel-success"
-  }
-} %>
-<hr>
-<div class="panel panel-danger">
-  <div class="panel-heading">
-    <h2>Deleted Pairs</h2>
+      <p><%= link_to t('user.update.password'), edit_user_registration_path %></p>
+
+    </div>
   </div>
-  <ul class="list-group">
-    <% @user.posts.removed.each do |p| %>
-      <li class="list-group-item">
-        <%= post_title p %>
-      </li>
-    <% end %>
-  </ul>
 </div>

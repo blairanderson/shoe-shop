@@ -12,29 +12,24 @@
 </head>
 <body>
 <%= render partial: 'shared/header_nav' %>
-
-<% if @notifications.present? %>
-  <%= render partial: 'shared/notices_alerts_popups' %>
+<% if alert %>
+  <script>
+    $(document).ready(function () {
+      showYolobar("<%= alert %>", "error", {})
+    })
+  </script>
+<% end %>
+<% if notice %>
+  <script>
+    $(document).ready(function () {
+      showYolobar("<%= notice %>", "notice", {})
+    })
+  </script>
 <% end %>
 
 <%= yield %>
-
-<div class='container'>
-  <div class="row">
-    <div class="col-xs-12">
-      <!-- footer starts here -->
-      <footer class="footer">
-        <%= render partial: 'shared/footer' %>
-        <% if current_admin %>
-          <p class="alert">
-            <%= link_to 'Admin Dashboard', admin_root_path %>
-          </p>
-        <% end %>
-      </footer>
-      <!-- footer end here -->
-    </div>
-  </div>
-</div>
+<%= render partial: 'shared/footer' %>
 <%= render partial: 'layouts/analytics' %>
+<%= yolobars %>
 </body>
 </html>

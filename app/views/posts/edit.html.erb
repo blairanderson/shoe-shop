@@ -1,8 +1,27 @@
-<div class="well">
-<h1>Editing post</h1>
+<div class="container well">
+  <h1>Editing post</h1>
 
-<%= render 'form' %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
+      <%= render 'form' %>
+    </div>
+    <div class="col-xs-12 col-sm-8">
+      <%= render partial: 'post_owner_actions' %>
+    </div>
+  </div>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+  <div class="row">
+    <div class="col-xs-12">
+      <% @post.images.each do |image| %>
+        <div class="row well">
+          <%= image_tag image.url_size(300), class: 'img-rounded img-responsive post-image' %>
+          <% if post_owner? %>
+            <%= link_to 'delete?', image_path(image), method: :delete, data: {confirm: 'Are you Sure?'}, class: "btn btn-danger btn-block" %>
+          <% elsif current_admin %>
+            <%= link_to 'admin delete?', image_path(image), method: :delete, data: {confirm: 'Are you Sure?'}, class: "btn btn-danger btn-block" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

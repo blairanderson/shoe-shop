@@ -4,14 +4,15 @@ source 'https://rubygems.org'
 # gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 gem 'pg'
+gem 'devise'
 gem 'simple_form', '~> 3.0.1'
 gem 'active_model_serializers', '0.8.1'
-gem 'sorcery', '0.8.5'
 gem 'simple_enum', '1.6.8'
 gem 'sendgrid', '1.2.0'
 gem 'kaminari', '0.15.0'
 gem 'nokogiri', '1.6.1'
 gem 'dalli'
+gem 'yolobar', github: "blairanderson/yolobar"
 
 gem 'omniauth', '1.1.4'
 gem 'omniauth-twitter', '1.0.1'
@@ -41,6 +42,7 @@ group :development do
   gem 'bullet'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'letter_opener'
 end
 
 group :test do
@@ -51,8 +53,5 @@ group :test do
   gem 'capybara'
   gem 'shoulda-matchers', '2.2.0'
 
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'rb-fsevent'  # guard dependency
   gem 'launchy'
 end

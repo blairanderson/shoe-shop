@@ -1,16 +1,27 @@
 <% sizes = Size.all %>
 <%= simple_form_for(@post) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :price, as: :tel %>
-  <%= f.association :size, collection: sizes, prompt: "Choose a Size" %>
-  <%= f.input :body %>
-  <%= f.button :submit, class: "btn btn-inverse" %>
+  <div class="form-group">
+    <%= f.association :size, collection: sizes, prompt: "Choose a Size", input_html: {class: "form-control"} %>
+    <%= f.input :price, as: :tel, input_html: {class: "form-control"} %>
+
+    <%= f.input :title, label: "Shoe Name", input_html: {class: "form-control"} %>
+
+    <%= f.input :body, input_html: {class: "form-control"} %>
+  </div>
+
+  <div class="form-group">
+    <% if @post.persisted? %>
+      <%= f.button :submit, class: "btn btn-primary btn-large" %>
+      <% else %>
+      <%= f.button :submit, "Save and Add Images!", class: "btn btn-primary btn-large" %>
+      <% end %>
+  </div>
 <% end %>
 
 
 <script>
   window.SIZES = {};
   <% sizes.each do |size| %>
-    window.SIZES["<%= size.id %>"] = "<%= size.name %>"
+  window.SIZES["<%= size.id %>"] = "<%= size.name %>"
   <% end %>
 </script>

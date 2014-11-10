@@ -24,6 +24,10 @@ $color-3:			#ecf0f1; // Off white
 $color-4: 			#253443; // Even darker Blue
 $color-5:			rgb(225,40,46); // RED
 
+$btn-primary-color: $base-white;
+$btn-primary-bg: lighten($base-ashphalt, 5%);
+$btn-primary-border: lighten($btn-primary-bg,5%);
+
 $brand-primary-blue: $color-1;
 $brand-primary-color: $color-3;
 $brand-primary-red: $color-5;
