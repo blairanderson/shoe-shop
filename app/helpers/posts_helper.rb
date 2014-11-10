@@ -19,4 +19,13 @@ module PostsHelper
       {}
     end
   end
+
+  def status_to_class(status)
+    {
+        for_sale: "success",
+        draft: "info",
+        sold: "danger disabled",
+        deleted: "danger"
+    }[status]
+  end
 end

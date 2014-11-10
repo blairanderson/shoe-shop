@@ -13,8 +13,9 @@
     <small>
       Shoes
       <% if post_owner? %>
-      <em>(<%= link_to "Edit Details", edit_post_path(@post.id) %>)</em>
+        <em>(<%= link_to "Edit Details", edit_post_path(@post.id) %>)</em>
       <% end %>
+
     </small>
   </h2>
   <div class="well">
@@ -36,10 +37,8 @@
   <div class="well">
     <ul class="list-unstyled">
       <li>Username: <%= link_to @post.user.username, user_path(@post.user) %></li>
-      <% if @post.impressions_count > 15 %>
-        <li>Views: <%= @post.impressions_count %></li>
-      <% end %>
-      <li>Status: <%= @post.status %></li>
+      <li>Views: <%= @post.impressions_count %></li>
+      <li>Status: <%= @post.status.to_s.titleize %></li>
     </ul>
   </div>
   <div class="well">

@@ -1,14 +1,19 @@
 <%= header "Shoes and Pairs for #{@user.username}" %>
-<div class="row-fluid">
+
+<div class="container well">
   <h1>
     <%= @user.username %>
   </h1>
-</div>
 
-<%= render partial: 'users/post', locals: {
-  posts: @user.posts.active,
-  panel: {
-    heading: "Active Pairs",
-    class: "panel-primary"
-  }
-} %>
+  <div class="row">
+    <div class="col-xs-12">
+      <% @user.posts.active.in_groups_of(4, false) do |row_of_posts| %>
+        <div class="row">
+          <% row_of_posts.each do |post| %>
+            <%= render partial: "posts/post", object: post %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
