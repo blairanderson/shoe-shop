@@ -53,29 +53,6 @@
       <li>Status: <%= @post.status.to_s.titleize %></li>
     </ul>
   </div>
-  <div class="well">
-    <div class="list-group">
-      <div class="list-group-item comments">
-        <span class="badge"><%= @post.comments.count %></span>
-        <h4 class="list-group-item-heading">Comments</h4>
-      </div>
-      <%= render partial: "comments/comment", collection: @post.comments %>
-      <div class="list-group-item">
-        <% if current_user %>
-          <h3 class="list-group-item-heading">Submit a Comment</h3>
-
-          <%= simple_form_for [@post, @post.comments.build(post_id: @post.id)] do |f| %>
-            <%= f.input :body, input_html: {rows: 6}, label: false %>
-            <br>
-            <%= f.submit :submit, class: 'btn btn-inverse' %>
-          <% end %>
-
-        <% else %>
-          <%= link_to "Login to Comment", login_path %>
-        <% end %>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- facebook meta -->

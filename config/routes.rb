@@ -26,7 +26,6 @@ ShoeShop::Application.routes.draw do
     member do
       post :callback
     end
-    resources :comments, shallow: true
     resources :images, shallow: true, only: [:create, :destroy]
   end
   get 'pairs/:sort/:filter', to: 'filters#index', as: 'filters'

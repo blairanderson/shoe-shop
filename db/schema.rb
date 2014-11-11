@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 20141105040816) do
   add_index "posts", ["cached_votes_up"], name: "index_posts_on_cached_votes_up", using: :btree
   add_index "posts", ["price"], name: "index_posts_on_price", using: :btree
   add_index "posts", ["scoreboard"], name: "index_posts_on_scoreboard", using: :btree
-  add_index "posts", ["status_enum"], name: "index_posts_on_status_enum", using: :btree
+  add_index "posts", ["status_enum"], name: "index_posts_on_status_enum", where: "(status_enum = 1)", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "sizes", force: true do |t|
