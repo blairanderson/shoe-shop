@@ -28,6 +28,20 @@
       <dd><%= @post.body %></dd>
     </dl>
     <div>
+      <%= link_to "Tweet These Kicks!", "https://twitter.com/share",
+                  target: "_blank",
+
+                  class: "twitter-share-button",
+                  data: {
+                    url: "#{post_url(@post)}",
+                    dnt: "true",
+                    text: "#{verbose_post_title(@post)}",
+                    via: "solesout",
+                    size: "large",
+                    count: "none"
+                  } %>
+    </div>
+    <div>
       <%= render partial: "posts/post/#{@post.status}", locals: {post: @post, user: @post.user} %>
     </div>
   </div>
