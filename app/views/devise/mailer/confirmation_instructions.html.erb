@@ -113,15 +113,17 @@
         <tr>
           <td class="container-padding" bgcolor="#ffffff" style="background-color: #ffffff; padding-left: 30px; padding-right: 30px; font-size: 13px; line-height: 20px; font-family: Helvetica, sans-serif; color: #333;" align="left">
             <div style="font-weight: bold; font-size: 18px; line-height: 24px; color: #D03C0F;">
-              <h1>Welcome <%= @email %>!</h1>
+              <h1>Welcome To SolesOut!</h1>
             </div>
+            <p>This is to confirm you signed up with email:[<%= @email %>]</p>
             <p>You can confirm your account email through the link below:</p>
-
             <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
 
             <div style="font-weight: bold; font-size: 18px; line-height: 24px; color: #D03C0F">
-              <a href="http://www.solesout.com/twitter"><img border="0" src="https://abs.twimg.com/a/1378701295/images/resources/twitter-bird-light-bgs.png" width="42" height="32" alt="Follow us on Twitter">follow
-                our tweets</a>
+              <a href="http://www.solesout.com/twitter">
+                <img border="0" src="https://abs.twimg.com/a/1378701295/images/resources/twitter-bird-light-bgs.png" width="42" height="32" alt="Follow us on Twitter">
+                follow our tweets
+              </a>
               <!-- <a href="http://www.solesout.com/facebook"><img border="0" src="http://i.imgur.com/dVb0cDD.png" width="32" height="32" alt="Visit us on Facebook"></a> -->
             </div>
           </td>

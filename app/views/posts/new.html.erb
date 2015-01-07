@@ -1,9 +1,29 @@
-<div class="well">
-<h1>List a pair of shoes! <small><em>**We'll add images next!**</em></small></h1>
-<h3 id="expected-post-title"></h3>
-<p class="lead">
+<% if current_user.twitter.present? %>
+  <div class="col-xs-8">
+    <h1>List a pair of shoes!
+      <small><em>**We'll add images next!**</em></small>
+    </h1>
+    <h3 id="expected-post-title"></h3>
+
+    <p class="lead">
+    </p>
+    <%= render 'form' %>
+  </div>
+
+<% else %>
+  <div class="col-xs-8">
+    <h1>Hey! <%= twitter_link %></h1>
+
+    <p class="lead">
+      Like seriously, you can only post shoes if you sign in with twitter!
+    </p>
+    <p class="lead">
+      We'll automatically tweet from your account that your shoes are still for sale.
+    </p>
+    <p class="lead">
+      Its the easiest way to let your followers know that you have shoes for sale!
+    </p>
+  </div>
+<% end %>
 
 
-</p>
-<%= render 'form' %>
-</div>

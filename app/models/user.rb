@@ -52,6 +52,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def remove_twitter_authentication
+    self.provider = nil
+    self.uid = nil
+    self.twitter = nil
+    self.keychain.destroy
+    self.save
+    self.reload
+  end
+
   def score
     ProfilePresenter.new(self).score
   end

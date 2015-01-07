@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   def twitter_auth
     if current_user
       if current_user.update_omniauth env['omniauth.auth']
-        redirect_to root_path, notice: "Twitter Approved: @#{current_user.twitter}"
+        redirect_to new_post_path, notice: "Twitter Approved: @#{current_user.twitter}. Create your first pair!"
       else
         redirect_to root_path, notice: "Error with your Twitter Account. Try Again."
       end

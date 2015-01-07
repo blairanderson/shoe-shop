@@ -37,7 +37,11 @@ ShoeShop::Application.routes.draw do
   match 'auth/twitter/callback', to: 'sessions#twitter_auth', via: [:get, :post]
 
   resources :users, only: [:show]
-  resource :profile, only: [:show, :update]
+  resource :profile, only: [:show, :update] do
+    member do
+      post :remove_twitter_authentication
+    end
+  end
 
   get 'sitemap', to: 'pages#sitemap'
   get 'about', to: 'pages#about'

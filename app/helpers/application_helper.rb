@@ -3,6 +3,10 @@ module ApplicationHelper
     "SolesOut"
   end
 
+  def twitter_link
+    link_to t('twitter.link'), auth_path(:twitter)
+  end
+
   def header(content)
     content_for :title, content
   end

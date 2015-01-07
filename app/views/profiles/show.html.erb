@@ -1,47 +1,26 @@
-<div class="container well">
+<div class="container" style="background-color: white;">
   <div class="row">
-    <div class="col-xs-12 col-sm-10">
-      <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-          <thead>
-          <tr>
-            <th>Size</th>
-            <th>Image</th>
-            <th>Title</th>
-            <th>Status</th>
-            <th>Price</th>
-            <th>View Count</th>
-            <th>Created date</th>
-          </tr>
-          </thead>
-          <tbody>
-          <% @user.posts.order(status_enum: :asc).each do |post| %>
-            <tr class="<%= status_to_class(post.status) %>">
-              <td><%= post.size.name %></td>
-              <td><%= image_tag post.images.first.try(:url_size, 100) %></td>
-              <td><%= link_to post.title, post %></td>
-              <td><%= post.status.to_s.titleize %></td>
-              <td><%= link_to number_to_currency(post.price), post %></td>
-              <td><%= post.impressions_count %></td>
-              <td><%= time_ago_in_words post.created_at %></td>
-            </tr>
-          <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-2">
+    <div class="col-xs-12 col-md-4">
       <% if @user.twitter.present? %>
-        <p>TWITTER: <%= @user.twitter %></p>
+        <p>TWITTER: <%= @user.twitter %> (<%= link_to 'unlink twitter', remove_twitter_authentication_profile_path, method: :post %>)</p>
       <% else %>
-        <p><%= link_to t('twitter.link'), auth_path(:twitter) %></p>
+        <p>
+          <%= link_to t('twitter.link'), auth_path(:twitter) %>
+        </p>
       <% end %>
       <p>USERNAME: <strong><%= @user.username %></strong></p>
 
       <p>EMAIL: <%= @user.email %></p>
 
       <p><%= link_to t('user.update.password'), edit_user_registration_path %></p>
-
     </div>
+    <div class="col-xs-12 col-md-8">
+      <% if @user.posts.present? %>
+        <%= render partial: "posts" %>
+      <% else %>
+        <%= render partial: "sell_something" %>
+      <% end %>
+    </div>
+
   </div>
 </div>
