@@ -1,0 +1,28 @@
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>Size</th>
+      <th>Image</th>
+      <th>Title</th>
+      <th>Status</th>
+      <th>Price</th>
+      <th>View Count</th>
+      <th>Created date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @user.posts.order(status_enum: :asc).each do |post| %>
+      <tr class="<%= status_to_class(post.status) %>">
+        <td><%= post.size.name %></td>
+        <td><%= image_tag post.images.first.try(:url_size, 100) %></td>
+        <td><%= link_to post.title, post %></td>
+        <td><%= post.status.to_s.titleize %></td>
+        <td><%= link_to number_to_currency(post.price), post %></td>
+        <td><%= post.impressions_count %></td>
+        <td><%= time_ago_in_words post.created_at %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
