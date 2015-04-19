@@ -1,4 +1,4 @@
-ruby '2.1.1'
+ruby '2.2.0'
 source 'https://rubygems.org'
 
 # gem 'rails', github: 'rails/rails'
@@ -27,7 +27,7 @@ gem 'paloma'
 
 group :production do
   gem 'newrelic_rpm'
-  gem 'unicorn'
+  # gem 'unicorn'
   gem 'rails_12factor'
 end
 
