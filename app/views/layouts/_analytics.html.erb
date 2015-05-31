@@ -21,7 +21,7 @@
       user_link: "<%= "http://www.solesout.com/users/#{current_user.id}" %>",
       created_at: <%= current_user.created_at.to_i %>,
       app_id: "3427b6f1-8e80-4480-8f6f-b251067b6784",
-      liveChat: false,
+      liveChat: <%= current_user.email == "blair81@gmail.com" %>,
       links: {
         twitter: "<%= current_user.twitter %>",
         posts_count: <%= current_user.posts.count %>,
