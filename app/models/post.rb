@@ -95,7 +95,7 @@ class Post < ActiveRecord::Base
   end
 
   def has_image?
-    image_count>0
+    images_count>0
   end
 
   def shoe_size
