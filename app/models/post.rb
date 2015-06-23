@@ -1,22 +1,31 @@
 class Post < ActiveRecord::Base
   max_paginates_per 28
 
+  if Rails.env.production?
+    include AlgoliaSearch
+    algoliasearch if: :has_image? do
+      attribute :title, :price, :body, :status
+      add_attribute :score, :view_count, :image, :shoe_size
+    end
+  end
+
   alias_attribute :score, :cached_votes_score
   alias_attribute :view_count, :impressions_count
 
   before_validation :set_default_enum
 
   as_enum :status, [:draft, :for_sale, :sold, :deleted],
-          whiny: false, column: 'status_enum'
+    whiny: false, column: 'status_enum'
 
-  validates :user_id,     presence: true
-  validates :title,       presence: true, length: {maximum: 80}
-  validates :price,       presence: true, numericality: true
-  validates :body,        presence: true
-  validates :scoreboard,  presence: true
+  validates :user_id, presence: true
+  validates :title, presence: true, length: {maximum: 80}
+  validates :price, presence: true, numericality: true
+  validates :body, presence: true
+  validates :scoreboard, presence: true
   validates :status_enum, presence: true
 
   validate :for_sale_images_count, if: :for_sale?
+
   def for_sale_images_count
     errors.add(:images_count, "Must have images to sell these shoes.") if images.count == 0
   end
@@ -83,5 +92,17 @@ class Post < ActiveRecord::Base
       service = TCO.new
       service.post_update(self)
     end
+  end
+
+  def has_image?
+    image_count>0
+  end
+
+  def shoe_size
+    size.name
+  end
+
+  def image
+    images.first.url_size(370) if has_image?
   end
 end
