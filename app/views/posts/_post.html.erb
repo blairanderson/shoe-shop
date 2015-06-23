@@ -1,9 +1,9 @@
-<div class="col-xs-12 col-sm-6 col-md-3">
+<div class="grid-item">
   <% if post.sold? %>
     <%= image_tag('sold-out-stamp-large.png', size: '100', style: 'position:absolute;left:0;top:20px;') %>
   <% end %>
 
-  <%= link_to post do %>
+  <%= link_to post, title: "view #{post.title}" do %>
     <% if post.images_count > 0 %>
       <% if mobile_device? %>
         <%= image_tag post.images.first.url_size(370),
@@ -16,12 +16,14 @@
     <% end %>
   <% end %>
 
-  <div>
-    <%= link_to truncate(post.title, length: 40), post, class: 'title' %>
-  </div>
+  <div class="hidden-xs hidden-sm">
+    <div class="truncate">
+      <%= link_to truncate(post.title, length: 40), post, class: 'title' %>
+    </div>
 
-  <div>
-    <%= link_to number_to_currency(post.price, precision: 0), post, class: 'title' %> -
-    <%= link_to post.user.username, user_path(post.user), class: 'author' %>
+    <div>
+      <%= link_to post.user.username, user_path(post.user), class: 'author' %>
+      <%= link_to number_to_currency(post.price, precision: 0), post, class: 'title pull-right', title: "buy #{post.title}" %>
+    </div>
   </div>
 </div>

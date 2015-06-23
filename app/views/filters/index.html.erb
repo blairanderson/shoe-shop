@@ -1,16 +1,10 @@
-<div class="container" style="background-color: white">
+<div>
   <div class="col-xs-12 col-sm-3">
     <%= render "filter_nav" %>
   </div>
-  <div class="col-xs-12 col-sm-9" style="padding-top: 20px;">
-    <% @posts.in_groups_of(4, false) do |row_of_posts| %>
-      <div class="row">
-
-        <% row_of_posts.each do |post| %>
-          <%= render partial: "posts/post", object: post %>
-        <% end %>
-
-      </div>
+  <div class="col-xs-12 col-sm-9" style="background-color: white;padding: 20px 5px;">
+    <% cache(@posts) do %>
+      <%= render @posts %>
     <% end %>
   </div>
 

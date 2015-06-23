@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/blairanderson/yolobar.git
-  revision: 6f6d3944aa71270804c4a3b58881e0e541a33b2b
+  revision: ef4d38bd045ba400440b285b4c579548f1e9f867
   specs:
     yolobar (1.0.0)
 
@@ -146,6 +146,8 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -187,7 +189,6 @@ GEM
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
     sendgrid (1.2.0)
-      json
       json
     shoulda-matchers (2.2.0)
       activesupport (>= 3.0.0)
@@ -269,6 +270,7 @@ DEPENDENCIES
   paloma
   pg
   pry-rails
+  quiet_assets
   rails (= 4.0.0)
   rails_12factor
   rspec-rails

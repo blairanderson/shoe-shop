@@ -3,7 +3,7 @@ class FiltersController < ApplicationController
 
   def index
     status = session[:post_status_filter] || :active
-    @posts = Post.send(status).filter(@filter).sort(@sort).includes(:user, :size, :images).page(params[:page])
+    @posts = Post.send(status).filter(@filter).sort(@sort).includes(:user, :images).page(params[:page])
   end
 
   def sold
