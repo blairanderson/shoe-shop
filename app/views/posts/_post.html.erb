@@ -7,7 +7,8 @@
     <% if post.images_count > 0 %>
       <% if mobile_device? %>
         <%= image_tag post.images.first.url_size(370),
-                      class: 'img-responsive img-rounded'%>
+                      onload: 'this.style.opacity=1',
+                      class: 'img-responsive'%>
       <% else %>
         <%= image_tag post.images.first.url_size(215),
                       onload: 'this.style.opacity=1',
