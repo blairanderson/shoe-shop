@@ -21,13 +21,17 @@
       user_link: "<%= "http://www.solesout.com/users/#{current_user.id}" %>",
       created_at: <%= current_user.created_at.to_i %>,
       app_id: "3427b6f1-8e80-4480-8f6f-b251067b6784",
-      liveChat: <%= current_user.email == "blair81@gmail.com" %>,
+      liveChat: true,
       links: {
-        twitter: "<%= current_user.twitter %>",
         posts_count: <%= current_user.posts.count %>,
         score: <%= current_user.score %>
       }
     };
+    var twitter = "<%= current_user.twitter %>";
+    if (twitter && twitter.length>0) {
+      window.feedbackLoop.links.twitter = twitter
+    }
+
   </script>
   <script>
     (function() {var w = window;var ic = w.FBL;if (typeof ic === "function") {ic('reattach_activator');ic('update', feedbackLoop);
